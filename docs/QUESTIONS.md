@@ -46,6 +46,13 @@ typhoon / CX254 delay constants as `packages/sim`. LLM drafting is
 Cathay Alert template. The action column is a persistent right-hand drawer
 (iPad landscape, min 1024px).
 
+## MAXCT / overnight
+
+If an option lands on the next calendar day, reasoning must call it overnight.
+Do not dump a passenger 18h later as if it were same-day (MAXCT lesson from
+PNR-recovery cards). UM recovery must not use next-calendar-day flights.
+Do not rip UM-on-CX-metal or downgrade protection to match an older plan.
+
 ## Verification
 
 `docs/DEMO.md` is sacred. Claim done only after `pnpm typecheck`, `pnpm test`,

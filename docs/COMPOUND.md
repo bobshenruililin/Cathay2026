@@ -1,0 +1,53 @@
+# Compounding playbook
+
+Cathay Hackathon 2026 judges for **feasibility**, Business Unit involvement,
+and adoptability — not a Kafka demo. Drive this board with
+`.cursor/skills/compound/SKILL.md`. Database: `docs/survey/index.md`.
+
+## Operating rule
+
+Every PR either moves one Next → Done (paste checker) **or** appends one
+lesson to `docs/compound/log.md` that names a file or a Never. Tempted
+feature: add to LATER and this board; do not build it. Next cap **12**.
+Do not shrink Never without `docs/QUESTIONS.md`.
+
+## Scorecard
+
+| Lens | Bar | Reconnect | Gap |
+| --- | --- | --- | --- |
+| Named BU | HK Express, Cargo, pilots | Gate agent + Altéa office in PILOT | Pitch HKG Transfer / Ground |
+| Feasibility | Named feed or physical slice | `docs/PILOT_PROPOSAL.md` | Quiet-default + sim badge |
+| Decision | FlyLab summarises | Engine decides, `reasoning[]` | Keep; say it |
+| Number | Fake €25M vs SWISS minutes | Sim has counts | `METRICS.md` from sim only |
+| Honesty | Vendors exist | No Altéa write week 1 | Not Amadeus Passenger Recovery |
+
+## Done
+
+- Pure `packages/engine`, zero runtime deps, no LLM in decisions
+- Verbatim `reasoning: string[]` in the console
+- Flight-number + instruction-override guard (`apps/console/lib/llm/guard.ts`)
+- Deterministic `packages/sim`; DEMO clock is not `Date.now()`
+- Named user (HKG transfer agent); PILOT names Altéa / FIDS MQTT / App push
+- Survey cards + compound skill + this board
+- Pitch notes: named BU, FlyLab pairing, engine-true line
+
+## Next
+
+| id | bucket | steal-from | recipe | checker |
+| --- | --- | --- | --- | --- |
+| quiet-default | SCOPE | amadeus-disruption-agent, connectguard | Adapters skip `!atRisk`. Show silent/healthy chip in `triage-queue.tsx` without a 7th DEMO step | `pnpm test:demo` + console unit |
+| sim-badge | SCOPE | aegisops-ai, spacex-se | Visible SIM/offline on `station-header.tsx` when drafts fall back | header test + `pnpm test:demo` |
+| action-verbs | SCOPE | connectguard | Hold / Escort / Protect / Wait strings in `option-reason.ts` only; no engine API change | `pnpm --filter engine test` |
+| metrics-from-sim | PITCH | connectguard, amadeus-passenger-recovery | `docs/METRICS.md` arithmetic from `packages/sim` counts | docs only; no vendor numbers |
+| hold-outbound | LATER | connectguard, pfrsp | Do not build | — |
+| walk-graph | LATER | traavl | Do not build | — |
+| coc-rag | LATER | amadeus-disruption-agent | CoC as draft context only; do not rank | — |
+| visual-percy | LATER | nasa-openmct | Visual QA already out of demo | — |
+| cargo-uld | LATER | naar-2023 | Same engine, different entities | — |
+
+## Never
+
+LLM ranks or rebooks. Kafka / Mapbox / six-agent story. Passenger chatbot as
+the pitch. Gurobi or quantum on stage. OpenFlights PHP. Kraken-ifying claims.
+Embedding Open MCT or F Prime. ADS-B as PNR/MCT. Fake ROI. Replacing Amadeus
+Passenger Recovery. Seventh DEMO step. `Date.now()` as station clock.

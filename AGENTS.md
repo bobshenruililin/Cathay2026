@@ -15,6 +15,7 @@ Missed-connection recovery console for HKG transfer agents. Hackathon build. Dem
 - Before claiming done: `pnpm typecheck && pnpm test && pnpm test:demo`. Paste the output.
 - If a task is ambiguous, write the question to docs/QUESTIONS.md and pick the simplest interpretation. Don't block.
 - Do not add features not in docs/SCOPE.md. If tempted, add to docs/LATER.md.
+- Compounding: when the user says compound, nudge, steal from, ingest, or refresh survey, read `.cursor/skills/compound/SKILL.md` first. Every PR appends one line to `docs/compound/log.md` or moves one `docs/COMPOUND.md` Next → Done. Do not implement LATER/Never product features.
 
 ## Style
 - No clever abstractions. Three similar lines > one premature helper.

@@ -8,4 +8,6 @@ In scope for the 16 November 2026 stage demo:
 4. `docs/DEMO.md` + `e2e/demo.spec.ts` — six-step Playwright path (`pnpm test:demo`).
 5. `docs/PILOT_PROPOSAL.md` — Altéa PNR feed, HKG FIDS MQTT, Cathay Mobile App push.
 
-Out of scope for this demo: Altéa `PNR_AddMultiElements` writes, production credentials, public FIDS website scraping, holding device tokens.
+Out of scope for this demo: Altéa `PNR_AddMultiElements` writes, production credentials, public FIDS website scraping, holding device tokens. See `docs/LATER.md`.
+
+Improvement OS (not a demo feature): `docs/COMPOUND.md`, `docs/survey/`, `.cursor/skills/compound/SKILL.md`.
