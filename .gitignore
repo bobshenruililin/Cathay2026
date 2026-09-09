@@ -5,3 +5,7 @@ dist/
 *.tsbuildinfo
 *.log
 .DS_Store
+playwright-report/
+test-results/
+blob-report/
+
