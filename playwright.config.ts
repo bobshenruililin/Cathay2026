@@ -1,5 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
+const baseURL = "http://127.0.0.1:3100";
+
 export default defineConfig({
   testDir: "./e2e",
   timeout: 90_000,
@@ -9,7 +11,7 @@ export default defineConfig({
   retries: 0,
   reporter: [["list"]],
   use: {
-    baseURL: "http://127.0.0.1:3000",
+    baseURL,
     viewport: { width: 1180, height: 820 },
     actionTimeout: 20_000,
     navigationTimeout: 60_000,
@@ -18,7 +20,7 @@ export default defineConfig({
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"], viewport: { width: 1180, height: 820 } } }],
   webServer: {
     command: "pnpm --filter console dev:e2e",
-    url: "http://127.0.0.1:3000",
+    url: baseURL,
     reuseExistingServer: false,
     timeout: 180_000,
   },
