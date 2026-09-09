@@ -18,6 +18,7 @@ test("6-step stage demo", async ({ page }) => {
   await test.step("2. Live triage queue from sim + engine", async () => {
     await expect(page.getByTestId("queue-item").first()).toBeVisible();
     await expect(page.getByTestId("quiet-count")).toContainText("OK — silent");
+    await expect(page.getByTestId("handling-flags").first()).toBeVisible();
     await expect(page.getByTestId("engine-reasoning")).toBeVisible();
     await expect(page.getByTestId("engine-reasoning")).toContainText(/Slack is -?\d+ minutes/);
   });
@@ -38,6 +39,10 @@ test("6-step stage demo", async ({ page }) => {
     await expect(page.getByTestId("btn-cx254")).toBeEnabled();
     const cxRow = page.getByTestId("queue-item").filter({ hasText: "CX254" }).first();
     await expect(cxRow).toBeVisible();
+    const namedUm = page.getByTestId("queue-item").filter({ hasText: "W4N9KD" });
+    await expect(namedUm).toBeVisible();
+    await expect(namedUm).toContainText("CX254");
+    await expect(namedUm.getByTestId("handling-flags")).toContainText("UM");
     await cxRow.click();
     await expect(page.getByTestId("connection-panel")).toContainText(/Delay [1-9]/);
   });

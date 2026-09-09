@@ -21,8 +21,9 @@ Healthy connections stay off the action list; the queue header shows
 `packages/engine` `triageConnection` / `generateOptions` fills status, slack,
 options, and `reasoning`.
 
-Assertion: at least one queue row is visible and engine reasoning is shown for the
-auto-selected passenger.
+Assertion: at least one queue row is visible, a handling chip (`UM` / `WCH` /
+`party of N`) is on a row, and engine reasoning is shown for the auto-selected
+passenger.
 
 ## 3. Simulate Typhoon Delay
 
@@ -38,7 +39,8 @@ the triage header shows a Peak flood chip.
 Click **Late Inbound CX254**. Sim delays inbound CX254 (TPE→HKG in the synthetic
 bank) by 180 minutes (`CX254_DELAY_MINUTES`).
 
-Assertion: a queue row mentions CX254 and CX254’s delay minutes are greater than 0.
+Assertion: a queue row mentions CX254, named UM `W4N9KD` (Mei Chan) is in the
+queue with an UM chip, and CX254’s delay minutes are greater than 0.
 
 ## 5. Queue updates and recovery options
 
