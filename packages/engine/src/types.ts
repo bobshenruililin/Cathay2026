@@ -1,0 +1,71 @@
+export type CabinClass = "First" | "Business" | "Premium Economy" | "Economy";
+
+export type LoyaltyTier = "Diamond" | "Gold" | "Silver" | "Green";
+
+export type FlightStatus = "scheduled" | "departed" | "arrived" | "delayed";
+
+export type CabinSeats = {
+  First: number;
+  Business: number;
+  "Premium Economy": number;
+  Economy: number;
+};
+
+export type Flight = {
+  flightNumber: string;
+  airline: string;
+  origin: string;
+  destination: string;
+  scheduledDeparture: string;
+  scheduledArrival: string;
+  actualDeparture: string;
+  actualArrival: string;
+  delayMinutes: number;
+  status: FlightStatus;
+  gate: string;
+  seats: CabinSeats;
+};
+
+export type Passenger = {
+  pnr: string;
+  name: string;
+  tier: LoyaltyTier;
+  cabin: CabinClass;
+};
+
+export type Connection = {
+  inbound: Flight;
+  outbound: Flight;
+  passenger: Passenger;
+};
+
+export type RecoveryOption = {
+  flight: Flight;
+  score: number;
+  delayMinutes: number;
+  seatMatch: boolean;
+  reasoning: string[];
+};
+
+export type DisruptionEvent = {
+  kind: "delay" | "at_risk";
+  flightNumber: string;
+  delayMinutes: number;
+  clockIso: string;
+  reasoning: string[];
+};
+
+export type ConnectionStatus = "ok" | "tight" | "missed" | "invalid";
+
+export type TriageResult = {
+  pnr: string;
+  inboundFlightNumber: string;
+  outboundFlightNumber: string;
+  feasible: boolean;
+  atRisk: boolean;
+  status: ConnectionStatus;
+  slackMinutes: number;
+  requiredMinutes: number;
+  options: RecoveryOption[];
+  reasoning: string[];
+};
