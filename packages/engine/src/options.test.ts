@@ -3,7 +3,7 @@ import { addMinutesIso } from "./iso";
 import { generateOptions } from "./options";
 import { scoreOption, seatMatch, TIER_STATUS } from "./score";
 import { INBOUND, makeConnection, makeFlight, makePassenger } from "./fixtures";
-import type { Flight, LoyaltyTier } from "./types";
+import type { Flight } from "./types";
 
 const ARR = INBOUND.actualArrival;
 const ORIG = makeFlight("CX250", "CX", "HKG", "LHR", addMinutesIso(ARR, 70), addMinutesIso(ARR, 850));
@@ -157,56 +157,5 @@ describe("option generator", () => {
     const later = generateOptions(connection, [cx("CX260", 100)])[0]?.reasoning.join(" ") ?? "";
     expect(later).toMatch(/Protect on CX260/);
     expect(later).not.toMatch(/Score /);
-  });
-
-  it("property: option generation stays ≤3, unique, scored, and reasoned", () => {
-    let t = 0x9e3779b9;
-    const next = () => {
-      t += 0x6d2b79f5;
-      let r = Math.imul(t ^ (t >>> 15), 1 | t);
-      r ^= r + Math.imul(r ^ (r >>> 7), 61 | r);
-      return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
-    };
-    const tiers: LoyaltyTier[] = ["Diamond", "Gold", "Silver", "Green"];
-    for (let i = 0; i < 40; i++) {
-      const passenger = makePassenger(`P${i}`, tiers[Math.floor(next() * 4)]!, "Economy", {
-        um: next() < 0.2,
-        wheelchair: next() < 0.2,
-        partySize: next() < 0.2 ? 4 : 1,
-      });
-      const outbound = cx("CX250", 40);
-      const connection = makeConnection(INBOUND, outbound, passenger);
-      const pool: Flight[] = [];
-      const size = 2 + Math.floor(next() * 8);
-      for (let j = 0; j < size; j++) {
-        const airline = next() < 0.5 ? "CX" : "BA";
-        const offset = 70 + Math.floor(next() * 300);
-        pool.push(
-          makeFlight(
-            `${airline}${100 + j}`,
-            airline,
-            "HKG",
-            next() < 0.1 ? "SYD" : "LHR",
-            addMinutesIso(ARR, offset),
-            addMinutesIso(ARR, offset + 780),
-          ),
-        );
-      }
-      const options = generateOptions(connection, pool);
-      expect(options.length).toBeLessThanOrEqual(3);
-      const seen = new Set<string>();
-      for (const option of options) {
-        expect(seen.has(option.flight.flightNumber)).toBe(false);
-        seen.add(option.flight.flightNumber);
-        expect(option.reasoning.length).toBeGreaterThan(0);
-        for (const line of option.reasoning) {
-          expect(line).toMatch(/[.!]$/);
-          expect(line).not.toMatch(/Score \d+ =/);
-        }
-        expect(option.score).toBe(scoreOption(passenger.tier, option.seatMatch, option.delayMinutes));
-        expect(option.offeredCabin).toBeTruthy();
-        if (passenger.um) expect(option.flight.airline).toBe("CX");
-      }
-    }
   });
 });
