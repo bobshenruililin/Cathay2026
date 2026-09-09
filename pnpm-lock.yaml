@@ -8,22 +8,6 @@ importers:
 
   .: {}
 
-  packages/data:
-    dependencies:
-      engine:
-        specifier: workspace:*
-        version: link:../engine
-    devDependencies:
-      '@types/node':
-        specifier: ^24.3.0
-        version: 24.13.3
-      typescript:
-        specifier: ^5.9.2
-        version: 5.9.3
-      vitest:
-        specifier: ^3.2.4
-        version: 3.2.7(@types/node@24.13.3)
-
   packages/engine:
     devDependencies:
       '@types/node':
@@ -32,25 +16,6 @@ importers:
       '@vitest/coverage-v8':
         specifier: ^3.2.4
         version: 3.2.7(vitest@3.2.7(@types/node@24.13.3))
-      typescript:
-        specifier: ^5.9.2
-        version: 5.9.3
-      vitest:
-        specifier: ^3.2.4
-        version: 3.2.7(@types/node@24.13.3)
-
-  packages/sim:
-    dependencies:
-      data:
-        specifier: workspace:*
-        version: link:../data
-      engine:
-        specifier: workspace:*
-        version: link:../engine
-    devDependencies:
-      '@types/node':
-        specifier: ^24.3.0
-        version: 24.13.3
       typescript:
         specifier: ^5.9.2
         version: 5.9.3
