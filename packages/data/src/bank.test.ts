@@ -45,6 +45,23 @@ describe("evening bank", () => {
     expect(bank.connections.some((row) => row.inboundFlightNumber === "CX254")).toBe(true);
   });
 
+  it("pins named desk cases on CX254 feeders", () => {
+    const bank = generateEveningBank("hkg-demo");
+    const byPnr = Object.fromEntries(bank.connections.map((row) => [row.passenger.pnr, row]));
+    const mei = byPnr.W4N9KD;
+    expect(mei?.passenger).toMatchObject({ name: "Mei Chan", um: true, cabin: "Business" });
+    expect(mei?.inboundFlightNumber).toBe("CX254");
+    expect(byPnr.P8T2LM?.passenger.wheelchair).toBe(true);
+    expect(byPnr.P8T2LM?.inboundFlightNumber).toBe("CX254");
+    expect(byPnr.Q1H6VB?.passenger).toMatchObject({ partySize: 4, partyId: "PATEL" });
+    expect(byPnr.Q1H6VB?.inboundFlightNumber).toBe("CX254");
+    expect(byPnr.SSRWCH?.passenger.ssr).toEqual(["WCHR"]);
+    expect(byPnr.SSRWCH?.passenger.wheelchair).toBeUndefined();
+    expect(byPnr.SSRWCH?.inboundFlightNumber).toBe("CX254");
+    const pnrs = bank.connections.map((row) => row.passenger.pnr);
+    expect(new Set(pnrs).size).toBe(300);
+  });
+
   it("is byte-identical for the same seed and differs otherwise", () => {
     expect(snapshot(42)).toBe(snapshot(42));
     expect(snapshot("hkg-bank")).toBe(snapshot("hkg-bank"));

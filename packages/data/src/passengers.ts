@@ -15,6 +15,14 @@ const TIER_BAG: LoyaltyTier[] = ["Green", "Green", "Green", "Silver", "Silver", 
 const CABIN_BAG: CabinClass[] = ["Economy", "Economy", "Economy", "Premium Economy", "Business", "First"];
 const PNR_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
+/** Named JSON-case PNRs on the live CX254 feeder slots (mock bank names). */
+const DESK_CASES: Passenger[] = [
+  { pnr: "W4N9KD", name: "Mei Chan", tier: "Diamond", cabin: "Business", um: true },
+  { pnr: "P8T2LM", name: "James Wong", tier: "Gold", cabin: "Premium Economy", wheelchair: true },
+  { pnr: "Q1H6VB", name: "Aisha Patel", tier: "Silver", cabin: "Economy", partySize: 4, partyId: "PATEL" },
+  { pnr: "SSRWCH", name: "Grace Ho", tier: "Gold", cabin: "Business", ssr: ["WCHR"] },
+];
+
 function makePnr(rng: Rng, used: Set<string>): string {
   for (let attempt = 0; attempt < 32; attempt++) {
     let text = "";
@@ -32,7 +40,7 @@ function makePnr(rng: Rng, used: Set<string>): string {
 export function generateConnections(rng: Rng, flights: readonly Flight[]): BankConnection[] {
   const arrivals = flights.filter((f) => f.destination === "HKG");
   const departures = flights.filter((f) => f.origin === "HKG");
-  const used = new Set<string>();
+  const used = new Set<string>(DESK_CASES.map((row) => row.pnr));
   const connections: BankConnection[] = [];
   for (let i = 0; i < 300; i++) {
     const inbound = arrivals[i % arrivals.length]!;
@@ -57,7 +65,7 @@ export function generateConnections(rng: Rng, flights: readonly Flight[]): BankC
       outboundFlightNumber: outbound.flightNumber,
     });
   }
-  return pinCx254Feeders(connections, flights);
+  return pinDeskCases(pinCx254Feeders(connections, flights));
 }
 
 /** Keep a few CX254 inbound links just above MCT so a 150 min delay puts them at risk. */
@@ -84,4 +92,13 @@ function pinCx254Feeders(connections: BankConnection[], flights: readonly Flight
           outboundFlightNumber: outbound.flightNumber,
         },
   );
+}
+
+function pinDeskCases(connections: BankConnection[]): BankConnection[] {
+  const start = connections.length - DESK_CASES.length;
+  if (start < 0) return connections;
+  return connections.map((row, index) => {
+    const passenger = DESK_CASES[index - start];
+    return passenger ? { ...row, passenger } : row;
+  });
 }
