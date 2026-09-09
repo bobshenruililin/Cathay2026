@@ -17,3 +17,4 @@ Append-only. Format: `YYYY-MM-DD | source-id | lesson | path | bucket`
 2026-09-09 | airline-disr-mgt | MILP sibling of PFRSP; do not ship Gurobi | docs/LATER.md | Never
 2026-09-09 | amadeus-disruption-agent | Healthy connections stay silent; only at-risk PNRs enter the action queue | apps/console/lib/adapter/queue.ts | SCOPE
 2026-09-09 | aegisops-ai | Visible SIM badge on the live path; Offline draft when the venue API dies | apps/console/components/station-header.tsx | SCOPE
+2026-09-09 | connectguard | Hold / Escort / Protect / Wait in option reasoning; keep existing phrases | packages/engine/src/option-reason.ts | SCOPE

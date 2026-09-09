@@ -36,12 +36,14 @@ Do not shrink Never without `docs/QUESTIONS.md`.
 - `sim-badge` (aegisops-ai): SIM on `station-header.tsx`; Offline draft when
   `/api/draft` misses or the guard falls back. Checker: `pnpm --filter console
   test` && `pnpm test:demo` (step 1 asserts `sim-badge`)
+- `action-verbs` (connectguard): Hold / Escort / Protect / Wait prefixes in
+  `packages/engine/src/option-reason.ts` without dropping existing phrases.
+  Checker: `pnpm --filter engine test`
 
 ## Next
 
 | id | bucket | steal-from | recipe | checker |
 | --- | --- | --- | --- | --- |
-| action-verbs | SCOPE | connectguard | Hold / Escort / Protect / Wait strings in `option-reason.ts` only; no engine API change | `pnpm --filter engine test` |
 | metrics-from-sim | PITCH | connectguard, amadeus-passenger-recovery | `docs/METRICS.md` arithmetic from `packages/sim` counts | docs only; no vendor numbers |
 | hold-outbound | LATER | connectguard, pfrsp, airline-disr-mgt | Do not build | — |
 | walk-graph | LATER | traavl | Do not build | — |
