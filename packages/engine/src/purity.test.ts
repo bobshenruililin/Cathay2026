@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const banned = /from ["'](openai|@anthropic|@google\/generative-ai|langchain|ai)["']/;
+const banned = /from ["'](openai|@anthropic|@google\/generative-ai|langchain|ai|gurobi|or-tools)["']/;
 
 function walk(dir: string): string[] {
   const out: string[] = [];
@@ -24,7 +24,7 @@ describe("engine purity", () => {
     expect(pkg.dependencies ?? {}).toEqual({});
   });
 
-  it("src production files do not import LLM SDKs", () => {
+  it("src production files do not import LLM SDKs or solvers", () => {
     for (const file of walk(join(root, "src"))) {
       expect(readFileSync(file, "utf8"), file).not.toMatch(banned);
     }
