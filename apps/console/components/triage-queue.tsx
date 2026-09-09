@@ -4,12 +4,14 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { EmptyBlock, ErrorBlock, LoadingBlock } from "@/components/async-state";
 import { StatusBadge, TierBadge } from "@/components/status-badge";
 import { formatFlight } from "@/lib/format";
+import { queuePeakLabel } from "@/lib/queue-peak";
 import type { QueueItem } from "@/lib/adapter/types";
 import { cn } from "@/lib/utils";
 
 export function TriageQueue({
   items,
   quietCount,
+  delayedFlights,
   selectedPnr,
   status,
   error,
@@ -18,12 +20,14 @@ export function TriageQueue({
 }: {
   items: QueueItem[];
   quietCount: number;
+  delayedFlights: number;
   selectedPnr: string | null;
   status: "loading" | "ready" | "error";
   error: string | null;
   onRetry: () => void;
   onSelect: (pnr: string) => void;
 }) {
+  const peak = queuePeakLabel(items.length, delayedFlights);
   return (
     <section className="flex min-h-0 flex-col border-r bg-card" data-testid="triage-queue">
       <div className="border-b px-4 py-3">
@@ -32,6 +36,11 @@ export function TriageQueue({
         <p className="text-xs text-muted-foreground" data-testid="quiet-count">
           {quietCount} connection{quietCount === 1 ? "" : "s"} OK — silent
         </p>
+        {peak ? (
+          <p className="text-xs font-medium text-destructive" data-testid="queue-peak">
+            {peak}
+          </p>
+        ) : null}
       </div>
       {status === "loading" ? <LoadingBlock label="Loading at-risk connections…" /> : null}
       {status === "error" ? <ErrorBlock message={error ?? "Queue failed"} onRetry={onRetry} /> : null}

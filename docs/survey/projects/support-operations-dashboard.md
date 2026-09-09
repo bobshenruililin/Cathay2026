@@ -9,7 +9,7 @@ well: "Act-now / watch / context; empty, loading, error, peak states; says what 
 poor: "Not aviation."
 steal: "Typhoon peak as a first-class flood state, not a calm queue."
 never: "New dashboard framework."
-applied: []
+applied: [peak-flood]
 scope_recipe: "apps/console/components/triage-queue.tsx peak empty/flood — pnpm test:demo"
 pitch_recipe: ""
 later_recipe: ""

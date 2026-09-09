@@ -41,6 +41,8 @@ Do not shrink Never without `docs/QUESTIONS.md`.
   Checker: `pnpm --filter engine test`
 - `metrics-from-sim` (connectguard): `docs/METRICS.md` locked to
   `packages/sim` `demoMetrics("hkg-demo")`. Checker: `pnpm --filter sim test`
+- `peak-flood` (support-operations-dashboard): typhoon/delay flood chip on
+  `triage-queue.tsx`. Checker: `pnpm --filter console test` && `pnpm test:demo`
 
 ## Next
 

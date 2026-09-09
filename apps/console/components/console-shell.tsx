@@ -157,6 +157,7 @@ export function ConsoleShell() {
         <TriageQueue
           items={snapshot?.queue ?? []}
           quietCount={snapshot?.disruption.quietCount ?? 0}
+          delayedFlights={snapshot?.disruption.delayedFlights ?? 0}
           selectedPnr={selectedPnr}
           status={status}
           error={error}

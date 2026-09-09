@@ -30,7 +30,8 @@ Click **Simulate Typhoon Delay**. The adapter calls `sim.injectTyphoon()`
 (90 minutes on HKG inbounds, same constant as the mock seam). The triage
 queue refreshes in place; no page reload.
 
-Assertion: delayed-flight count increases and the queue remains on screen.
+Assertion: delayed-flight count increases, the queue remains on screen, and
+the triage header shows a Peak flood chip.
 
 ## 4. Late Inbound CX254
 

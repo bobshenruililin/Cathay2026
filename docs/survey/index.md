@@ -15,7 +15,7 @@ Unapplied steals first when nudging. Cards: `docs/survey/projects/<id>.md`.
 | openflights | github | OpenFlights | 0 | reviewed |
 | pfrsp | github | PFRSP | 0 | reviewed |
 | airline-disr-mgt | github | airline.disr.mgt | 0 | reviewed |
-| support-operations-dashboard | github | Support ops dashboard | 0 | reviewed |
+| support-operations-dashboard | github | Support ops dashboard | 1 | reviewed |
 | nasa-fprime | aviation-bar | NASA F Prime | 0 | reviewed |
 | nasa-openmct | aviation-bar | NASA Open MCT | 0 | reviewed |
 | kraken | anti-pattern | Kraken claim leases | 0 | reviewed |

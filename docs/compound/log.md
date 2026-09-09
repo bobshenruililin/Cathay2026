@@ -19,3 +19,4 @@ Append-only. Format: `YYYY-MM-DD | source-id | lesson | path | bucket`
 2026-09-09 | aegisops-ai | Visible SIM badge on the live path; Offline draft when the venue API dies | apps/console/components/station-header.tsx | SCOPE
 2026-09-09 | connectguard | Hold / Escort / Protect / Wait in option reasoning; keep existing phrases | packages/engine/src/option-reason.ts | SCOPE
 2026-09-09 | connectguard | Stage numbers from demoMetrics(hkg-demo) only; no vendor ROI | docs/METRICS.md | PITCH
+2026-09-09 | support-operations-dashboard | Typhoon/delay is a peak flood chip, not a calm queue | apps/console/components/triage-queue.tsx | SCOPE

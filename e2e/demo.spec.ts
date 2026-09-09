@@ -29,6 +29,7 @@ test("6-step stage demo", async ({ page }) => {
     await expect(page.getByTestId("btn-typhoon")).toBeEnabled();
     await expect(delayed).not.toHaveText(before);
     await expect(page.getByTestId("queue-item").first()).toBeVisible();
+    await expect(page.getByTestId("queue-peak")).toContainText("Peak");
     await expect(page.getByTestId("station-clock")).toContainText("HKT");
   });
 
