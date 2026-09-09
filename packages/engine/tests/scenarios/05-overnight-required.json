@@ -12,6 +12,6 @@
     "atRisk": true,
     "feasible": false,
     "optionFlightNumbers": ["CX800"],
-    "optionReasoningIncludes": ["Protect on CX800"]
+    "optionReasoningIncludes": ["Protect on CX800", "Overnight option"]
   }
 }
