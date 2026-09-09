@@ -31,6 +31,12 @@ export type Passenger = {
   name: string;
   tier: LoyaltyTier;
   cabin: CabinClass;
+  /** Unaccompanied minor. Default false when omitted. */
+  um?: boolean;
+  /** Wheelchair / PRM assistance. Default false when omitted. */
+  wheelchair?: boolean;
+  /** Party size on this PNR. Default 1 when omitted. Cannot split across flights. */
+  partySize?: number;
 };
 
 export type Connection = {
@@ -44,6 +50,8 @@ export type RecoveryOption = {
   score: number;
   delayMinutes: number;
   seatMatch: boolean;
+  offeredCabin: CabinClass;
+  downgradeProtected: boolean;
   reasoning: string[];
 };
 

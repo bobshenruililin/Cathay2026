@@ -1,7 +1,10 @@
-import { GATE_WALK_BUFFER_MINUTES, hkgMctMinutes, isOneworldAirline, requiredMinutes } from "./mct";
+import { isOneworldAirline, requiredMinutesFor } from "./mct";
 import { hkgCalendarDay, minutesBetween } from "./iso";
 import { isAtRisk } from "./feasibility";
-import { TIER_STATUS, scoreOption, seatMatch } from "./score";
+import { delayReason, mctReason, scoreReason, seatingReason, specialHandlingReasons } from "./option-reason";
+import { isUnaccompaniedMinor } from "./passenger";
+import { scoreOption } from "./score";
+import { partySeating } from "./seating";
 import type { Connection, Flight, RecoveryOption } from "./types";
 
 function delayMinutesOf(original: Flight, alternative: Flight): number {
@@ -10,25 +13,24 @@ function delayMinutesOf(original: Flight, alternative: Flight): number {
 
 function toOption(connection: Connection, flight: Flight): RecoveryOption {
   const passenger = connection.passenger;
-  const matched = seatMatch(flight, passenger.cabin);
+  const seating = partySeating(flight, passenger)!;
   const delayMinutes = delayMinutesOf(connection.outbound, flight);
-  const score = scoreOption(passenger.tier, matched, delayMinutes);
-  const mct = hkgMctMinutes(connection.inbound.airline, flight.airline);
-  const required = requiredMinutes(connection.inbound.airline, flight.airline);
+  const score = scoreOption(passenger.tier, seating.seatMatch, delayMinutes);
+  const required = requiredMinutesFor(connection.inbound.airline, flight.airline, passenger);
   const available = minutesBetween(connection.inbound.actualArrival, flight.actualDeparture);
-  const seatLine = matched
-    ? `${passenger.cabin} seats remain on ${flight.flightNumber}.`
-    : `No ${passenger.cabin} seats remain on ${flight.flightNumber}; seat match is 0.`;
   return {
     flight,
     score,
     delayMinutes,
-    seatMatch: matched,
+    seatMatch: seating.seatMatch,
+    offeredCabin: seating.offeredCabin,
+    downgradeProtected: seating.downgradeProtected,
     reasoning: [
-      `${flight.flightNumber} ${flight.origin}-${flight.destination} departs ${flight.actualDeparture}, ${delayMinutes} min from original ${connection.outbound.flightNumber}.`,
-      `HKG MCT ${mct} min plus ${GATE_WALK_BUFFER_MINUTES} min gate walk buffer (${required} min required); this option has ${available} min.`,
-      seatLine,
-      `Score ${score} = (tier ${TIER_STATUS[passenger.tier]} × 3) + (seat match ${matched ? 1 : 0} × 2) − (${delayMinutes} / 10).`,
+      delayReason(flight, delayMinutes, connection.outbound.flightNumber),
+      mctReason(connection.inbound.airline, flight.airline, required, available),
+      seatingReason(flight, passenger, seating),
+      ...specialHandlingReasons(passenger),
+      scoreReason(passenger.tier, seating.seatMatch, delayMinutes, score),
     ],
   };
 }
@@ -58,8 +60,10 @@ function isViable(connection: Connection, candidate: Flight): boolean {
   if (candidate.flightNumber === connection.outbound.flightNumber) return false;
   if (candidate.origin !== "HKG") return false;
   if (candidate.destination !== connection.outbound.destination) return false;
+  if (isUnaccompaniedMinor(connection.passenger) && candidate.airline !== "CX") return false;
+  if (!partySeating(candidate, connection.passenger)) return false;
   const available = minutesBetween(connection.inbound.actualArrival, candidate.actualDeparture);
-  return available >= requiredMinutes(connection.inbound.airline, candidate.airline);
+  return available >= requiredMinutesFor(connection.inbound.airline, candidate.airline, connection.passenger);
 }
 
 /**

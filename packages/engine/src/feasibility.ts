@@ -1,4 +1,4 @@
-import { TIGHT_SLACK_EXTRA_MINUTES, requiredMinutes } from "./mct";
+import { TIGHT_SLACK_EXTRA_MINUTES, requiredMinutesFor } from "./mct";
 import { minutesBetween } from "./iso";
 import type { Connection, ConnectionStatus, Flight } from "./types";
 
@@ -18,7 +18,11 @@ export function slackMinutes(connection: Connection): number {
 }
 
 export function connectionRequiredMinutes(connection: Connection): number {
-  return requiredMinutes(connection.inbound.airline, connection.outbound.airline);
+  return requiredMinutesFor(
+    connection.inbound.airline,
+    connection.outbound.airline,
+    connection.passenger,
+  );
 }
 
 export function isFeasible(connection: Connection): boolean {

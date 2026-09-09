@@ -1,5 +1,10 @@
 node_modules/
 coverage/
 dist/
+.next/
+*.tsbuildinfo
 *.log
 .DS_Store
+playwright-report/
+test-results/
+blob-report/

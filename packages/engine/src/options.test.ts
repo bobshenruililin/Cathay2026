@@ -72,7 +72,9 @@ describe("option generator", () => {
     const options = generateOptions(connection, [a, b]);
     expect(options[0]?.flight.flightNumber).toBe("BA30");
     expect(options[0]?.seatMatch).toBe(false);
-    expect(options[0]?.reasoning.join(" ")).toMatch(/No First seats/);
+    expect(options[0]?.downgradeProtected).toBe(true);
+    expect(options[0]?.offeredCabin).toBe("Business");
+    expect(options[0]?.reasoning.join(" ")).toMatch(/Downgrade protection/);
   });
 
   it("picks the next CX after the original even when a later CX scores lower", () => {
@@ -128,7 +130,11 @@ describe("option generator", () => {
     };
     const tiers: LoyaltyTier[] = ["Diamond", "Gold", "Silver", "Green"];
     for (let i = 0; i < 40; i++) {
-      const passenger = makePassenger(`P${i}`, tiers[Math.floor(next() * 4)]!, "Economy");
+      const passenger = makePassenger(`P${i}`, tiers[Math.floor(next() * 4)]!, "Economy", {
+        um: next() < 0.2,
+        wheelchair: next() < 0.2,
+        partySize: next() < 0.2 ? 4 : 1,
+      });
       const outbound = cx("CX250", 40);
       const connection = makeConnection(INBOUND, outbound, passenger);
       const pool: Flight[] = [];
@@ -155,6 +161,8 @@ describe("option generator", () => {
         seen.add(option.flight.flightNumber);
         expect(option.reasoning.length).toBeGreaterThan(0);
         expect(option.score).toBe(scoreOption(passenger.tier, option.seatMatch, option.delayMinutes));
+        expect(option.offeredCabin).toBeTruthy();
+        if (passenger.um) expect(option.flight.airline).toBe("CX");
       }
     }
   });
