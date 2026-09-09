@@ -68,6 +68,8 @@ Do not shrink Never without `docs/QUESTIONS.md`.
   Checker: `pnpm --filter engine test`
 - `handling-flags` (engine-hardening): UM / WCH / party chips on triage rows.
   Checker: `pnpm --filter console test`
+- `fast-check-10k` (engine-hardening): at-risk and options properties.
+  Checker: `pnpm --filter engine test`
 
 ## Next
 

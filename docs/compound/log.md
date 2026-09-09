@@ -34,3 +34,4 @@ Append-only. Format: `YYYY-MM-DD | source-id | lesson | path | bucket`
 2026-09-09 | cathay-green-2022 | No green-points feature; no hotel-night claim without a sim counter | docs/METRICS.md | Never
 2026-09-09 | engine-hardening | JSON fixtures 01–40 plus SSR UMNR/WCHR map onto existing flags | packages/engine/tests/scenarios | SCOPE
 2026-09-09 | engine-hardening | Queue rows show UM / WCH / party so the 20+ cases are visible at the desk | apps/console/components/triage-queue.tsx | SCOPE
+2026-09-09 | engine-hardening | 10k fast-check properties lock at-risk and option invariants | packages/engine/tests/properties.test.ts | SCOPE
