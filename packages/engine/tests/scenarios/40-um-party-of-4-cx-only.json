@@ -1,0 +1,45 @@
+{
+  "id": "40-um-party-of-4-cx-only",
+  "title": "UM party of 4 with J gone stays on one CX in Economy",
+  "story": "BA looks cheaper. Child plus family of four: CX metal, one cabin, together.",
+  "tags": ["unaccompanied-minor", "party-of-4", "wheelchair"],
+  "passenger": {
+    "pnr": "MIXED4",
+    "name": "Cole Family",
+    "tier": "Gold",
+    "cabin": "Business",
+    "um": true,
+    "wheelchair": true,
+    "partySize": 4,
+    "partyId": "COLE"
+  },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [
+    {
+      "flightNumber": "BA32",
+      "airline": "BA",
+      "depart": "2026-11-16T21:20:00+08:00",
+      "seats": { "Economy": 4 }
+    },
+    {
+      "flightNumber": "CX252",
+      "airline": "CX",
+      "depart": "2026-11-16T21:20:00+08:00",
+      "seats": { "Economy": 4 }
+    },
+    {
+      "flightNumber": "CX254",
+      "airline": "CX",
+      "depart": "2026-11-16T22:20:00+08:00",
+      "seats": {}
+    }
+  ],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["CX252"],
+    "optionReasoningIncludes": ["Unaccompanied minor", "Wheelchair assistance", "Keep party COLE together"]
+  }
+}

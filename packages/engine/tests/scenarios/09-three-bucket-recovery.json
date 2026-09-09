@@ -1,0 +1,20 @@
+{
+  "id": "09-three-bucket-recovery",
+  "title": "Same-day, next CX, and partner all fire",
+  "story": "Missed CX250. Desk should see one same-day, one later CX, and one BA — never a fourth.",
+  "tags": ["inbound-delay"],
+  "passenger": { "pnr": "THREE1", "name": "Peter Chan", "tier": "Gold", "cabin": "Business" },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [
+    { "flightNumber": "CX252", "airline": "CX", "depart": "2026-11-16T21:00:00+08:00" },
+    { "flightNumber": "CX254", "airline": "CX", "depart": "2026-11-16T23:00:00+08:00" },
+    { "flightNumber": "BA32", "airline": "BA", "depart": "2026-11-16T21:30:00+08:00" }
+  ],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["CX252", "BA32", "CX254"]
+  }
+}

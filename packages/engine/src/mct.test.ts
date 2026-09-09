@@ -37,6 +37,11 @@ describe("mct table", () => {
     expect(extraTransitMinutes({ um: true, wheelchair: true })).toBe(
       WHEELCHAIR_TRANSIT_BUFFER_MINUTES + UM_ESCORT_BUFFER_MINUTES,
     );
+    expect(extraTransitMinutes({ ssr: ["WCHR"] })).toBe(WHEELCHAIR_TRANSIT_BUFFER_MINUTES);
+    expect(extraTransitMinutes({ wheelchair: true, ssr: ["WCHS"] })).toBe(
+      WHEELCHAIR_TRANSIT_BUFFER_MINUTES,
+    );
+    expect(extraTransitMinutes({ ssr: ["UMNR"] })).toBe(UM_ESCORT_BUFFER_MINUTES);
     expect(requiredMinutesFor("CX", "CX", {})).toBe(60);
     expect(requiredMinutesFor("CX", "CX", { wheelchair: true })).toBe(75);
     expect(HKG_MCT_MINUTES.CX_CX).toBe(50);

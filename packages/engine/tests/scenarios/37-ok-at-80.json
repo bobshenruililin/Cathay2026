@@ -1,0 +1,17 @@
+{
+  "id": "37-ok-at-80",
+  "title": "Eighty minutes clears the tight window",
+  "story": "Exactly MCT plus walk plus 20. Quiet. No recoveries.",
+  "tags": ["tight-connection"],
+  "passenger": { "pnr": "OK80", "name": "Hugo Berg", "tier": "Silver", "cabin": "Economy" },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T19:20:00+08:00" },
+  "pool": [{ "flightNumber": "CX252", "airline": "CX", "depart": "2026-11-16T21:00:00+08:00" }],
+  "expected": {
+    "status": "ok",
+    "atRisk": false,
+    "feasible": true,
+    "optionFlightNumbers": [],
+    "triageReasoningIncludes": ["healthy"]
+  }
+}

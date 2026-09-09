@@ -1,0 +1,16 @@
+{
+  "id": "29-other-carrier-inbound",
+  "title": "Non-oneworld inbound onto CX needs 90 minutes",
+  "story": "5J into HKG. OTHER to CX MCT is 80 plus 10 walk. Eighty minutes is a miss.",
+  "tags": ["inbound-delay"],
+  "passenger": { "pnr": "5JIN01", "name": "Ana Cruz", "tier": "Green", "cabin": "Economy" },
+  "inbound": { "flightNumber": "5J272", "airline": "5J", "origin": "MNL" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T19:20:00+08:00" },
+  "pool": [{ "flightNumber": "CX252", "airline": "CX", "depart": "2026-11-16T21:00:00+08:00" }],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["CX252"]
+  }
+}

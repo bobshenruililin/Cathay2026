@@ -1,0 +1,23 @@
+{
+  "id": "15-invalid-itinerary",
+  "title": "Outbound not from HKG is invalid",
+  "story": "This is not a HKG transfer. Do not invent options.",
+  "tags": ["inbound-delay"],
+  "passenger": { "pnr": "BADITIN", "name": "Error Case", "tier": "Green", "cabin": "Economy" },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": {
+    "flightNumber": "CX250",
+    "airline": "CX",
+    "origin": "TPE",
+    "destination": "LHR",
+    "depart": "2026-11-16T19:10:00+08:00"
+  },
+  "pool": [{ "flightNumber": "CX252", "airline": "CX", "depart": "2026-11-16T21:00:00+08:00" }],
+  "expected": {
+    "status": "invalid",
+    "atRisk": false,
+    "feasible": false,
+    "optionFlightNumbers": [],
+    "triageReasoningIncludes": ["invalid"]
+  }
+}

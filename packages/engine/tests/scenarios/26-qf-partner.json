@@ -1,0 +1,16 @@
+{
+  "id": "26-qf-partner",
+  "title": "Qantas is a valid oneworld partner recovery",
+  "story": "QF30 has seats to LHR. Treat QF as oneworld, not OTHER.",
+  "tags": ["partner-only-reroute"],
+  "passenger": { "pnr": "QFONLY", "name": "Mia Clarke", "tier": "Silver", "cabin": "Premium Economy" },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [{ "flightNumber": "QF30", "airline": "QF", "depart": "2026-11-16T22:00:00+08:00" }],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["QF30"]
+  }
+}

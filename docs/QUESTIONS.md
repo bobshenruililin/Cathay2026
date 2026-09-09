@@ -16,7 +16,10 @@ At-risk = tight or missed. HKG only.
 ## Unaccompanied minors / wheelchair / party / downgrade
 
 - UM recovery stays on CX metal (staff escort). Partner flights are not offered.
+  `um: true` or SSR `UMNR` — flags and SSR do not stack.
+- Wheelchair / PRM: `wheelchair: true` or SSR `WCHR` / `WCHS` / `WCHC`.
 - Whole party (`partySize`, default 1) must fit on one flight in one cabin.
+  Optional `partyId` is echoed in reasoning only.
 - If the booked cabin is exhausted, downgrade protection holds the next lower
   cabin with enough seats and states that in `reasoning`.
 

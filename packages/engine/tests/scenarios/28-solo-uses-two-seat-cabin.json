@@ -1,0 +1,24 @@
+{
+  "id": "28-solo-uses-two-seat-cabin",
+  "title": "A party of one can use a two-seat Business cabin",
+  "story": "Same aircraft a family of four cannot board. One passenger can.",
+  "tags": ["party-of-4"],
+  "passenger": { "pnr": "SOLO2", "name": "Ivy Lam", "tier": "Gold", "cabin": "Business", "partySize": 1 },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [
+    {
+      "flightNumber": "CX252",
+      "airline": "CX",
+      "depart": "2026-11-16T21:00:00+08:00",
+      "seats": { "Business": 2, "Economy": 2 }
+    }
+  ],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["CX252"],
+    "optionReasoningIncludes": ["Business still has seats"]
+  }
+}

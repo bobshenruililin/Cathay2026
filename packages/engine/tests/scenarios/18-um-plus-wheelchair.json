@@ -1,0 +1,24 @@
+{
+  "id": "18-um-plus-wheelchair",
+  "title": "UM and wheelchair buffers stack",
+  "story": "Escort plus wheelchair: 60 plus 20 plus 15. Ninety minutes is still a miss.",
+  "tags": ["unaccompanied-minor", "wheelchair"],
+  "passenger": {
+    "pnr": "STACK01",
+    "name": "Jamie Cole",
+    "tier": "Green",
+    "cabin": "Economy",
+    "um": true,
+    "wheelchair": true
+  },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T19:30:00+08:00" },
+  "pool": [{ "flightNumber": "CX252", "airline": "CX", "depart": "2026-11-16T21:00:00+08:00" }],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["CX252"],
+    "triageReasoningIncludes": ["Unaccompanied minor", "Wheelchair assistance"]
+  }
+}

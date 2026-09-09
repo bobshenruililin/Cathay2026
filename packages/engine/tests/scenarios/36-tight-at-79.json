@@ -1,0 +1,17 @@
+{
+  "id": "36-tight-at-79",
+  "title": "Seventy-nine minutes is still tight for CX-CX",
+  "story": "Minimum 60, tight window through 79. Do not call this healthy.",
+  "tags": ["tight-connection"],
+  "passenger": { "pnr": "T79", "name": "Nina Berg", "tier": "Silver", "cabin": "Economy" },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T19:19:00+08:00" },
+  "pool": [{ "flightNumber": "CX252", "airline": "CX", "depart": "2026-11-16T21:00:00+08:00" }],
+  "expected": {
+    "status": "tight",
+    "atRisk": true,
+    "feasible": true,
+    "optionFlightNumbers": ["CX252"],
+    "triageReasoningIncludes": ["tight"]
+  }
+}

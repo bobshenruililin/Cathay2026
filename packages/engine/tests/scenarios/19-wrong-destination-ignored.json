@@ -1,0 +1,24 @@
+{
+  "id": "19-wrong-destination-ignored",
+  "title": "Sydney metal is not a London recovery",
+  "story": "CX9 to SYD is on the board. It is not an option for an LHR passenger.",
+  "tags": ["partner-only-reroute"],
+  "passenger": { "pnr": "SYDNO", "name": "Rita Bose", "tier": "Gold", "cabin": "Business" },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [
+    {
+      "flightNumber": "CX9",
+      "airline": "CX",
+      "destination": "SYD",
+      "depart": "2026-11-16T21:00:00+08:00"
+    },
+    { "flightNumber": "BA32", "airline": "BA", "depart": "2026-11-16T21:00:00+08:00" }
+  ],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["BA32"]
+  }
+}

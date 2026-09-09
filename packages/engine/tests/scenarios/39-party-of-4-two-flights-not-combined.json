@@ -1,0 +1,37 @@
+{
+  "id": "39-party-of-4-two-flights-not-combined",
+  "title": "Two flights with two seats each are not a party-of-4 recovery",
+  "story": "CX252 and CX254 each have two J seats. The family stays together or not at all.",
+  "tags": ["party-of-4"],
+  "passenger": {
+    "pnr": "TWOFLT",
+    "name": "Garcia Family",
+    "tier": "Gold",
+    "cabin": "Business",
+    "partySize": 4,
+    "partyId": "GARCIA"
+  },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [
+    {
+      "flightNumber": "CX252",
+      "airline": "CX",
+      "depart": "2026-11-16T21:00:00+08:00",
+      "seats": { "Business": 2 }
+    },
+    {
+      "flightNumber": "CX254",
+      "airline": "CX",
+      "depart": "2026-11-16T22:00:00+08:00",
+      "seats": { "Business": 2 }
+    }
+  ],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": [],
+    "triageReasoningIncludes": ["cannot be split"]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "02-tight-connection",
+  "title": "Seventy-minute CX-CX connection is tight",
+  "story": "Gold J passenger has 70 minutes at HKG. Legal, but inside the 20-minute tight window.",
+  "tags": ["tight-connection"],
+  "passenger": { "pnr": "TIGHT01", "name": "Amy Wong", "tier": "Gold", "cabin": "Business" },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T19:10:00+08:00" },
+  "pool": [{ "flightNumber": "CX252", "airline": "CX", "depart": "2026-11-16T21:00:00+08:00" }],
+  "expected": {
+    "status": "tight",
+    "atRisk": true,
+    "feasible": true,
+    "optionFlightNumbers": ["CX252"],
+    "triageReasoningIncludes": ["tight"],
+    "optionReasoningIncludes": ["Protect on CX252"]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "25-jl-partner",
+  "title": "Japan Airlines is a valid oneworld partner recovery",
+  "story": "No CX left. JL26 to London is oneworld. Offer it.",
+  "tags": ["partner-only-reroute"],
+  "passenger": { "pnr": "JLONLY", "name": "Yuki Sato", "tier": "Gold", "cabin": "Business" },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [{ "flightNumber": "JL26", "airline": "JL", "depart": "2026-11-16T21:40:00+08:00" }],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["JL26"],
+    "optionReasoningIncludes": ["Protect on JL26"]
+  }
+}

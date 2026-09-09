@@ -1,0 +1,30 @@
+{
+  "id": "14-party-cannot-split-cabins",
+  "title": "Party of 4 cannot take 2 Business plus 2 Economy",
+  "story": "Two and two on the same aircraft is still a split. Offer nothing.",
+  "tags": ["party-of-4", "no-seats"],
+  "passenger": {
+    "pnr": "SPLIT4",
+    "name": "Patel Family",
+    "tier": "Gold",
+    "cabin": "Business",
+    "partySize": 4
+  },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [
+    {
+      "flightNumber": "CX252",
+      "airline": "CX",
+      "depart": "2026-11-16T21:00:00+08:00",
+      "seats": { "Business": 2, "Economy": 2 }
+    }
+  ],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": [],
+    "triageReasoningIncludes": ["Party of 4"]
+  }
+}

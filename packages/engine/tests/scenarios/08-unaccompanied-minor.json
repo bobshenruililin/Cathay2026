@@ -1,0 +1,26 @@
+{
+  "id": "08-unaccompanied-minor",
+  "title": "UMNR stays on CX, never on BA",
+  "story": "Staff escort a child. BA32 looks good on paper. Do not put the UM on partner metal.",
+  "tags": ["unaccompanied-minor"],
+  "passenger": {
+    "pnr": "UMNR01",
+    "name": "Aiko Tanaka",
+    "tier": "Green",
+    "cabin": "Economy",
+    "um": true
+  },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [
+    { "flightNumber": "BA32", "airline": "BA", "depart": "2026-11-16T21:00:00+08:00" },
+    { "flightNumber": "CX252", "airline": "CX", "depart": "2026-11-16T21:00:00+08:00" }
+  ],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["CX252"],
+    "optionReasoningIncludes": ["Unaccompanied minor", "CX metal"]
+  }
+}
