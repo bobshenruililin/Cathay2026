@@ -1,7 +1,7 @@
 ---
 id: engine-fixtures-4
-status: open
-claimant: ""
+status: claimed
+claimant: cursor/engine-hardening-7018
 globs: packages/engine/tests/scenarios/**
 checker: pnpm --filter engine test
 forbidden: apps/**, packages/sim/**, packages/data/**

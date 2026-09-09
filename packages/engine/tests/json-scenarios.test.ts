@@ -6,7 +6,7 @@ const fixtures = loadScenarioFiles();
 
 describe("JSON scenario fixtures", () => {
   it("loads a hand-readable bank", () => {
-    expect(fixtures.length).toBeGreaterThanOrEqual(10);
+    expect(fixtures.length).toBeGreaterThanOrEqual(40);
     const ids = fixtures.map((f) => f.id);
     expect(new Set(ids).size).toBe(ids.length);
   });

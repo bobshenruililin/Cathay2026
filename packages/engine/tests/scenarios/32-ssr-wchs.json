@@ -1,0 +1,22 @@
+{
+  "id": "32-ssr-wchs",
+  "title": "SSR WCHS is wheelchair assistance",
+  "story": "Steps wheelchair. Same buffer; do not stack with a second code.",
+  "tags": ["wheelchair"],
+  "passenger": {
+    "pnr": "WCHS01",
+    "name": "Mark Quinn",
+    "tier": "Silver",
+    "cabin": "Premium Economy",
+    "ssr": ["WCHS"]
+  },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T19:15:00+08:00" },
+  "pool": [{ "flightNumber": "CX254", "airline": "CX", "depart": "2026-11-16T21:00:00+08:00" }],
+  "expected": {
+    "status": "tight",
+    "atRisk": true,
+    "feasible": true,
+    "optionFlightNumbers": ["CX254"]
+  }
+}

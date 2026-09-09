@@ -1,0 +1,24 @@
+{
+  "id": "34-business-to-premium-economy",
+  "title": "Business gone; hold Premium Economy",
+  "story": "J is exhausted. Downgrade protection holds W, not a split.",
+  "tags": ["no-seats"],
+  "passenger": { "pnr": "JGONE", "name": "Priya Shah", "tier": "Gold", "cabin": "Business" },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [
+    {
+      "flightNumber": "CX252",
+      "airline": "CX",
+      "depart": "2026-11-16T21:00:00+08:00",
+      "seats": { "Premium Economy": 20, "Economy": 140 }
+    }
+  ],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["CX252"],
+    "optionReasoningIncludes": ["Hold Premium Economy instead"]
+  }
+}
