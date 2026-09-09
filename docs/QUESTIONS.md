@@ -39,3 +39,11 @@ outbound. Next CX is the earliest CX departing after the original outbound that
 was not already chosen as same-day. Partner is the best-scoring oneworld non-CX
 flight not already chosen. At most one from each bucket, then sorted by score
 and flight number.
+
+## Console mock adapter
+
+`apps/console` uses an in-process mock adapter (`lib/adapter/mock-adapter.ts`) plus
+engine triage. No HTTP backend. LLM drafting lives in `lib/llm/draft.ts` as
+locale templates (not a remote model). The action column is a persistent
+right-hand drawer sized for iPad landscape (min-width 1024px).
+
