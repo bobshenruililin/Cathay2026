@@ -1,0 +1,16 @@
+{
+  "id": "21-cx-ba-original-tight",
+  "title": "CX to BA original connection is tight at 70 minutes",
+  "story": "Booked BA32. CX-oneworld MCT plus walk is 70. Slack 70 is tight, not healthy.",
+  "tags": ["tight-connection"],
+  "passenger": { "pnr": "CXBA70", "name": "Claire Dupont", "tier": "Gold", "cabin": "Business" },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "BA32", "airline": "BA", "depart": "2026-11-16T19:10:00+08:00" },
+  "pool": [{ "flightNumber": "CX252", "airline": "CX", "depart": "2026-11-16T21:00:00+08:00" }],
+  "expected": {
+    "status": "tight",
+    "atRisk": true,
+    "feasible": true,
+    "optionFlightNumbers": ["CX252"]
+  }
+}

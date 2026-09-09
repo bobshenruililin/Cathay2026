@@ -1,0 +1,19 @@
+{
+  "id": "24-alternative-below-mct",
+  "title": "A later CX that is still inside MCT is not viable",
+  "story": "CX248 leaves 20 minutes after arrival. Do not offer it.",
+  "tags": ["tight-connection"],
+  "passenger": { "pnr": "TOOTIGHT", "name": "Ben Adler", "tier": "Gold", "cabin": "Business" },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [
+    { "flightNumber": "CX248", "airline": "CX", "depart": "2026-11-16T18:20:00+08:00" },
+    { "flightNumber": "CX252", "airline": "CX", "depart": "2026-11-16T21:00:00+08:00" }
+  ],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["CX252"]
+  }
+}

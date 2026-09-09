@@ -1,0 +1,16 @@
+{
+  "id": "22-uo-inbound-mct",
+  "title": "HK Express inbound needs a longer MCT onto CX",
+  "story": "UO to CX is 70 MCT plus 10 walk. Seventy minutes of slack is a miss.",
+  "tags": ["inbound-delay", "tight-connection"],
+  "passenger": { "pnr": "UOIN01", "name": "Kenji Mori", "tier": "Silver", "cabin": "Economy" },
+  "inbound": { "flightNumber": "UO628", "airline": "UO", "origin": "NRT" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T19:10:00+08:00" },
+  "pool": [{ "flightNumber": "CX252", "airline": "CX", "depart": "2026-11-16T21:00:00+08:00" }],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["CX252"]
+  }
+}

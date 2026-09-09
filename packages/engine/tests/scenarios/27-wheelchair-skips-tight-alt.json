@@ -1,0 +1,25 @@
+{
+  "id": "27-wheelchair-skips-tight-alt",
+  "title": "Wheelchair passenger cannot use a 70-minute alternative",
+  "story": "CX252 at +70 minutes fails the 75-minute wheelchair requirement. CX254 at +120 works.",
+  "tags": ["wheelchair"],
+  "passenger": {
+    "pnr": "WSKIP",
+    "name": "Paul Ng",
+    "tier": "Gold",
+    "cabin": "Business",
+    "wheelchair": true
+  },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [
+    { "flightNumber": "CX252", "airline": "CX", "depart": "2026-11-16T19:10:00+08:00" },
+    { "flightNumber": "CX254", "airline": "CX", "depart": "2026-11-16T20:00:00+08:00" }
+  ],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["CX254"]
+  }
+}

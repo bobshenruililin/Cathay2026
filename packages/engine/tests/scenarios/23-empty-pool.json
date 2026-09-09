@@ -1,0 +1,16 @@
+{
+  "id": "23-empty-pool",
+  "title": "Missed connection with an empty recovery bank",
+  "story": "No later flights in the pool. Queue them for a manual search.",
+  "tags": ["inbound-delay"],
+  "passenger": { "pnr": "NOPOOL", "name": "Alice Grant", "tier": "Gold", "cabin": "Business" },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": []
+  }
+}
