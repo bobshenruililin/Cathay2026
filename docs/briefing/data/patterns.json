@@ -1,0 +1,84 @@
+{
+  "patterns": [
+    {
+      "id": "named-bu",
+      "title": "Named BU beats generic AI",
+      "winnersDo": "Attach to HK Express, Cargo, Inflight, or Flight Ops in the first sentence.",
+      "weHave": "HKG transfer desk / Airport Systems is the owner. Say that, not “AI for aviation”.",
+      "pitch": "Open with the desk, the queue, and Q77 — not the model.",
+      "examples": ["gingtrip", "naar", "flylab", "u-explore"]
+    },
+    {
+      "id": "theater-90s",
+      "title": "90-second theater",
+      "winnersDo": "Judges must see the product: trolley, robot, briefing card, typhoon button.",
+      "weHave": "Simulate Typhoon Delay and Late Inbound CX254 already refresh the live queue.",
+      "pitch": "Narrate the six-step demo as ops, not as a tech tour.",
+      "examples": ["gingtrip", "niki-jr", "touchcx", "reconnect"]
+    },
+    {
+      "id": "dual-beneficiary",
+      "title": "Dual beneficiary",
+      "winnersDo": "Passenger care plus a second ledger: revenue, labour, ESG data, or safety.",
+      "weHave": "Passenger protection plus desk throughput in a typhoon bank.",
+      "pitch": "Name both: misconnect care and minutes off the transfer queue.",
+      "examples": ["cx-discovery", "naar", "gingtrip", "gme-2021"]
+    },
+    {
+      "id": "feasibility-2026",
+      "title": "Feasibility 2026 is not lifestyle 2025",
+      "winnersDo": "BU judges now score adoption path. FlyLab (pilots + IT, summarise existing briefings) is the closer analogue than U-Explore.",
+      "weHave": "Deterministic engine, Altéa/FIDS/CANS pilot note, no Altéa write in week 1.",
+      "pitch": "We sit beside Passenger Recovery. We do not replace it.",
+      "examples": ["flylab", "u-explore", "naar"]
+    },
+    {
+      "id": "champions-no-github",
+      "title": "Champions rarely open-source",
+      "winnersDo": "Win on pain, BU, and theater. Public GitHub is mostly participant trip planners.",
+      "weHave": "A real repo with tests. Do not treat GitHub stars as the scoreboard.",
+      "pitch": "Show the iPad and the reasoning strings, not a star count.",
+      "examples": ["naar", "gingtrip", "u-explore", "cathayconnect"]
+    },
+    {
+      "id": "desk-owner",
+      "title": "Delay re-plan without a desk owner loses",
+      "winnersDo": "Fight4Flight (2017 runner-up) notified and re-planned from the passenger side. It did not win.",
+      "weHave": "Agent-in-the-loop on an iPad. Approve is the only send.",
+      "pitch": "The missing 2017 piece was the transfer desk. That is the product.",
+      "examples": ["fight4flight", "reconnect", "aviator"]
+    },
+    {
+      "id": "incumbent-irops",
+      "title": "Cathay already bought mass IROPS",
+      "winnersDo": "Do not pitch into a purchased capability as if the market were empty.",
+      "weHave": "Last-90-minute special handling: UM, wheelchair, unsplittable party, MCT + walk.",
+      "pitch": "Passenger Recovery does 8,000 pax / 40 min. We do tight connections the mass tool cannot walk-time.",
+      "examples": ["amadeus-pr", "typhoon-trouble", "reconnect"]
+    },
+    {
+      "id": "llm-foil",
+      "title": "LLM-decides-rebooking is a foil",
+      "winnersDo": "BU and IT will not let a model pick the flight.",
+      "weHave": "Engine decides. LLM drafts. Flight-number guard. reasoning[] is verbatim.",
+      "pitch": "The guard is the product, not ChatGPT.",
+      "examples": ["reservacathay", "amadeus-disruption-agent", "reconnect"]
+    },
+    {
+      "id": "control-cycle",
+      "title": "Control cycle, station clock, sim, kill switch",
+      "winnersDo": "SpaceX-class ops: read inputs, compute state, write outputs, wait for the clock. Config for non-software engineers.",
+      "weHave": "FIDS + PNR in, slack/MCT state, options + draft out. MCT table is the DSL. Sim seed. RECONNECT_PILOT=off.",
+      "pitch": "Say it in ops English, not brand English.",
+      "examples": ["spacex-fsw", "openmct", "reconnect"]
+    },
+    {
+      "id": "walk-special",
+      "title": "Walk time and special handling are the wedge",
+      "winnersDo": "ConnectionSaver treated gate walk as a product (SMS with minutes). MCT tables lie for PRM and UM.",
+      "weHave": "Gate walk +15 WCH +20 UM, CX-metal-only for UM, unsplittable party, downgrade protection.",
+      "pitch": "Mass reaccom does not escort an unaccompanied minor through HKG T1.",
+      "examples": ["connectionsaver", "reconnect", "flymate"]
+    }
+  ]
+}

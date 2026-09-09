@@ -50,3 +50,8 @@ Cathay Alert template. The action column is a persistent right-hand drawer
 
 `docs/DEMO.md` is sacred. Claim done only after `pnpm typecheck`, `pnpm test`,
 and `pnpm test:demo`. Engine coverage stays 100% on `packages/engine/src/**`.
+
+## 2018 Cathay champion name
+
+Not found in Cathay press. Anita and Lugless are sourced as runners-up only.
+Do not invent a champion name in the pitch. See `docs/competitive/`.

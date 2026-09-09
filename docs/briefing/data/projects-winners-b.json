@@ -1,0 +1,146 @@
+[
+  {
+    "id": "gingtrip",
+    "name": "GingTrip modular trolley",
+    "year": 2024,
+    "kind": "cathay-winner",
+    "org": "GingTrip (returning team)",
+    "bu": "HK Express / Inflight",
+    "oneLiner": "Modular galley trolley that sorts cabin waste and feeds a dashboard.",
+    "artifact": "hardware+dashboard",
+    "outcome": "champion",
+    "strengths": ["Touchable theater", "HK Express named", "ESG data ledger", "Returned after losing"],
+    "weaknesses": ["Physical build is not our path"],
+    "patterns": ["named-bu", "theater-90s", "dual-beneficiary", "feasibility-2026", "champions-no-github"],
+    "reconnectTakeaway": "Do not add a robot. Do make the typhoon click as tactile as a trolley.",
+    "github": null,
+    "sources": [
+      {
+        "title": "Aircraft Interiors: GingTrip 2024",
+        "url": "https://www.aircraftinteriorsinternational.com/news/industry-news/innovative-galley-cart-wins-the-2024-cathay-hackathon-contest.html"
+      }
+    ],
+    "copyOrFoil": "copy-pitch",
+    "confidence": "high"
+  },
+  {
+    "id": "u-explore",
+    "name": "U-Explore (Kairos Takeoff Crew)",
+    "year": 2025,
+    "kind": "cathay-winner",
+    "org": "Kairos Takeoff Crew",
+    "bu": "HK Express",
+    "oneLiner": "All-in-one HK Express customer-journey platform: loyalty, community, gamified content.",
+    "artifact": "app",
+    "outcome": "champion",
+    "strengths": ["Lived traveller pain", "Named LCC", "Most Popular Student Solution"],
+    "weaknesses": ["Lifestyle; weaker under 2026 feasibility scoring unless a BU owns a 30-day pilot"],
+    "patterns": ["named-bu", "feasibility-2026", "champions-no-github"],
+    "reconnectTakeaway": "Do not copy the loyalty app. Copy the named BU and the lived pain sentence.",
+    "github": null,
+    "sources": [
+      {
+        "title": "Swire: 8th annual Cathay Hackathon",
+        "url": "https://www.swirepacific.com/en/investor-relations/updates-to-our-shareholders/press-releases/a-record-breaking-celebration-of-innovation-and-talent-at-the-8th-annual-cathay-hackathon"
+      }
+    ],
+    "copyOrFoil": "copy-pitch",
+    "confidence": "high"
+  },
+  {
+    "id": "niki-jr",
+    "name": "Niki Jr.",
+    "year": 2025,
+    "kind": "cathay-winner",
+    "org": "HKUST ISD (five students)",
+    "bu": "Customer experience / heritage",
+    "oneLiner": "Polaroid robot named after CX DC-3 Niki; app booking, crowd-aware queueing.",
+    "artifact": "robot",
+    "outcome": "runner-up",
+    "strengths": ["Physical theater", "Cathay heritage", "Best Presentation"],
+    "weaknesses": ["Not an ops problem", "Hardware is out of SCOPE"],
+    "patterns": ["theater-90s"],
+    "reconnectTakeaway": "Presentation award is theater. We already have buttons; narrate them.",
+    "github": null,
+    "sources": [
+      {
+        "title": "HKUST ISD: Niki Jr.",
+        "url": "https://ais.hkust.edu.hk/whats-happening/news/isd-undergraduates-garner-accolades-8th-annual-cathay-hackathon"
+      }
+    ],
+    "copyOrFoil": "foil",
+    "confidence": "high"
+  },
+  {
+    "id": "flylab",
+    "name": "FlyLab pre-flight briefings",
+    "year": 2025,
+    "kind": "cathay-winner",
+    "org": "FlyLab (pilots + IT, employee track)",
+    "bu": "Flight Ops",
+    "oneLiner": "AI summaries of existing pre-flight briefing packs for pilots.",
+    "artifact": "ops-console",
+    "outcome": "champion",
+    "strengths": ["Real CX roles on the team", "Synthesises existing info", "LLM summarises, humans decide"],
+    "weaknesses": ["Flight deck, not transfer desk"],
+    "patterns": ["named-bu", "feasibility-2026", "llm-foil", "control-cycle"],
+    "reconnectTakeaway": "Closest 2025 analogue. Pair with a transfer agent. Do not invent a new PSS.",
+    "github": null,
+    "sources": [
+      {
+        "title": "Swire: 8th annual Cathay Hackathon",
+        "url": "https://www.swirepacific.com/en/investor-relations/updates-to-our-shareholders/press-releases/a-record-breaking-celebration-of-innovation-and-talent-at-the-8th-annual-cathay-hackathon"
+      }
+    ],
+    "copyOrFoil": "copy-engineering",
+    "confidence": "high"
+  },
+  {
+    "id": "anita-2018",
+    "name": "Anita chatbot",
+    "year": 2018,
+    "kind": "cathay-winner",
+    "org": "First runner-up (Henry Wong et al.)",
+    "bu": "Digital / CX",
+    "oneLiner": "Chatbot that reminds passengers before boarding.",
+    "artifact": "chatbot",
+    "outcome": "runner-up",
+    "strengths": ["Proactive notify"],
+    "weaknesses": ["2018 overall champion name not found in primary press"],
+    "patterns": ["theater-90s"],
+    "reconnectTakeaway": "Notify is not recover. We notify after an agent approves a protected flight.",
+    "github": null,
+    "sources": [
+      {
+        "title": "LinkedIn: Anita first runner-up 2018",
+        "url": "https://www.linkedin.com/posts/henry-wong17_cathayhackathon-smarttravel-activity-6465143068927590400-XRwL"
+      }
+    ],
+    "copyOrFoil": "foil",
+    "confidence": "medium"
+  },
+  {
+    "id": "lugless",
+    "name": "Lugless",
+    "year": 2018,
+    "kind": "cathay-winner",
+    "org": "Second runner-up",
+    "bu": "Baggage / CX",
+    "oneLiner": "Bags packed and waiting at destination.",
+    "artifact": "app",
+    "outcome": "runner-up",
+    "strengths": ["Named a physical pain"],
+    "weaknesses": ["Logistics company, not a desk tool"],
+    "patterns": ["named-bu"],
+    "reconnectTakeaway": "Bags are out of SCOPE. Do not add them before Saturday.",
+    "github": null,
+    "sources": [
+      {
+        "title": "LinkedIn: Lugless second runner-up",
+        "url": "https://www.linkedin.com/posts/alexyuhoyin_funding-travel-award-activity-6468127278747484160-LQB1"
+      }
+    ],
+    "copyOrFoil": "foil",
+    "confidence": "high"
+  }
+]

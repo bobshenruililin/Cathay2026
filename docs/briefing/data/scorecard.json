@@ -1,0 +1,65 @@
+{
+  "axes": [
+    { "id": "buFit", "label": "BU fit", "note": "Named desk or unit, not generic travel AI." },
+    { "id": "theater", "label": "90s theater", "note": "Judge can see the product without a lecture." },
+    { "id": "feasibility", "label": "Adoption path", "note": "Pilot, systems of record, kill switch." },
+    { "id": "collision", "label": "Incumbent collision", "note": "Higher is worse. 5 = sounds like we replace Passenger Recovery." }
+  ],
+  "scale": "1–5. Collision is inverted in the chart (clear lane = 6 − collision).",
+  "rows": [
+    {
+      "id": "reconnect",
+      "label": "Reconnect",
+      "buFit": 5,
+      "theater": 3,
+      "feasibility": 5,
+      "collision": 4,
+      "cite": "mct.ts CX_CX 50 + walk 10; WCH +15; UM +20; score.ts; guard.ts; PILOT_PROPOSAL.md"
+    },
+    {
+      "id": "flylab",
+      "label": "FlyLab 2025",
+      "buFit": 5,
+      "theater": 3,
+      "feasibility": 4,
+      "collision": 1,
+      "cite": "Employee track: pilots + IT, summarise existing briefings."
+    },
+    {
+      "id": "fight4flight",
+      "label": "Fight4Flight 2017",
+      "buFit": 2,
+      "theater": 3,
+      "feasibility": 2,
+      "collision": 2,
+      "cite": "Passenger re-plan, no desk. Runner-up."
+    },
+    {
+      "id": "amadeus-pr",
+      "label": "Passenger Recovery",
+      "buFit": 5,
+      "theater": 2,
+      "feasibility": 5,
+      "collision": 5,
+      "cite": "8,000 pax / 40 min. CX production ~2018."
+    },
+    {
+      "id": "connectionsaver",
+      "label": "ConnectionSaver",
+      "buFit": 5,
+      "theater": 4,
+      "feasibility": 5,
+      "collision": 2,
+      "cite": "Walk-time SMS. Hold, not rebook."
+    },
+    {
+      "id": "cathayconnect",
+      "label": "ChatGPT trip planner",
+      "buFit": 1,
+      "theater": 2,
+      "feasibility": 1,
+      "collision": 1,
+      "cite": "angusf777 CathayConnect. Foil."
+    }
+  ]
+}

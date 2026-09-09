@@ -1,0 +1,28 @@
+{
+  "title": "Reconnect competitive intel",
+  "subtitle": "What winning teams did, and what it takes to win on 15–16 Nov 2026.",
+  "audience": "Reconnect teammates. Internal.",
+  "judging": "Feasibility, Business Units, path to adoption — Cathay Hackathon 2026 site copy.",
+  "calendar": {
+    "apply": "2026-09-27",
+    "build": "2026-11-14/15",
+    "pitch": "2026-11-15",
+    "demo": "2026-11-16"
+  },
+  "verdict": {
+    "killShot": "Claiming we replace Amadeus Passenger Recovery.",
+    "wedge": "Last 90 minutes at HKG T1: UM, wheelchair, unsplittable party, MCT + walk, agent-visible reasoning.",
+    "shape": "Transfer-desk control loop. Not a lifestyle app."
+  },
+  "files": [
+    "projects-winners-a.json",
+    "projects-winners-b.json",
+    "projects-repos.json",
+    "projects-analogues.json",
+    "projects-analogues-b.json"
+  ],
+  "unknowns": [
+    "2018 overall champion name was not found in Cathay press. Anita and Lugless are sourced as runners-up only."
+  ],
+  "githubSearch": "gh search repos \"Cathay Hackathon\" — 50+ participant repos, no champion repos for NAAR, GingTrip, Kairos, FlyLab."
+}

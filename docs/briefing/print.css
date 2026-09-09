@@ -1,0 +1,14 @@
+@media print {
+  body { background: #fff; font-size: 11pt; }
+  .toc, .skip, .filters, #slides-link { display: none !important; }
+  .mast { padding-bottom: 0; }
+  section {
+    border: 0;
+    padding: 0.6rem 0;
+    break-inside: avoid;
+  }
+  .card-grid { grid-template-columns: 1fr 1fr; }
+  .proj { break-inside: avoid; }
+  a { color: inherit; text-decoration: none; }
+  .figure { break-inside: avoid; }
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "L01",
+    "text": "Open with Airport Systems / HKG transfer desk, not “AI for aviation”.",
+    "tag": "Pitch",
+    "sourceIds": ["flylab", "gingtrip", "naar"]
+  },
+  {
+    "id": "L02",
+    "text": "Name two beneficiaries: the passenger and the typhoon queue.",
+    "tag": "Pitch",
+    "sourceIds": ["naar", "cx-discovery"]
+  },
+  {
+    "id": "L03",
+    "text": "Narrate demo steps 3–6 as ops theater (typhoon, CX254, reasoning, approve).",
+    "tag": "Demo",
+    "sourceIds": ["gingtrip", "niki-jr", "reconnect"]
+  },
+  {
+    "id": "L04",
+    "text": "Do not add hardware or a robot. FlyLab won without one.",
+    "tag": "LATER",
+    "sourceIds": ["niki-jr", "flylab"]
+  },
+  {
+    "id": "L05",
+    "text": "Use coach language: Q77 + Altéa cryptic is the bottleneck.",
+    "tag": "Pitch",
+    "sourceIds": ["flylab", "amadeus-pr"]
+  },
+  {
+    "id": "L06",
+    "text": "Claim ESG only if we can count fewer stranded nights. Otherwise omit.",
+    "tag": "Pitch",
+    "sourceIds": ["cathay-green", "gingtrip"]
+  },
+  {
+    "id": "L07",
+    "text": "Agent-in-the-loop is why Fight4Flight lost and we should not.",
+    "tag": "Pitch",
+    "sourceIds": ["fight4flight", "reconnect"]
+  },
+  {
+    "id": "L08",
+    "text": "Pair the pitch with a real CX role (transfer agent + IT), FlyLab-style.",
+    "tag": "Pitch",
+    "sourceIds": ["flylab"]
+  },
+  {
+    "id": "L09",
+    "text": "Say: LLM drafts; engine decides; guard strips hallucinated flights.",
+    "tag": "Demo",
+    "sourceIds": ["reconnect", "amadeus-disruption-agent"]
+  },
+  {
+    "id": "L10",
+    "text": "Sit beside Passenger Recovery as the last-90-minute special-handling layer.",
+    "tag": "Pilot",
+    "sourceIds": ["amadeus-pr", "typhoon-trouble"]
+  },
+  {
+    "id": "L11",
+    "text": "Pilot metrics already in PILOT_PROPOSAL: 5s queue, reasoning not from LLM, flight-number-safe push.",
+    "tag": "Pilot",
+    "sourceIds": ["reconnect"]
+  },
+  {
+    "id": "L12",
+    "text": "Call the engine a control cycle on station time. MCT table is the DSL.",
+    "tag": "Pitch",
+    "sourceIds": ["spacex-fsw", "reconnect"]
+  },
+  {
+    "id": "L13",
+    "text": "Seeded sim = HOOTL. Live adapter = HITL. RECONNECT_PILOT=off is abort.",
+    "tag": "Pitch",
+    "sourceIds": ["spacex-fsw", "reconnect"]
+  },
+  {
+    "id": "L14",
+    "text": "Describe the iPad as one glass (queue, connection, action). Open MCT analogue.",
+    "tag": "Demo",
+    "sourceIds": ["openmct", "reconnect"]
+  },
+  {
+    "id": "L15",
+    "text": "Walk + WCH + UM is the wedge. ConnectionSaver made walk-time a product.",
+    "tag": "Pitch",
+    "sourceIds": ["connectionsaver", "reconnect"]
+  },
+  {
+    "id": "L16",
+    "text": "Hold-the-outbound is a different decision. Park it in LATER. Know it exists.",
+    "tag": "LATER",
+    "sourceIds": ["connectionsaver"]
+  },
+  {
+    "id": "L17",
+    "text": "Do not import MILP aircraft-crew recovery. That is AOCC, not T1.",
+    "tag": "LATER",
+    "sourceIds": ["amadeus-pr"]
+  },
+  {
+    "id": "L18",
+    "text": "Do not scrape public FIDS. Pilot uses operational MQTT. OpenSky is research-only.",
+    "tag": "Pilot",
+    "sourceIds": ["hkg-acdm", "reconnect"]
+  },
+  {
+    "id": "L19",
+    "text": "Use ChatGPT trip planners and GPT compensation as foils, not as features.",
+    "tag": "Pitch",
+    "sourceIds": ["cathayconnect", "reservacathay", "syd-t200"]
+  },
+  {
+    "id": "L20",
+    "text": "Do not invent impact numbers. NAAR and ConnectionSaver led with real ones; we do not have them yet.",
+    "tag": "Pitch",
+    "sourceIds": ["naar", "connectionsaver"]
+  }
+]
