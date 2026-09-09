@@ -25,7 +25,7 @@ Unapplied steals first when nudging. Cards: `docs/survey/projects/<id>.md`.
 | flylab-2025 | cathay-winner | FlyLab | 1 | reviewed |
 | kairos-uexplore-2025 | cathay-winner | U-Explore | 1 | reviewed |
 | fight4flight-2017 | cathay-winner | Fight4Flight | 1 | reviewed |
-| passenger-recovery-optimization | github | PNR recovery | 1 | reviewed |
+| passenger-recovery-optimization | github | PNR recovery | 2 | reviewed |
 | crew-ops-advisor | github | Crew ops advisor | 1 | reviewed |
 | otaip | github | OTAIP | 1 | reviewed |
 | skyresolve | github | SkyResolve | 1 | reviewed |

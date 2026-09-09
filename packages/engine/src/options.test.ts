@@ -117,7 +117,16 @@ describe("option generator", () => {
     const options = generateOptions(connection, [nextDay]);
     expect(options).toHaveLength(1);
     expect(options[0]?.flight.flightNumber).toBe("CX800");
+    expect(options[0]?.reasoning.join(" ")).toMatch(/Overnight option/);
     expect(options[0]?.reasoning.join(" ")).toMatch(/Score /);
+  });
+
+  it("does not offer next-calendar-day flights to unaccompanied minors", () => {
+    const connection = makeConnection(INBOUND, ORIG, makePassenger("UM1", "Green", "Economy", { um: true }));
+    const nextDay = cx("CX800", 20 * 60);
+    const sameDay = cx("CX252", 90);
+    expect(generateOptions(connection, [nextDay])).toEqual([]);
+    expect(generateOptions(connection, [nextDay, sameDay]).map((o) => o.flight.flightNumber)).toEqual(["CX252"]);
   });
 
   it("property: option generation stays ≤3, unique, scored, and reasoned", () => {

@@ -26,7 +26,7 @@ function toOption(connection: Connection, flight: Flight): RecoveryOption {
     offeredCabin: seating.offeredCabin,
     downgradeProtected: seating.downgradeProtected,
     reasoning: [
-      delayReason(flight, delayMinutes, connection.outbound.flightNumber),
+      delayReason(flight, delayMinutes, connection.outbound.flightNumber, connection.outbound.actualDeparture),
       mctReason(connection.inbound.airline, flight.airline, required, available),
       seatingReason(flight, passenger, seating),
       ...specialHandlingReasons(passenger),
@@ -61,6 +61,12 @@ function isViable(connection: Connection, candidate: Flight): boolean {
   if (candidate.origin !== "HKG") return false;
   if (candidate.destination !== connection.outbound.destination) return false;
   if (isUnaccompaniedMinor(connection.passenger) && candidate.airline !== "CX") return false;
+  if (
+    isUnaccompaniedMinor(connection.passenger) &&
+    hkgCalendarDay(candidate.actualDeparture) !== hkgCalendarDay(connection.outbound.actualDeparture)
+  ) {
+    return false;
+  }
   if (!partySeating(candidate, connection.passenger)) return false;
   const available = minutesBetween(connection.inbound.actualArrival, candidate.actualDeparture);
   return available >= requiredMinutesFor(connection.inbound.airline, candidate.airline, connection.passenger);

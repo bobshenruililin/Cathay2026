@@ -1,4 +1,5 @@
 import { GATE_WALK_BUFFER_MINUTES, UM_ESCORT_BUFFER_MINUTES, WHEELCHAIR_TRANSIT_BUFFER_MINUTES, hkgMctMinutes } from "./mct";
+import { hkgCalendarDay } from "./iso";
 import { isUnaccompaniedMinor, needsWheelchair, partySizeOf } from "./passenger";
 import { TIER_STATUS } from "./score";
 import type { PartySeating } from "./seating";
@@ -40,8 +41,17 @@ export function mctReason(
   return `HKG MCT ${mct} min plus ${GATE_WALK_BUFFER_MINUTES} min gate walk buffer (${required} min required including passenger buffers); this option has ${available} min.`;
 }
 
-export function delayReason(flight: Flight, delayMinutes: number, originalNumber: string): string {
-  return `Wait: ${flight.flightNumber} ${flight.origin}-${flight.destination} departs ${flight.actualDeparture}, ${delayMinutes} min from original ${originalNumber}.`;
+export function delayReason(
+  flight: Flight,
+  delayMinutes: number,
+  originalNumber: string,
+  originalDeparture: string,
+): string {
+  const wait = `Wait: ${flight.flightNumber} ${flight.origin}-${flight.destination} departs ${flight.actualDeparture}, ${delayMinutes} min from original ${originalNumber}.`;
+  if (hkgCalendarDay(flight.actualDeparture) !== hkgCalendarDay(originalDeparture)) {
+    return `${wait} Overnight option (next calendar day).`;
+  }
+  return wait;
 }
 
 export function specialHandlingReasons(passenger: Passenger): string[] {

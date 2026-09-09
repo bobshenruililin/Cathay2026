@@ -48,10 +48,10 @@ Cathay Alert template. The action column is a persistent right-hand drawer
 
 ## MAXCT / overnight
 
-If an option lands on the next calendar day, reasoning must call it overnight.
-Do not dump a passenger 18h later as if it were same-day (MAXCT lesson from
-PNR-recovery cards). UM recovery must not use next-calendar-day flights.
-Do not rip UM-on-CX-metal or downgrade protection to match an older plan.
+If an option lands on the next calendar day, reasoning must call it overnight
+(`Overnight option (next calendar day)` in `option-reason.ts`). Unaccompanied
+minors are not offered next-calendar-day flights. Do not rip UM-on-CX-metal
+or downgrade protection to match an older plan.
 
 ## Verification
 

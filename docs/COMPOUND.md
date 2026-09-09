@@ -43,6 +43,8 @@ Do not shrink Never without `docs/QUESTIONS.md`.
   `packages/sim` `demoMetrics("hkg-demo")`. Checker: `pnpm --filter sim test`
 - `peak-flood` (support-operations-dashboard): typhoon/delay flood chip on
   `triage-queue.tsx`. Checker: `pnpm --filter console test` && `pnpm test:demo`
+- `overnight-label` (passenger-recovery-optimization): next-calendar-day
+  options say overnight; UM skip them. Checker: `pnpm --filter engine test`
 
 ## Next
 
