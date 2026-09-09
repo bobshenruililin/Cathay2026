@@ -1,0 +1,40 @@
+[
+  {
+    "id": "flyvision-2025",
+    "name": "FlyVision AaaS",
+    "year": 2025,
+    "kind": "cathay-repo",
+    "org": "Hyhen115",
+    "bu": "Cargo / CV",
+    "oneLiner": "AWS S3 + Rekognition computer vision. A year after NAAR won cargo dimensioning.",
+    "artifact": "cv-system",
+    "outcome": "participant",
+    "strengths": ["Named a real AWS cargo stack"],
+    "weaknesses": ["Copies last year’s winning technique without a new desk owner"],
+    "patterns": ["named-bu", "champions-no-github"],
+    "reconnectTakeaway": "Do not rebuild NAAR. We already have a desk. Add theater to it, not a second CV demo.",
+    "github": "https://github.com/Hyhen115/CathayHackathon_25",
+    "sources": [{ "title": "Hyhen115/CathayHackathon_25", "url": "https://github.com/Hyhen115/CathayHackathon_25" }],
+    "copyOrFoil": "foil",
+    "confidence": "high"
+  },
+  {
+    "id": "good-trip-2023",
+    "name": "Good Trip (Team 100)",
+    "year": 2023,
+    "kind": "cathay-repo",
+    "org": "EricssonXD / Team 100",
+    "bu": "Lifestyle",
+    "oneLiner": "Flutter app from a Figma template. README is design-system boilerplate, not an airline pain.",
+    "artifact": "app",
+    "outcome": "participant",
+    "strengths": ["Shows how empty the median 2023 repo is"],
+    "weaknesses": ["No BU, no number, no invariant"],
+    "patterns": ["champions-no-github"],
+    "reconnectTakeaway": "A polished UI without a desk sentence is the default. Do not demo like this.",
+    "github": "https://github.com/EricssonXD/CathayHackathon2023",
+    "sources": [{ "title": "EricssonXD/CathayHackathon2023", "url": "https://github.com/EricssonXD/CathayHackathon2023" }],
+    "copyOrFoil": "foil",
+    "confidence": "high"
+  }
+]

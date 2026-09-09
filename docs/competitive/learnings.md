@@ -28,5 +28,10 @@ Source of truth: [`docs/briefing/data/learnings.json`](../briefing/data/learning
 | L22 | Pitch | GME is a cloneable 2021 repo, not a press champion. Do not fill unpublished trophy cells from GitHub. | GME, Dean Fung |
 | L23 | Pilot | HX is Navitaire New Skies. CX transfer is Altéa. One PSS sentence does not cover both BUs. | HX Navitaire, Reconnect |
 | L24 | Pitch | 2017 top six: one crew tablet won; one IROPS app placed; four lifestyle tools did not. | TouchCX, Fight4Flight, Hacksmart |
+| L25 | Pitch | GingTrip lost in 2023 and came back with a trolley. We already have the typhoon button. Do not wait a year. | GingTrip 2023/2024 |
+| L26 | Pitch | 2025 split student vs employee tracks (36 + 12). FlyLab is the employee analogue. Pair with a CX role. | FlyLab, U-Explore |
+| L27 | Pitch | Do not copy last year’s winning technique. FlyVision rebuilt cargo CV after NAAR already won it. | FlyVision, NAAR |
+| L28 | Demo | Cathay Green ran out of time on the first pitch and still won the finals. Narrate steps 3–6; do not add a robot. | Cathay Green, Niki Jr. |
+| L29 | Pitch | 2023 2nd RU FlyMate is a GenAI PRM app with GitHub. WCH is already +15 min in `mct.ts`. Do not demo a passenger chatbot. | FlyMate |
 
 Demo-tagged lines are already true in this repo. Do not rewrite `packages/engine` to satisfy a pitch sentence. LATER items live in [`docs/LATER.md`](../LATER.md).

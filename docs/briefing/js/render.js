@@ -1,8 +1,10 @@
-import { foilChart, githubChart, patternChart, scoreScatter, winnerClassChart } from "./charts-insight.js";
+import { foilChart, githubChart, mix2017Chart, patternChart, scoreScatter, winnerClassChart } from "./charts-insight.js";
 import {
   failureHtml,
   learnHtml,
   patternHtml,
+  saturdayHtml,
+  scaleHtml,
   scoreHtml,
   timelineHtml,
   verdictHtml,
@@ -12,12 +14,15 @@ export function renderReport(data) {
   const { meta, patterns, projects, scorecard, learnings, insights } = data;
   document.getElementById("report").innerHTML = `
     ${verdictHtml(meta)}
+    ${saturdayHtml(insights)}
     <section id="charts" class="slide">
       <h2>What the record actually shows</h2>
       ${winnerClassChart(projects)}
+      ${mix2017Chart(insights)}
       ${githubChart(projects)}
       ${patternChart(patterns, projects)}
       ${foilChart(projects)}
+      ${scaleHtml(insights)}
     </section>
     ${patternHtml(patterns)}
     ${failureHtml(insights)}

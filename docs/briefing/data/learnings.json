@@ -142,5 +142,35 @@
     "text": "2017 top six: one crew tablet won; one IROPS app placed; four lifestyle tools did not. The mix has not changed.",
     "tag": "Pitch",
     "sourceIds": ["touchcx", "fight4flight", "hacksmart"]
+  },
+  {
+    "id": "L25",
+    "text": "GingTrip lost in 2023 and came back with a trolley. We already have the typhoon button. Do not wait a year.",
+    "tag": "Pitch",
+    "sourceIds": ["gingtrip", "gingtrip-2023"]
+  },
+  {
+    "id": "L26",
+    "text": "2025 split student vs employee tracks (36 + 12 teams). FlyLab is the employee-track analogue. Pair with a CX role.",
+    "tag": "Pitch",
+    "sourceIds": ["flylab", "u-explore"]
+  },
+  {
+    "id": "L27",
+    "text": "Do not copy last year’s winning technique. FlyVision rebuilt cargo CV after NAAR already won it.",
+    "tag": "Pitch",
+    "sourceIds": ["flyvision-2025", "naar"]
+  },
+  {
+    "id": "L28",
+    "text": "Cathay Green ran out of time on the first pitch and still won the finals. Narrate steps 3–6; do not add a robot.",
+    "tag": "Demo",
+    "sourceIds": ["cathay-green", "niki-jr", "reconnect"]
+  },
+  {
+    "id": "L29",
+    "text": "2023 2nd RU FlyMate is a GenAI PRM app with GitHub. WCH is already +15 min in mct.ts. Do not demo a passenger chatbot.",
+    "tag": "Pitch",
+    "sourceIds": ["flymate", "reconnect"]
   }
 ]

@@ -5,16 +5,17 @@ const OPS = new Set(["touchcx", "naar", "gingtrip", "flylab"]);
 
 export function winnerClassChart(projects) {
   const years = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025];
+  const labels = ["16", "17", "18*", "19×", "20", "21*", "22", "23", "24", "25"];
   const champs = projects.filter((p) => p.outcome === "champion");
   const series = [
     {
       name: "Lifestyle / loyalty champions",
-      labels: years.map(String),
+      labels,
       values: years.map((y) => champs.filter((p) => p.year === y && LIFESTYLE.has(p.id)).length),
     },
     {
       name: "Ops / inflight / cargo / hardware / employee",
-      labels: years.map(String),
+      labels,
       values: years.map((y) => champs.filter((p) => p.year === y && OPS.has(p.id)).length),
     },
   ];
@@ -22,36 +23,57 @@ export function winnerClassChart(projects) {
     title: "Ops wins exist — and 2019 never ran. Empty years are not a trend.",
     yLabel: "press champions in this set",
     caption:
-      "Source: Cathay/Swire press. 2019 cancelled (CX press). 2018 and 2021 champion names unpublished — plotted as zero, not guessed. 2025: student U-Explore (grey) + employee FlyLab (green). Small n; do not overfit.",
+      "* champion name unpublished. × 2019 cancelled (CX press). 2025: student U-Explore (grey) + employee FlyLab (green). Small n; do not overfit.",
     colors: ["#8a8f86", "#0b5f52"],
   });
 }
 
 export function githubChart(projects) {
-  const champs = projects.filter((p) => p.kind === "cathay-winner" && p.outcome === "champion");
-  const parts = projects.filter((p) => p.kind === "cathay-repo" && p.id !== "reconnect");
+  const cx = projects.filter((p) => p.kind === "cathay-winner" || p.kind === "cathay-repo");
+  const champs = cx.filter((p) => p.outcome === "champion");
+  const podium = cx.filter((p) => p.outcome === "runner-up" || p.outcome === "finalist");
+  const rest = cx.filter(
+    (p) => p.id !== "reconnect" && !["champion", "runner-up", "finalist"].includes(p.outcome),
+  );
   return svgBars(
     [
       {
         name: "Public GitHub in this set",
-        labels: ["Press champions", "Participant repos"],
-        values: [champs.filter((p) => p.github).length, parts.filter((p) => p.github).length],
+        labels: ["Press champions", "Podium RU / finalist", "Other CX entries"],
+        values: [
+          champs.filter((p) => p.github).length,
+          podium.filter((p) => p.github).length,
+          rest.filter((p) => p.github).length,
+        ],
       },
     ],
     {
-      title: "Zero press champions in this set ship a public repo. Participants do.",
+      title: "Press champions in this set still have no public repo. One 2023 runner-up does.",
       yLabel: "count",
       caption:
-        "Source: gh search + this database. GME 2021 has GitHub and is a participant, not a press champion. Stars are not the scoreboard.",
+        "FlyMate (2nd RU) is the podium GitHub. GME 2021 is a participant, not a trophy. Stars are not the scoreboard.",
       colors: ["#0b5f52"],
     },
   );
 }
 
+const SHORT = {
+  "named-bu": "Named BU",
+  "theater-90s": "90s theater",
+  "dual-beneficiary": "Dual beneficiary",
+  "feasibility-2026": "Feasibility ≠ lifestyle",
+  "champions-no-github": "No champion GitHub",
+  "desk-owner": "Desk owner",
+  "incumbent-irops": "Bought mass IROPS",
+  "llm-foil": "LLM-decides foil",
+  "control-cycle": "Control cycle",
+  "walk-special": "Walk + special",
+};
+
 export function patternChart(patterns, projects) {
   const rows = patterns
     .map((pat) => ({
-      label: pat.title,
+      label: SHORT[pat.id] || pat.title,
       value: projects.filter((p) => (p.patterns || []).includes(pat.id)).length,
     }))
     .sort((a, b) => b.value - a.value);
@@ -78,18 +100,37 @@ export function foilChart(projects) {
 }
 
 export function scoreScatter(scorecard) {
+  const short = {
+    reconnect: "Reconnect",
+    flylab: "FlyLab",
+    fight4flight: "Fight4Flight",
+    "amadeus-pr": "Pax Recovery",
+    connectionsaver: "ConnectionSaver",
+    cathayconnect: "ChatGPT planner",
+  };
+  const dy = { reconnect: 12, "amadeus-pr": -8 };
   const points = scorecard.rows.map((r) => ({
     x: r.feasibility,
     y: r.collision,
-    label: r.label,
+    label: short[r.id] || r.label,
     accent: r.id === "reconnect",
+    dy: dy[r.id] || 4,
   }));
   return scatter(points, {
     title: "We want high adoption path and low collision. We are high/high until the pitch says beside.",
     xLabel: "adoption path (1–5)",
     yLabel: "incumbent collision (1–5, worse up)",
     caption:
-      "Green dot = Reconnect. FlyLab is the target quadrant (high path, low collision). Passenger Recovery sits at max collision because it *is* the incumbent. Judgement on sourced facts, not a survey.",
+      "Green dot = Reconnect. FlyLab is the target quadrant (high path, low collision). Pax Recovery is Amadeus Passenger Recovery at max collision because it is the incumbent.",
+  });
+}
+
+export function mix2017Chart(insights) {
+  return hBars(insights.mix2017, {
+    title: "2017 top six: one crew tablet won. IROPS placed. Lifestyle filled the rest.",
+    xLabel: "finalists (n = 6, one year — do not overfit)",
+    caption: "Source: CX “hacking the future of flying”. GitHub is still the lifestyle pile.",
+    color: "#0b5f52",
   });
 }
 

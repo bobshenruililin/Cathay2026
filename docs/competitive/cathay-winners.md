@@ -16,6 +16,7 @@ Public champion GitHub is empty. Press is the record. **2018 and 2021 champion n
 | 2021 | Participant | GME | Loyalty | Asia Miles map (repo exists) |
 | 2022 | Champion | Cathay Green | ESG | Green currency / offset |
 | 2023 | Champion | NAAR | Cargo | CV cargo dimensioning |
+| 2023 | 2nd RU | FlyMate (Skydreamers) | Accessibility | GenAI PRM app; **has GitHub** |
 | 2024 | Champion | GingTrip | HK Express | Waste trolley + dashboard |
 | 2025 | Student champion | U-Explore (Kairos) | HK Express | Loyalty / community journey |
 | 2025 | Student RU | Niki Jr. | CX / heritage | Polaroid robot |
@@ -30,6 +31,8 @@ Public champion GitHub is empty. Press is the record. **2018 and 2021 champion n
 **FlyLab (2025 employee)** is the judging ancestor: CX staff + IT, LLM summarises existing packs, humans decide.
 
 **SMASH (2024 repo)** had the GingTrip *pain* (HX waste) without the trolley. Theater lost.
+
+**FlyMate (2023 2nd RU)** named PRM and shipped GitHub. It is still a passenger GenAI app. Cargo CV won. Our WCH is a number in `mct.ts`, not a chatbot.
 
 **Rogers 2019** wanted airborne reprotect for misconnects off a late inbound. Our CX254 +180 button is that sentence on an iPad.
 

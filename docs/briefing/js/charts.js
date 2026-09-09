@@ -52,7 +52,7 @@ export function svgBars(series, { title, yLabel, caption, colors }) {
 export function hBars(rows, { title, xLabel, caption, color }) {
   const w = 720;
   const rowH = 28;
-  const pad = { t: 8, r: 48, b: 28, l: 200 };
+  const pad = { t: 8, r: 48, b: 28, l: 168 };
   const h = pad.t + pad.b + rows.length * rowH;
   const innerW = w - pad.l - pad.r;
   const max = Math.max(...rows.map((r) => r.value), 1);
@@ -60,9 +60,9 @@ export function hBars(rows, { title, xLabel, caption, color }) {
     .map((r, i) => {
       const y = pad.t + i * rowH;
       const bw = (r.value / max) * innerW;
-      return `<text x="${pad.l - 8}" y="${y + 16}" text-anchor="end" font-size="12" fill="#1a1c19">${r.label}</text>
+      return `<text x="${pad.l - 8}" y="${y + 16}" text-anchor="end" font-size="11" fill="#1a1c19">${r.label}</text>
         <rect x="${pad.l}" y="${y + 4}" width="${bw}" height="16" fill="${color}"></rect>
-        <text x="${pad.l + bw + 6}" y="${y + 16}" font-size="12" fill="#1a1c19">${r.value}</text>`;
+        <text x="${pad.l + bw + 6}" y="${y + 16}" font-size="11" fill="#1a1c19">${r.value}</text>`;
     })
     .join("");
   const svg = `<svg class="chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="${title}">
@@ -91,8 +91,12 @@ export function scatter(points, { title, xLabel, yLabel, caption }) {
   const dots = points
     .map((p) => {
       const fill = p.accent ? "#0b5f52" : "#1a1c19";
+      const rightEdge = p.x >= 4;
+      const tx = rightEdge ? xOf(p.x) - 10 : xOf(p.x) + 10;
+      const ty = yOf(p.y) + (p.dy || 4);
+      const anchor = rightEdge ? "end" : "start";
       return `<circle cx="${xOf(p.x)}" cy="${yOf(p.y)}" r="6" fill="${fill}"></circle>
-        <text x="${xOf(p.x) + 10}" y="${yOf(p.y) + 4}" font-size="12" fill="#1a1c19">${p.label}</text>`;
+        <text x="${tx}" y="${ty}" text-anchor="${anchor}" font-size="12" fill="#1a1c19">${p.label}</text>`;
     })
     .join("");
   const svg = `<svg class="chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="${title}">

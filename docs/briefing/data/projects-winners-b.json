@@ -12,12 +12,16 @@
     "strengths": ["Touchable theater", "HK Express named", "ESG data ledger", "Returned after losing"],
     "weaknesses": ["Physical build is not our path"],
     "patterns": ["named-bu", "theater-90s", "dual-beneficiary", "feasibility-2026", "champions-no-github"],
-    "reconnectTakeaway": "Do not add a robot. Do make the typhoon click as tactile as a trolley.",
+    "reconnectTakeaway": "They lost in 2023, came back with a trolley (Andy Ng, CX 2024). We already have the typhoon button. Do not wait a year, and do not add a robot.",
     "github": null,
     "sources": [
       {
         "title": "Aircraft Interiors: GingTrip 2024",
         "url": "https://www.aircraftinteriorsinternational.com/news/industry-news/innovative-galley-cart-wins-the-2024-cathay-hackathon-contest.html"
+      },
+      {
+        "title": "7th annual: GingTrip returned after 2023",
+        "url": "https://news.cathaypacific.com/innovation-takes-flight-beyond-hong-kong-at-the-7th-annual-cathay-hackathon-with-its-final-pitch-held-in-shenzhen"
       }
     ],
     "copyOrFoil": "copy-pitch",

@@ -19,6 +19,44 @@ export function verdictHtml(meta) {
   </section>`;
 }
 
+export function saturdayHtml(insights) {
+  const rows = insights.saturday
+    .map(
+      (s) => `<tr><td>${s.clock}</td><td>${s.step}</td><td>${s.say}</td><td>${s.show}</td></tr>`,
+    )
+    .join("");
+  const dont = insights.dontSay
+    .map((d) => `<tr><td>${d.dont}</td><td>${d.say}</td></tr>`)
+    .join("");
+  return `<section id="saturday" class="slide">
+    <h2>Saturday — 90 seconds</h2>
+    <p class="lede-inline">Same six steps as <code>docs/DEMO.md</code>. Say this, then stop.</p>
+    <table class="plain">
+      <thead><tr><th>Clock</th><th>Demo</th><th>Say</th><th>Show</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <h3>If a judge talks, do not improvise</h3>
+    <table class="plain dont">
+      <thead><tr><th>Do not say</th><th>Say instead</th></tr></thead>
+      <tbody>${dont}</tbody>
+    </table>
+  </section>`;
+}
+
+export function scaleHtml(insights) {
+  const rows = insights.scale
+    .map(
+      (s) => `<tr><td>${s.year}</td><td>${s.teams}</td><td>${s.apps}</td><td>${s.note}</td></tr>`,
+    )
+    .join("");
+  return `<h3>The room got bigger, then it split tracks</h3>
+    <table class="plain">
+      <thead><tr><th>Year</th><th>Teams</th><th>Applications</th><th>What that year did</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <p class="caption">2022–2025 figures: Swire/CX press. 2017 teams: CX TouchCX story. 2024 apps not in press — omitted.</p>`;
+}
+
 export function patternHtml(patterns) {
   const cards = patterns
     .map(

@@ -118,5 +118,29 @@
     ],
     "copyOrFoil": "foil",
     "confidence": "medium"
+  },
+  {
+    "id": "gingtrip-2023",
+    "name": "GingTrip (2023 attempt)",
+    "year": 2023,
+    "kind": "cathay-winner",
+    "org": "GingTrip",
+    "bu": "HK Express / Inflight",
+    "oneLiner": "Andy Ng, 2024 press: they took part in 2023, learned from coaches, came back and won with the trolley.",
+    "artifact": "unpublished",
+    "outcome": "participant",
+    "strengths": ["Primary quote that winners iterate across years"],
+    "weaknesses": ["2023 artifact unpublished"],
+    "patterns": ["theater-90s", "feasibility-2026"],
+    "reconnectTakeaway": "They needed a year and a trolley. We already have the typhoon button. Do not wait.",
+    "github": null,
+    "sources": [
+      {
+        "title": "7th annual Cathay Hackathon (GingTrip quote)",
+        "url": "https://news.cathaypacific.com/innovation-takes-flight-beyond-hong-kong-at-the-7th-annual-cathay-hackathon-with-its-final-pitch-held-in-shenzhen"
+      }
+    ],
+    "copyOrFoil": "copy-pitch",
+    "confidence": "high"
   }
 ]

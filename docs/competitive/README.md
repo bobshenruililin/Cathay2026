@@ -21,9 +21,10 @@ Teammate briefing for Cathay Hackathon 2026. Not on the demo path.
 2. [Cathay winners](cathay-winners.md)
 3. [GitHub corpus](github-corpus.md)
 4. [Patterns](patterns.md)
-5. [Insights / failures](insights.md)
-6. [Reconnect scorecard](reconnect-scorecard.md)
-7. [Learnings](learnings.md)
+5. [Saturday 90 seconds](saturday.md)
+6. [Insights / failures](insights.md)
+7. [Reconnect scorecard](reconnect-scorecard.md)
+8. [Learnings](learnings.md)
 
 Out of demo: [`docs/LATER.md`](../LATER.md). Pilot position vs Passenger Recovery: [`docs/PILOT_PROPOSAL.md`](../PILOT_PROPOSAL.md) § 1.1.
 

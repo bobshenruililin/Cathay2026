@@ -92,6 +92,16 @@ table.wide { font-size: 0.82rem; }
   margin-right: 0.35rem;
 }
 
+#saturday table:first-of-type td:nth-child(1),
+#saturday table:first-of-type td:nth-child(2) {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  color: var(--muted);
+  width: 4.5rem;
+}
+table.dont td:first-child { color: var(--warn); }
+
 .filter-row { display: flex; flex-wrap: wrap; gap: 0.35rem; width: 100%; }
 .swatch {
   display: inline-block;

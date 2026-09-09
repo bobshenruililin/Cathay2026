@@ -18,6 +18,8 @@ One student champion per year, 2016–2025:
 - **Ops still wins** when the pain is owned: TouchCX (inflight crew), NAAR (cargo $), GingTrip (HK Express trolley + data), FlyLab (pilots + IT, employee track).
 - **2019 was cancelled** (CX press). 2018 and 2021 champion names are unpublished — do not fill them from GitHub.
 
+2025 split **student** (36 teams, 1,900 apps) and **employee** (12 teams, 200 apps) tracks. Top five from each track pitched. FlyLab won employee. U-Explore won student. Top three each track go to Cathay Innovate (fund up to HK$500k). We are the employee-track *shape* even if the names on the repo are students: a desk tool for CX staff.
+
 2025 employee champion FlyLab is the closer analogue than student champion U-Explore.
 
 ## Sources
