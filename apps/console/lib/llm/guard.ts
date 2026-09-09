@@ -3,6 +3,14 @@ import type { Flight, RecoveryOption } from "engine";
 /** IATA-style numbers: CX254, BA32, UO102, JL26, IB6822, AA204. */
 const IATA_FLIGHT = /\b(?:[A-Z]{2}|[A-Z][0-9]|[0-9][A-Z])[0-9]{1,4}[A-Z]?\b/gi;
 
+/** Ground Control S-series: override the system, not just invent a flight. */
+const INSTRUCTION_OVERRIDE =
+  /ignore\s+(all\s+)?(previous|prior)\s+(instructions|prompts)|disregard\s+(the\s+)?(system|previous)|you are now\b|new system prompt/i;
+
+export function hasInstructionOverride(text: string): boolean {
+  return INSTRUCTION_OVERRIDE.test(text);
+}
+
 export function extractFlightNumbers(text: string): string[] {
   const matches = text.toUpperCase().match(IATA_FLIGHT) ?? [];
   return [...new Set(matches.map((value) => value.toUpperCase()))];
@@ -49,7 +57,7 @@ export function applyFlightNumberGuard(
   const allowed = allowedFlightNumbers(input);
   const mentioned = extractFlightNumbers(text);
   const hallucinated = mentioned.some((number) => !allowed.has(number));
-  if (hallucinated || text.trim() === "") {
+  if (hallucinated || text.trim() === "" || hasInstructionOverride(text)) {
     return { text: fallbackTemplate(input), usedFallback: true };
   }
   return { text: text.trim(), usedFallback: false };
