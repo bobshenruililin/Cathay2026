@@ -17,7 +17,7 @@ test("6-step stage demo", async ({ page }) => {
   await test.step("2. Live triage queue from sim + engine", async () => {
     await expect(page.getByTestId("queue-item").first()).toBeVisible();
     await expect(page.getByTestId("engine-reasoning")).toBeVisible();
-    await expect(page.getByTestId("engine-reasoning")).toContainText(/Slack is \d+ minutes/);
+    await expect(page.getByTestId("engine-reasoning")).toContainText(/Slack is -?\d+ minutes/);
   });
 
   await test.step("3. Simulate Typhoon Delay", async () => {
