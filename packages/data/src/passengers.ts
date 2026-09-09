@@ -21,6 +21,7 @@ const DESK_CASES: Passenger[] = [
   { pnr: "P8T2LM", name: "James Wong", tier: "Gold", cabin: "Premium Economy", wheelchair: true },
   { pnr: "Q1H6VB", name: "Aisha Patel", tier: "Silver", cabin: "Economy", partySize: 4, partyId: "PATEL" },
   { pnr: "SSRWCH", name: "Grace Ho", tier: "Gold", cabin: "Business", ssr: ["WCHR"] },
+  { pnr: "SSRUMNR", name: "Mina Choi", tier: "Silver", cabin: "Economy", ssr: ["UMNR"] },
 ];
 
 function makePnr(rng: Rng, used: Set<string>): string {
@@ -84,7 +85,7 @@ function pinCx254Feeders(connections: BankConnection[], flights: readonly Flight
   const outbound = ranked[0]?.flight;
   if (!outbound) return connections;
   return connections.map((row, index) =>
-    index < connections.length - 4
+    index < connections.length - DESK_CASES.length
       ? row
       : {
           ...row,

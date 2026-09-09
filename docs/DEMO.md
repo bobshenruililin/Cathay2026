@@ -40,8 +40,9 @@ Click **Late Inbound CX254**. Sim delays inbound CX254 (TPE→HKG in the synthet
 bank) by 180 minutes (`CX254_DELAY_MINUTES`).
 
 Assertion: a queue row mentions CX254; named UM `W4N9KD` (Mei Chan) is in the
-queue with an UM chip; SSR-only `SSRWCH` (Grace Ho, WCHR) shows WCH on the
-queue and on the connection panel after select; CX254 delay minutes > 0.
+queue with an UM chip; SSR-only `SSRUMNR` (Mina Choi, UMNR) shows UM; SSR-only
+`SSRWCH` (Grace Ho, WCHR) shows WCH on the queue and on the connection panel
+after select; CX254 delay minutes > 0.
 
 ## 5. Queue updates and recovery options
 

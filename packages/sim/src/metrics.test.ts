@@ -8,7 +8,7 @@ const LOCKED = {
   connectionCount: 300,
   flightCount: 120,
   inboundCount: 50,
-  baselineAtRisk: 124,
+  baselineAtRisk: 123,
   baselineOptions: 62,
   typhoonDelayMinutes: 90,
   typhoonAtRisk: 176,
@@ -17,8 +17,8 @@ const LOCKED = {
   cx254DelayMinutes: 180,
   cx254AtRisk: 130,
   cx254Options: 61,
-  umAtRisk: 11,
-  umAtRiskKeptOnCx: 11,
+  umAtRisk: 12,
+  umAtRiskKeptOnCx: 12,
 };
 
 describe("demo metrics from sim", () => {
@@ -45,5 +45,9 @@ describe("demo metrics from sim", () => {
     const after = sim.getState();
     expect(after.atRisk.some((row) => row.pnr === "W4N9KD")).toBe(true);
     expect(after.connections.find((row) => row.passenger.pnr === "W4N9KD")?.passenger.um).toBe(true);
+    expect(after.atRisk.some((row) => row.pnr === "SSRUMNR")).toBe(true);
+    expect(after.connections.find((row) => row.passenger.pnr === "SSRUMNR")?.passenger.ssr).toEqual([
+      "UMNR",
+    ]);
   });
 });

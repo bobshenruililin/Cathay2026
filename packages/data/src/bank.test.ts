@@ -58,6 +58,9 @@ describe("evening bank", () => {
     expect(byPnr.SSRWCH?.passenger.ssr).toEqual(["WCHR"]);
     expect(byPnr.SSRWCH?.passenger.wheelchair).toBeUndefined();
     expect(byPnr.SSRWCH?.inboundFlightNumber).toBe("CX254");
+    expect(byPnr.SSRUMNR?.passenger.ssr).toEqual(["UMNR"]);
+    expect(byPnr.SSRUMNR?.passenger.um).toBeUndefined();
+    expect(byPnr.SSRUMNR?.inboundFlightNumber).toBe("CX254");
     const pnrs = bank.connections.map((row) => row.passenger.pnr);
     expect(new Set(pnrs).size).toBe(300);
   });

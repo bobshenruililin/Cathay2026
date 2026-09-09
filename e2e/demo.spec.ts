@@ -43,6 +43,9 @@ test("6-step stage demo", async ({ page }) => {
     await expect(namedUm).toBeVisible();
     await expect(namedUm).toContainText("CX254");
     await expect(namedUm.getByTestId("handling-flags")).toContainText("UM");
+    const ssrUm = page.getByTestId("queue-item").filter({ hasText: "SSRUMNR" });
+    await expect(ssrUm).toBeVisible();
+    await expect(ssrUm.getByTestId("handling-flags")).toContainText("UM");
     const ssrWch = page.getByTestId("queue-item").filter({ hasText: "SSRWCH" });
     await expect(ssrWch).toBeVisible();
     await expect(ssrWch.getByTestId("handling-flags")).toContainText("WCH");

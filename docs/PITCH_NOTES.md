@@ -24,8 +24,8 @@ IROPS super-app. Not green-points or a hotel-night carbon claim (Cathay
 Green) — the sim does not count nights. Week 1 of the pilot does not write
 `PNR_AddMultiElements`.
 
-**Number.** Seed `hkg-demo`: 124 at-risk at bank start; typhoon (90 min on
-inbounds) lifts that to 176; 11 unaccompanied minors at risk stay on CX.
+**Number.** Seed `hkg-demo`: 123 at-risk at bank start; typhoon (90 min on
+inbounds) lifts that to 176; 12 unaccompanied minors at risk stay on CX.
 Full table: `docs/METRICS.md`. Do not quote ConnectGuard €25M or SWISS
 2–3 minutes.
 

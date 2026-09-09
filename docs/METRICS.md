@@ -14,7 +14,7 @@ Refresh: `pnpm --filter sim test` (locks `src/metrics.test.ts`).
 | Flights | 120 |
 | Inbounds to HKG | 50 |
 | Connections | 300 |
-| At-risk at bank start | 124 |
+| At-risk at bank start | 123 |
 | Recovery options generated | 62 |
 
 ## Simulate Typhoon Delay (90 minutes on HKG inbounds)
@@ -24,8 +24,8 @@ Refresh: `pnpm --filter sim test` (locks `src/metrics.test.ts`).
 | Delayed inbounds | 50 |
 | At-risk | 176 |
 | Recovery options generated | 59 |
-| Unaccompanied minors at risk | 11 |
-| Of those, kept on CX metal | 11 |
+| Unaccompanied minors at risk | 12 |
+| Of those, kept on CX metal | 12 |
 
 Typhoon can *cut* option count (59 vs 62) because more connections miss the
 pool. Unaccompanied minors never receive next-calendar-day flights. Say that;

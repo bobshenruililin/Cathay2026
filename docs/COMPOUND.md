@@ -79,6 +79,9 @@ Do not shrink Never without `docs/QUESTIONS.md`.
 - `panel-ssr-flags` (engine-hardening): connection panel uses the same SSR
   helpers as the queue (case 12 `SSRWCH` shows WCH when selected).
   Checker: `pnpm --filter console test` && `pnpm test:demo`
+- `pin-ssr-umnr` (engine-hardening): case 13 `SSRUMNR` Mina Choi on a live
+  CX254 feeder (UMNR without `um` flag). Checker: `pnpm --filter data test`
+  && `pnpm --filter sim test`
 
 ## Next
 
