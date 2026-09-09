@@ -9,7 +9,7 @@ well: "Components depend on typed ports, not on sibling internals; sim adapters 
 poor: "C++ flight software framework. Do not add FPP."
 steal: "Console and sim import engine public types only."
 never: "Embed F Prime. Cross-import engine src internals."
-applied: []
+applied: [engine-ports]
 scope_recipe: ""
 pitch_recipe: ""
 later_recipe: ""

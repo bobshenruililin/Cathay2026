@@ -45,6 +45,8 @@ Do not shrink Never without `docs/QUESTIONS.md`.
   `triage-queue.tsx`. Checker: `pnpm --filter console test` && `pnpm test:demo`
 - `overnight-label` (passenger-recovery-optimization): next-calendar-day
   options say overnight; UM skip them. Checker: `pnpm --filter engine test`
+- `engine-ports` (nasa-fprime): console/sim/data import `engine` public API
+  only. Checker: `pnpm --filter engine test`
 
 ## Next
 

@@ -21,3 +21,4 @@ Append-only. Format: `YYYY-MM-DD | source-id | lesson | path | bucket`
 2026-09-09 | connectguard | Stage numbers from demoMetrics(hkg-demo) only; no vendor ROI | docs/METRICS.md | PITCH
 2026-09-09 | support-operations-dashboard | Typhoon/delay is a peak flood chip, not a calm queue | apps/console/components/triage-queue.tsx | SCOPE
 2026-09-09 | passenger-recovery-optimization | Overnight named in reasoning; UM skip next calendar day | packages/engine/src/option-reason.ts | SCOPE
+2026-09-09 | nasa-fprime | Console/sim/data depend on engine public ports, not src internals | packages/engine/src/ports.test.ts | SCOPE
