@@ -24,3 +24,5 @@ Append-only. Format: `YYYY-MM-DD | source-id | lesson | path | bucket`
 2026-09-09 | nasa-fprime | Console/sim/data depend on engine public ports, not src internals | packages/engine/src/ports.test.ts | SCOPE
 2026-09-09 | openflights | Cite routes later; do not import OpenFlights PHP as PNR truth | packages/data/src/sources.test.ts | Never
 2026-09-09 | nasa-openmct | Keep Playwright HITL; do not embed Open MCT in the console | apps/console/lib/never-embed.test.ts | Never
+2026-09-09 | kraken | Stay a markdown log; do not Kraken-ify claim leases | packages/engine/src/kraken.test.ts | Never
+2026-09-09 | airline-disr-mgt | Engine src must not import Gurobi or OR-Tools | packages/engine/src/purity.test.ts | Never

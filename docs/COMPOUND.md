@@ -51,6 +51,10 @@ Do not shrink Never without `docs/QUESTIONS.md`.
   import. Checker: `pnpm --filter data test`
 - `no-openmct-embed` (nasa-openmct): console does not import Open MCT.
   Checker: `pnpm --filter console test`
+- `thin-leases` (kraken): no `docs/claims/` framework. Checker:
+  `pnpm --filter engine test`
+- `no-gurobi` (airline-disr-mgt): engine purity bans Gurobi/OR-Tools imports.
+  Checker: `pnpm --filter engine test`
 
 ## Next
 
