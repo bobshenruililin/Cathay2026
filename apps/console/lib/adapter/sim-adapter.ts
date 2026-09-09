@@ -1,28 +1,17 @@
 import { createSimulation, CX254_DELAY_MINUTES, DEMO_SEED, type Simulation } from "sim";
-import { triageConnection } from "engine";
-import { disruptionFrom, flightsByNumber, sortQueue } from "./queue";
-import type { ConsoleAdapter, ConsoleSnapshot, QueueItem } from "./types";
+import { collectTriage, disruptionFrom } from "./queue";
+import type { ConsoleAdapter, ConsoleSnapshot } from "./types";
 
 export { DEMO_SEED };
 
 function snapshotFrom(sim: Simulation, resolved: Set<string>): ConsoleSnapshot {
   const state = sim.getState();
-  const lookup = flightsByNumber(state.flights);
-  const queue: QueueItem[] = [];
-  for (const row of state.connections) {
-    if (resolved.has(row.passenger.pnr)) continue;
-    const inbound = lookup.get(row.inboundFlightNumber);
-    const outbound = lookup.get(row.outboundFlightNumber);
-    if (!inbound || !outbound) continue;
-    const result = triageConnection({ inbound, outbound, passenger: row.passenger }, state.flights);
-    if (!result.atRisk) continue;
-    queue.push({ result, passenger: row.passenger, inbound, outbound });
-  }
+  const { queue, quietCount } = collectTriage(state.connections, state.flights, resolved);
   return {
     clockIso: state.clockIso,
     flights: state.flights,
-    queue: sortQueue(queue),
-    disruption: disruptionFrom(queue, state.flights),
+    queue,
+    disruption: disruptionFrom(queue, state.flights, quietCount),
   };
 }
 

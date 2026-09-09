@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 
 export function TriageQueue({
   items,
+  quietCount,
   selectedPnr,
   status,
   error,
@@ -16,6 +17,7 @@ export function TriageQueue({
   onSelect,
 }: {
   items: QueueItem[];
+  quietCount: number;
   selectedPnr: string | null;
   status: "loading" | "ready" | "error";
   error: string | null;
@@ -27,6 +29,9 @@ export function TriageQueue({
       <div className="border-b px-4 py-3">
         <h2 className="font-heading text-sm font-medium">Triage queue</h2>
         <p className="text-xs text-muted-foreground">Missed first, then tight · Diamond first</p>
+        <p className="text-xs text-muted-foreground" data-testid="quiet-count">
+          {quietCount} connection{quietCount === 1 ? "" : "s"} OK — silent
+        </p>
       </div>
       {status === "loading" ? <LoadingBlock label="Loading at-risk connections…" /> : null}
       {status === "error" ? <ErrorBlock message={error ?? "Queue failed"} onRetry={onRetry} /> : null}

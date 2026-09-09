@@ -16,7 +16,7 @@ Do not shrink Never without `docs/QUESTIONS.md`.
 | Lens | Bar | Reconnect | Gap |
 | --- | --- | --- | --- |
 | Named BU | HK Express, Cargo, pilots | Gate agent + Altéa office in PILOT | Pitch HKG Transfer / Ground |
-| Feasibility | Named feed or physical slice | `docs/PILOT_PROPOSAL.md` | Quiet-default + sim badge |
+| Feasibility | Named feed or physical slice | `docs/PILOT_PROPOSAL.md` | Sim badge |
 | Decision | FlyLab summarises | Engine decides, `reasoning[]` | Keep; say it |
 | Number | Fake €25M vs SWISS minutes | Sim has counts | `METRICS.md` from sim only |
 | Honesty | Vendors exist | No Altéa write week 1 | Not Amadeus Passenger Recovery |
@@ -31,12 +31,13 @@ Do not shrink Never without `docs/QUESTIONS.md`.
 - Named user (HKG transfer agent); PILOT names Altéa / FIDS MQTT / App push
 - Survey cards + compound skill + this board
 - `named-BU` + engine-true line in `docs/PITCH_NOTES.md` (kairos, flylab, crew-ops)
+- `quiet-default` (amadeus-disruption-agent): healthy connections counted as
+  silent, not queued. Checker: `pnpm --filter console test` && `pnpm test:demo`
 
 ## Next
 
 | id | bucket | steal-from | recipe | checker |
 | --- | --- | --- | --- | --- |
-| quiet-default | SCOPE | amadeus-disruption-agent, connectguard | Adapters skip `!atRisk`. Show silent/healthy chip in `triage-queue.tsx` without a 7th DEMO step | `pnpm test:demo` + console unit |
 | sim-badge | SCOPE | aegisops-ai, spacex-se | Visible SIM/offline on `station-header.tsx` when drafts fall back | header test + `pnpm test:demo` |
 | action-verbs | SCOPE | connectguard | Hold / Escort / Protect / Wait strings in `option-reason.ts` only; no engine API change | `pnpm --filter engine test` |
 | metrics-from-sim | PITCH | connectguard, amadeus-passenger-recovery | `docs/METRICS.md` arithmetic from `packages/sim` counts | docs only; no vendor numbers |

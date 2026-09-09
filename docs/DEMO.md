@@ -14,8 +14,10 @@ Assertion: HKG station clock is visible and is not a placeholder dash.
 ## 2. Live triage queue from sim + engine
 
 The left column lists at-risk connections from the seeded evening bank.
-`packages/sim` supplies flights/connections; `packages/engine` `triageConnection` /
-`generateOptions` fills status, slack, options, and `reasoning`.
+Healthy connections stay off the action list; the queue header shows
+`N connections OK — silent`. `packages/sim` supplies flights/connections;
+`packages/engine` `triageConnection` / `generateOptions` fills status, slack,
+options, and `reasoning`.
 
 Assertion: at least one queue row is visible and engine reasoning is shown for the
 auto-selected passenger.

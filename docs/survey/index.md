@@ -10,7 +10,6 @@ Unapplied steals first when nudging. Cards: `docs/survey/projects/<id>.md`.
 | touchcx-2017 | cathay-winner | TouchCX | 0 | reviewed |
 | sia-sqxp-2017 | similar-hackathon | SQXP | 0 | reviewed |
 | connectguard | github | ConnectGuard | 0 | reviewed |
-| amadeus-disruption-agent | github | Amadeus disruption agent | 0 | reviewed |
 | traavl | github | trAAvl | 0 | reviewed |
 | aegisops-ai | github | AegisOps | 0 | reviewed |
 | openflights | github | OpenFlights | 0 | reviewed |
@@ -21,6 +20,7 @@ Unapplied steals first when nudging. Cards: `docs/survey/projects/<id>.md`.
 | nasa-openmct | aviation-bar | NASA Open MCT | 0 | reviewed |
 | kraken | anti-pattern | Kraken claim leases | 0 | reviewed |
 | ground-control | github | Ground Control | 1 | reviewed |
+| amadeus-disruption-agent | github | Amadeus disruption agent | 1 | reviewed |
 | gingtrip-2024 | cathay-winner | GingTrip | 1 | reviewed |
 | flylab-2025 | cathay-winner | FlyLab | 1 | reviewed |
 | kairos-uexplore-2025 | cathay-winner | U-Explore | 1 | reviewed |

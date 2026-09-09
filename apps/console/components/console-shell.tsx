@@ -147,6 +147,7 @@ export function ConsoleShell() {
       <main className="grid min-h-0 flex-1 grid-cols-[320px_minmax(0,1fr)_380px]">
         <TriageQueue
           items={snapshot?.queue ?? []}
+          quietCount={snapshot?.disruption.quietCount ?? 0}
           selectedPnr={selectedPnr}
           status={status}
           error={error}
