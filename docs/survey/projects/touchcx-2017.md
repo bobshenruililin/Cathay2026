@@ -9,7 +9,7 @@ well: "Named inflight job; crew tablet; working 24h prototype."
 poor: "Passenger amenity ordering, not IROPS."
 steal: "iPad for the worker, not a passenger super-app."
 never: "Passenger-facing IFE as the pitch."
-applied: []
+applied: [worker-tablet]
 scope_recipe: ""
 pitch_recipe: "docs/PITCH_NOTES.md — worker tablet"
 later_recipe: ""

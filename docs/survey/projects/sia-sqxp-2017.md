@@ -9,7 +9,7 @@ well: "SIA AppChallenge global champ; named Stopover Holidays; one boarding-pass
 poor: "Ionic consumer app; miles loop; not a hub desk."
 steal: "One named journey. Ours is HKG missed connect."
 never: "Layover itinerary builder."
-applied: []
+applied: [one-journey]
 scope_recipe: ""
 pitch_recipe: "docs/PITCH_NOTES.md — one named journey"
 later_recipe: ""

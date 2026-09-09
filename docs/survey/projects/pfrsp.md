@@ -9,7 +9,7 @@ well: "Honest OR: hold outbound to save connections (CDG-class work)."
 poor: "Not a 3-minute iPad demo; solver-heavy."
 steal: "Q&A only: Phase 2 could hold a CX outbound minutes; Phase 1 is pre-computed options."
 never: "Gurobi/MILP on the demo machine."
-applied: []
+applied: [phase2-hold-qa]
 scope_recipe: ""
 pitch_recipe: "docs/PITCH_NOTES.md — Phase 2 hold"
 later_recipe: "docs/LATER.md hold-outbound"

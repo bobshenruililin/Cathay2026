@@ -5,15 +5,15 @@ Unapplied steals first when nudging. Cards: `docs/survey/projects/<id>.md`.
 
 | id | kind | title | applied-count | status |
 | --- | --- | --- | --- | --- |
-| naar-2023 | cathay-winner | NAAR | 0 | reviewed |
-| cathay-green-2022 | cathay-winner | Cathay Green | 0 | reviewed |
-| touchcx-2017 | cathay-winner | TouchCX | 0 | reviewed |
-| sia-sqxp-2017 | similar-hackathon | SQXP | 0 | reviewed |
+| naar-2023 | cathay-winner | NAAR | 1 | reviewed |
+| cathay-green-2022 | cathay-winner | Cathay Green | 1 | reviewed |
+| touchcx-2017 | cathay-winner | TouchCX | 1 | reviewed |
+| sia-sqxp-2017 | similar-hackathon | SQXP | 1 | reviewed |
 | connectguard | github | ConnectGuard | 2 | reviewed |
-| traavl | github | trAAvl | 0 | reviewed |
+| traavl | github | trAAvl | 1 | reviewed |
 | aegisops-ai | github | AegisOps | 1 | reviewed |
 | openflights | github | OpenFlights | 1 | reviewed |
-| pfrsp | github | PFRSP | 0 | reviewed |
+| pfrsp | github | PFRSP | 1 | reviewed |
 | airline-disr-mgt | github | airline.disr.mgt | 1 | reviewed |
 | support-operations-dashboard | github | Support ops dashboard | 1 | reviewed |
 | nasa-fprime | aviation-bar | NASA F Prime | 1 | reviewed |

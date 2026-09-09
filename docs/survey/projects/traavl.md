@@ -9,7 +9,7 @@ well: "shadcn ops dashboard + scenario sim; gate-distance coach."
 poor: "Passenger chatbot-first; Gemini in the passenger path."
 steal: "HKG walk/gate as data later. Keep the iPad desk as the pitch."
 never: "Passenger copilot as the 16 Nov story."
-applied: []
+applied: [no-passenger-copilot]
 scope_recipe: ""
 pitch_recipe: ""
 later_recipe: "docs/LATER.md HKG gate-walk graph"

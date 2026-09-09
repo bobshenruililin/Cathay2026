@@ -26,3 +26,9 @@ Append-only. Format: `YYYY-MM-DD | source-id | lesson | path | bucket`
 2026-09-09 | nasa-openmct | Keep Playwright HITL; do not embed Open MCT in the console | apps/console/lib/never-embed.test.ts | Never
 2026-09-09 | kraken | Stay a markdown log; do not Kraken-ify claim leases | packages/engine/src/kraken.test.ts | Never
 2026-09-09 | airline-disr-mgt | Engine src must not import Gurobi or OR-Tools | packages/engine/src/purity.test.ts | Never
+2026-09-09 | touchcx-2017 | The iPad belongs to the transfer agent, not a passenger IFE | docs/PITCH_NOTES.md | PITCH
+2026-09-09 | sia-sqxp-2017 | One named journey: HKG missed connect, not a layover builder | docs/PITCH_NOTES.md | PITCH
+2026-09-09 | traavl | Keep the iPad desk; do not ship a passenger copilot | apps/console/lib/never-chatbot.test.ts | Never
+2026-09-09 | pfrsp | Phase 2 could hold an outbound; Phase 1 is pre-computed desk options | docs/PITCH_NOTES.md | PITCH
+2026-09-09 | naar-2023 | Same engine, cargo ULD later; do not build CV for 16 Nov | docs/LATER.md | LATER
+2026-09-09 | cathay-green-2022 | No green-points feature; no hotel-night claim without a sim counter | docs/METRICS.md | Never

@@ -9,7 +9,7 @@ well: "Sustainability tied to Cathay net-zero language."
 poor: "Carbon currency; not ops."
 steal: "One honest line: faster protect can cut hotel nights — only from sim counts."
 never: "Green-points feature."
-applied: []
+applied: [no-green-points]
 scope_recipe: ""
 pitch_recipe: "docs/METRICS.md — hotel-night line only if sim supports it"
 later_recipe: ""

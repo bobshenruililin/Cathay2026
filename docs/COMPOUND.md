@@ -15,7 +15,7 @@ Do not shrink Never without `docs/QUESTIONS.md`.
 
 | Lens | Bar | Reconnect | Gap |
 | --- | --- | --- | --- |
-| Named BU | HK Express, Cargo, pilots | Gate agent + Altéa office in PILOT | Pitch HKG Transfer / Ground |
+| Named BU | HK Express, Cargo, pilots | Gate agent + Altéa office in PILOT | Keep; say HKG Transfer / Ground |
 | Feasibility | Named feed or physical slice | `docs/PILOT_PROPOSAL.md` + SIM badge | Offline draft talk beat |
 | Decision | FlyLab summarises | Engine decides, `reasoning[]` | Keep; say it |
 | Number | Fake €25M vs SWISS minutes | `docs/METRICS.md` from sim | Keep; never vendor ROI |
@@ -55,6 +55,15 @@ Do not shrink Never without `docs/QUESTIONS.md`.
   `pnpm --filter engine test`
 - `no-gurobi` (airline-disr-mgt): engine purity bans Gurobi/OR-Tools imports.
   Checker: `pnpm --filter engine test`
+- `worker-tablet` (touchcx-2017): pitch says the iPad is the worker's.
+  Checker: docs
+- `one-journey` (sia-sqxp-2017): pitch is HKG missed connect only. Checker: docs
+- `no-passenger-copilot` (traavl): no `/chat` route. Checker:
+  `pnpm --filter console test`
+- `phase2-hold-qa` (pfrsp): hold-outbound stays Later. Checker: docs
+- `cargo-later` (naar-2023): cargo ULD not built. Checker: docs
+- `no-green-points` (cathay-green-2022): METRICS forbids hotel-night invention.
+  Checker: docs
 
 ## Next
 
