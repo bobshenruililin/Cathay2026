@@ -1,5 +1,6 @@
 import { addMinutesIso, triageConnection } from "engine";
 import type { Flight } from "engine";
+import { CX254_DELAY_MINUTES, TYPHOON_DELAY_MINUTES } from "sim";
 import { seedFlights, seedLinks, type Link } from "./mock-bank";
 import { disruptionFrom, flightsByNumber, sortQueue } from "./queue";
 import type { ConsoleAdapter, ConsoleSnapshot, QueueItem } from "./types";
@@ -75,7 +76,7 @@ export function createMockAdapter(): ConsoleAdapter {
     },
     async simulateTyphoonDelay() {
       for (const flight of flights.filter((row) => row.destination === "HKG")) {
-        flights = applyDelay(flights, flight.flightNumber, 180);
+        flights = applyDelay(flights, flight.flightNumber, TYPHOON_DELAY_MINUTES);
       }
       return snapshot(clockIso, flights, links);
     },
@@ -84,7 +85,7 @@ export function createMockAdapter(): ConsoleAdapter {
         flights.find((flight) => flight.flightNumber === "CX254" && flight.destination === "HKG") ??
         flights.find((flight) => flight.destination === "HKG");
       if (!inbound) throw new Error("No inbound flight available for Late Inbound CX254");
-      flights = applyDelay(flights, inbound.flightNumber, 150);
+      flights = applyDelay(flights, inbound.flightNumber, CX254_DELAY_MINUTES);
       return snapshot(clockIso, flights, links);
     },
     async approveRebooking(pnr: string) {

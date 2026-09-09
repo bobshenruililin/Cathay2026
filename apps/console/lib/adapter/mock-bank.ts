@@ -70,10 +70,10 @@ export function seedFlights(): Flight[] {
 
 export function seedLinks(): Link[] {
   return [
-    { passenger: p("W4N9KD", "Mei Chan", "Diamond", "Business"), inboundFlightNumber: "CX254", outboundFlightNumber: "CX250" },
-    { passenger: p("P8T2LM", "James Wong", "Gold", "Premium Economy"), inboundFlightNumber: "CX254", outboundFlightNumber: "CX250" },
-    { passenger: p("Q1H6VB", "Aisha Patel", "Silver", "Economy"), inboundFlightNumber: "CX501", outboundFlightNumber: "CX288" },
-    { passenger: p("R7K3ZX", "Hiro Tanaka", "Diamond", "First"), inboundFlightNumber: "CX731", outboundFlightNumber: "CX288" },
+    { passenger: p("W4N9KD", "Mei Chan", "Diamond", "Business", { um: true }), inboundFlightNumber: "CX254", outboundFlightNumber: "CX250" },
+    { passenger: p("P8T2LM", "James Wong", "Gold", "Premium Economy", { wheelchair: true }), inboundFlightNumber: "CX254", outboundFlightNumber: "CX250" },
+    { passenger: p("Q1H6VB", "Aisha Patel", "Silver", "Economy", { partySize: 4 }), inboundFlightNumber: "CX501", outboundFlightNumber: "CX288" },
+    { passenger: p("R7K3ZX", "Hiro Tanaka", "Diamond", "First", { partySize: 4 }), inboundFlightNumber: "CX731", outboundFlightNumber: "CX288" },
     { passenger: p("S2M9QC", "Sofia Rossi", "Green", "Economy"), inboundFlightNumber: "UO102", outboundFlightNumber: "CX500" },
     { passenger: p("T5B1YD", "Noah Kim", "Gold", "Business"), inboundFlightNumber: "CX501", outboundFlightNumber: "CX250" },
     { passenger: p("U9C4WE", "Priya Singh", "Silver", "Economy"), inboundFlightNumber: "CX731", outboundFlightNumber: "CX402" },
@@ -86,6 +86,7 @@ function p(
   name: string,
   tier: Passenger["tier"],
   cabin: Passenger["cabin"],
+  extras: Partial<Pick<Passenger, "um" | "wheelchair" | "partySize">> = {},
 ): Passenger {
-  return { pnr, name, tier, cabin };
+  return { pnr, name, tier, cabin, ...extras };
 }

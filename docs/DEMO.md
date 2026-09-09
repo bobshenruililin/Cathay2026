@@ -23,14 +23,15 @@ auto-selected passenger.
 ## 3. Simulate Typhoon Delay
 
 Click **Simulate Typhoon Delay**. The adapter calls `sim.injectTyphoon()`
-(inbound delays on the seeded bank, no page reload).
+(90 minutes on HKG inbounds, same constant as the mock seam). The triage
+queue refreshes in place; no page reload.
 
 Assertion: delayed-flight count increases and the queue remains on screen.
 
 ## 4. Late Inbound CX254
 
 Click **Late Inbound CX254**. Sim delays inbound CX254 (TPE→HKG in the synthetic
-bank).
+bank) by 180 minutes (`CX254_DELAY_MINUTES`).
 
 Assertion: a queue row mentions CX254 and CX254’s delay minutes are greater than 0.
 
