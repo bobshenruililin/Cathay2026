@@ -15,8 +15,14 @@ At-risk = tight or missed. HKG only.
 
 ## Unaccompanied minors / wheelchair / party / downgrade
 
-- UM recovery stays on CX metal (staff escort). Partner flights are not offered.
-- Whole party (`partySize`, default 1) must fit on one flight in one cabin.
+- `um: true` or SSR code `UMNR` marks an unaccompanied minor. Recovery stays on
+  CX metal (staff escort). Partner flights are not offered. Next-calendar-day
+  (overnight) candidates are dropped — a UM is not left in HKG overnight.
+- `wheelchair: true` or SSR codes `WCHR` / `WCHS` / `WCHC` add 15 min gate
+  transit. Flags and SSR do not stack: one wheelchair buffer, one UM buffer.
+- `partySize` defaults to 1. Whole party must fit on one flight in one cabin.
+- `partyId` is echoed in option reasoning so the desk can keep a group together.
+  There is no party-batch API (see `docs/LATER.md`).
 - If the booked cabin is exhausted, downgrade protection holds the next lower
   cabin with enough seats and states that in `reasoning`.
 

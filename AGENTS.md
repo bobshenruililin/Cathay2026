@@ -15,6 +15,7 @@ Missed-connection recovery console for HKG transfer agents. Hackathon build. Dem
 - Before claiming done: `pnpm typecheck && pnpm test && pnpm test:demo`. Paste the output.
 - If a task is ambiguous, write the question to docs/QUESTIONS.md and pick the simplest interpretation. Don't block.
 - Do not add features not in docs/SCOPE.md. If tempted, add to docs/LATER.md.
+- Parallel work: claim a file glob in docs/claims/ before editing it. One writer per glob; engine claims are a queue.
 
 ## Style
 - No clever abstractions. Three similar lines > one premature helper.
