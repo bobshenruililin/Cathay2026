@@ -2,8 +2,9 @@
 
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { EmptyBlock, ErrorBlock, LoadingBlock } from "@/components/async-state";
-import { StatusBadge, TierBadge } from "@/components/status-badge";
+import { StatusBadge, TierBadge, HandlingBadges } from "@/components/status-badge";
 import { formatFlight } from "@/lib/format";
+import { handlingFlags } from "@/lib/handling-flags";
 import { queuePeakLabel } from "@/lib/queue-peak";
 import type { QueueItem } from "@/lib/adapter/types";
 import { cn } from "@/lib/utils";
@@ -72,6 +73,7 @@ export function TriageQueue({
                     <div className="flex items-center gap-2">
                       <TierBadge tier={item.passenger.tier} />
                       <span className="text-xs text-muted-foreground">{item.passenger.pnr}</span>
+                      <HandlingBadges flags={handlingFlags(item.passenger)} />
                     </div>
                     <p className="text-xs text-muted-foreground">
                       {formatFlight(item.inbound.flightNumber, item.inbound.origin, "HKG")} ·{" "}

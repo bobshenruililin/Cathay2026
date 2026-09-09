@@ -32,3 +32,5 @@ Append-only. Format: `YYYY-MM-DD | source-id | lesson | path | bucket`
 2026-09-09 | pfrsp | Phase 2 could hold an outbound; Phase 1 is pre-computed desk options | docs/PITCH_NOTES.md | PITCH
 2026-09-09 | naar-2023 | Same engine, cargo ULD later; do not build CV for 16 Nov | docs/LATER.md | LATER
 2026-09-09 | cathay-green-2022 | No green-points feature; no hotel-night claim without a sim counter | docs/METRICS.md | Never
+2026-09-09 | engine-hardening | JSON fixtures 01–40 plus SSR UMNR/WCHR map onto existing flags | packages/engine/tests/scenarios | SCOPE
+2026-09-09 | engine-hardening | Queue rows show UM / WCH / party so the 20+ cases are visible at the desk | apps/console/components/triage-queue.tsx | SCOPE

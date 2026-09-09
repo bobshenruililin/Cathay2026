@@ -64,6 +64,10 @@ Do not shrink Never without `docs/QUESTIONS.md`.
 - `cargo-later` (naar-2023): cargo ULD not built. Checker: docs
 - `no-green-points` (cathay-green-2022): METRICS forbids hotel-night invention.
   Checker: docs
+- `json-cases` (engine-hardening): 40 JSON gate-desk fixtures + SSR mapping.
+  Checker: `pnpm --filter engine test`
+- `handling-flags` (engine-hardening): UM / WCH / party chips on triage rows.
+  Checker: `pnpm --filter console test`
 
 ## Next
 

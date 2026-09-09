@@ -30,3 +30,16 @@ export function TierBadge({ tier }: { tier: LoyaltyTier }) {
     </Badge>
   );
 }
+
+export function HandlingBadges({ flags }: { flags: string[] }) {
+  if (flags.length === 0) return null;
+  return (
+    <span className="flex flex-wrap gap-1" data-testid="handling-flags">
+      {flags.map((flag) => (
+        <Badge key={flag} variant="outline" className="text-[10px]">
+          {flag}
+        </Badge>
+      ))}
+    </span>
+  );
+}
