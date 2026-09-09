@@ -14,8 +14,9 @@ Calendar (HKSYU / Cathay materials): apply **27 Sep 2026**; master classes Octob
 
 One student champion per year, 2016–2025:
 
-- Lifestyle / loyalty often wins the **student** track (cxDiscovery, GME, Cathay Green, U-Explore).
+- Lifestyle / loyalty often wins the **student** track (cxDiscovery, Cathay Green, U-Explore).
 - **Ops still wins** when the pain is owned: TouchCX (inflight crew), NAAR (cargo $), GingTrip (HK Express trolley + data), FlyLab (pilots + IT, employee track).
+- **2019 was cancelled** (CX press). 2018 and 2021 champion names are unpublished — do not fill them from GitHub.
 
 2025 employee champion FlyLab is the closer analogue than student champion U-Explore.
 

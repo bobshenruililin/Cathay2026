@@ -1,0 +1,39 @@
+{
+  "corrections": [
+    "GME 2021 is a public participant repo, not a press-named champion. The 2021 champion name is unpublished, same as 2018.",
+    "2019 event was cancelled (Cathay press, 8 Nov 2019). Do not read the empty year as ‘ops had not been invented yet’.",
+    "2020: no primary press found. Numbering goes 3rd (2018) → 4th (2021). Do not invent a 2020 champion."
+  ],
+  "failures": [
+    {
+      "name": "Fight4Flight",
+      "year": 2017,
+      "result": "1st runner-up",
+      "why": "Delay re-plan from the passenger side. No transfer-desk owner. Closest ancestor; it lost."
+    },
+    {
+      "name": "Aviator",
+      "year": 2017,
+      "result": "2nd runner-up",
+      "why": "Saw connections as a dining/activity moment. Recovery is the job."
+    },
+    {
+      "name": "Hacksmart",
+      "year": 2017,
+      "result": "top six",
+      "why": "Chat itinerary planner. The 2023 GitHub corpus is this idea with Azure."
+    },
+    {
+      "name": "SMASH",
+      "year": 2024,
+      "result": "participant",
+      "why": "Same HK Express waste pain as GingTrip. Dashboard, no trolley. Theater lost."
+    },
+    {
+      "name": "U-Explore",
+      "year": 2025,
+      "result": "student champion",
+      "why": "Won 2025 lifestyle. 2026 scoring is feasibility + BU. FlyLab is the analogue, not this."
+    }
+  ]
+}

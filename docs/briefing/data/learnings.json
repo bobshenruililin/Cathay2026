@@ -118,5 +118,29 @@
     "text": "Do not invent impact numbers. NAAR and ConnectionSaver led with real ones; we do not have them yet.",
     "tag": "Pitch",
     "sourceIds": ["naar", "connectionsaver"]
+  },
+  {
+    "id": "L21",
+    "text": "2019 was cancelled. Do not treat the empty year as proof that ops products only started winning in 2023.",
+    "tag": "Pitch",
+    "sourceIds": ["hackathon-2019-cancelled", "naar", "gingtrip", "flylab"]
+  },
+  {
+    "id": "L22",
+    "text": "GME is a cloneable 2021 repo, not a press champion. Do not fill unpublished trophy cells from GitHub.",
+    "tag": "Pitch",
+    "sourceIds": ["gme-2021", "dean-fung-2021"]
+  },
+  {
+    "id": "L23",
+    "text": "HX is Navitaire New Skies. CX transfer is Altéa. One PSS sentence does not cover both BUs.",
+    "tag": "Pilot",
+    "sourceIds": ["hx-navitaire", "reconnect"]
+  },
+  {
+    "id": "L24",
+    "text": "2017 top six: one crew tablet won; one IROPS app placed; four lifestyle tools did not. The mix has not changed.",
+    "tag": "Pitch",
+    "sourceIds": ["touchcx", "fight4flight", "hacksmart"]
   }
 ]

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "hackathon-2019-cancelled",
+    "name": "2019 Hackathon (cancelled)",
+    "year": 2019,
+    "kind": "cathay-winner",
+    "org": "Cathay Pacific",
+    "bu": "—",
+    "oneLiner": "24-hour event scheduled 9–10 Nov 2019 cancelled after a risk assessment (HK unrest). ~250 participants offered regional tickets.",
+    "artifact": "event",
+    "outcome": "cancelled",
+    "strengths": ["Primary press exists", "Explains the hole in the winner chart"],
+    "weaknesses": ["No product to copy"],
+    "patterns": ["feasibility-2026"],
+    "reconnectTakeaway": "Do not read 2023–2025 ops wins as a new law of nature. 2019 never ran. 2021 champion is unpublished.",
+    "github": null,
+    "sources": [
+      {
+        "title": "Cathay Pacific Hackathon 2019 cancelled",
+        "url": "https://news.cathaypacific.com/cathay-pacific-hackathon-2019-cancelled"
+      }
+    ],
+    "copyOrFoil": "foil",
+    "confidence": "high"
+  },
+  {
+    "id": "cathay-first",
+    "name": "Cathay First",
+    "year": 2017,
+    "kind": "cathay-winner",
+    "org": "2017 top six",
+    "bu": "Inflight / Lifestyle",
+    "oneLiner": "Inflight personaliser: Facebook + Asia Miles, movie/song lists, dining, gamification. Not on the podium.",
+    "artifact": "app",
+    "outcome": "finalist",
+    "strengths": ["IFE is a named inflight system"],
+    "weaknesses": ["Lifestyle layer; TouchCX (crew tablet) beat this class"],
+    "patterns": ["champions-no-github"],
+    "reconnectTakeaway": "Personalisation lost to a crew workflow. Do not demo a content recommender.",
+    "github": null,
+    "sources": [
+      {
+        "title": "Hacking the future of flying — top six",
+        "url": "https://www.cathaypacific.com/cx/en_HK/inspiration/cathay-stories/hacking-future-flying.html"
+      }
+    ],
+    "copyOrFoil": "foil",
+    "confidence": "high"
+  },
+  {
+    "id": "betsy",
+    "name": "Betsy",
+    "year": 2017,
+    "kind": "cathay-winner",
+    "org": "2017 top six",
+    "bu": "Lifestyle",
+    "oneLiner": "Travel concierge: boarding countdown, bill-split, personalised IFE. Not on the podium.",
+    "artifact": "app",
+    "outcome": "finalist",
+    "strengths": ["Boarding countdown is theater"],
+    "weaknesses": ["Passenger super-app"],
+    "patterns": ["theater-90s"],
+    "reconnectTakeaway": "A countdown is useful. Ours is slack-to-MCT on the agent iPad, not a concierge clock.",
+    "github": null,
+    "sources": [
+      {
+        "title": "Hacking the future of flying — top six",
+        "url": "https://www.cathaypacific.com/cx/en_HK/inspiration/cathay-stories/hacking-future-flying.html"
+      }
+    ],
+    "copyOrFoil": "foil",
+    "confidence": "high"
+  },
+  {
+    "id": "hacksmart",
+    "name": "Hacksmart",
+    "year": 2017,
+    "kind": "cathay-winner",
+    "org": "2017 top six",
+    "bu": "Lifestyle",
+    "oneLiner": "Itinerary planner with a conversational chatbot, route suggestions, Asia Miles offers. Not on the podium.",
+    "artifact": "chatbot",
+    "outcome": "finalist",
+    "strengths": ["Shows the trip-planner foil is as old as 2017"],
+    "weaknesses": ["LLM-era teams keep rebuilding this"],
+    "patterns": ["llm-foil", "champions-no-github"],
+    "reconnectTakeaway": "The 2023 GitHub corpus is Hacksmart with Azure. Judges have seen it for a decade.",
+    "github": null,
+    "sources": [
+      {
+        "title": "Hacking the future of flying — top six",
+        "url": "https://www.cathaypacific.com/cx/en_HK/inspiration/cathay-stories/hacking-future-flying.html"
+      }
+    ],
+    "copyOrFoil": "foil",
+    "confidence": "high"
+  },
+  {
+    "id": "dean-fung-2021",
+    "name": "Dean Fung (2021 2nd RU)",
+    "year": 2021,
+    "kind": "cathay-winner",
+    "org": "Dean Fung",
+    "bu": "unpublished",
+    "oneLiner": "Second runner-up, 60+ teams. LinkedIn names the team, not the product. 2021 champion still unpublished in press.",
+    "artifact": "unpublished",
+    "outcome": "runner-up",
+    "strengths": ["Proves a 2021 podium existed"],
+    "weaknesses": ["No artifact, no BU, no repo"],
+    "patterns": ["champions-no-github"],
+    "reconnectTakeaway": "Do not fill the 2021 champion cell with GME because GME has GitHub.",
+    "github": null,
+    "sources": [
+      {
+        "title": "Andrew Fung: Dean Fung 2nd RU 2021",
+        "url": "https://www.linkedin.com/posts/andrewfungkinho_cathaypacific-cathayhackathon-cathaycity-activity-6869921749379768320-CPGQ"
+      }
+    ],
+    "copyOrFoil": "foil",
+    "confidence": "medium"
+  }
+]

@@ -17,12 +17,17 @@
   "files": [
     "projects-winners-a.json",
     "projects-winners-b.json",
+    "projects-winners-c.json",
     "projects-repos.json",
+    "projects-repos-b.json",
     "projects-analogues.json",
-    "projects-analogues-b.json"
+    "projects-analogues-b.json",
+    "projects-analogues-c.json"
   ],
   "unknowns": [
-    "2018 overall champion name was not found in Cathay press. Anita and Lugless are sourced as runners-up only."
+    "2018 overall champion name was not found in Cathay press. Anita and Lugless are sourced as runners-up only.",
+    "2021 overall champion name was not found in Cathay press. GME is a public participant repo, not the trophy. Dean Fung is sourced as second runner-up only.",
+    "2020: no primary press found. Numbering is 3rd annual (2018) then 4th (2021)."
   ],
   "githubSearch": "gh search repos \"Cathay Hackathon\" — 50+ participant repos, no champion repos for NAAR, GingTrip, Kairos, FlyLab."
 }

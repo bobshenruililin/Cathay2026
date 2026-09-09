@@ -2,7 +2,7 @@
 
 Compare like with like. Source: [`docs/briefing/data/scorecard.json`](../briefing/data/scorecard.json). Visual: briefing site § Scorecard.
 
-Scale **1–5**. **Collision is worse when high** (5 = sounds like we replace Passenger Recovery). The chart inverts it to “clear lane” = 6 − collision.
+Scale **1–5**. **Collision is worse when high** (5 = sounds like we replace Passenger Recovery). The scatter plots adoption path on X and collision on Y (worse up). We want high/low. Reconnect is high/high until the pitch says beside.
 
 Engine citations for the Reconnect row: `packages/engine/src/mct.ts` (CX_CX 50 min, walk 10, WCH +15, UM +20), `score.ts` (tier×3 + seat×2 − delay/10), `apps/console/lib/llm/guard.ts`, `docs/PILOT_PROPOSAL.md`.
 
@@ -31,11 +31,15 @@ Rogers / Ling (Airport Industry Review, “Typhoon Trouble”): CX combined **Am
 
 Reconnect week 1: **read** Altéa + FIDS MQTT + CANS after human confirm. No Altéa write. That is how the desk sits beside mass reaccom, not on top of it.
 
+HX is on **Navitaire New Skies** (2015). GingTrip/U-Explore attached to that BU. Do not pitch one PSS write for CX and HX.
+
+Amadeus **Self Re-accommodation** already exists so airport agents handle only the complex cases. That is the desk. Do not add a second self-rebook bot.
+
 ## Copy vs foil vs incumbent
 
 From `copyOrFoil` on each project:
 
-- **copy-pitch:** FlyLab, NAAR, GingTrip, ConnectionSaver, Fight4Flight (the missed desk).
-- **copy-engineering:** GME 2021 (open rules), Open MCT, SpaceX-class clock/sim, Reconnect.
-- **foil:** U-Explore-as-lifestyle, Aviator, typical ChatGPT planner, ReservaCathay GPT offers.
-- **incumbent:** Passenger Recovery, Accenture rebooking bots, 15below comms.
+- **copy-pitch:** FlyLab, NAAR, GingTrip, SMASH (pain without theater), ConnectionSaver, Fight4Flight (the missed desk).
+- **copy-engineering:** SyncCart, Open MCT, SpaceX-class clock/sim, Reconnect.
+- **foil:** U-Explore-as-lifestyle, Aviator, Hacksmart, GME-as-trophy, typical ChatGPT planner.
+- **incumbent:** Passenger Recovery, Accenture bots, 15below, Amadeus Self Re-accommodation, Sabre IROPS, Plan3, HRS, HX Navitaire.

@@ -51,7 +51,9 @@ Cathay Alert template. The action column is a persistent right-hand drawer
 `docs/DEMO.md` is sacred. Claim done only after `pnpm typecheck`, `pnpm test`,
 and `pnpm test:demo`. Engine coverage stays 100% on `packages/engine/src/**`.
 
-## 2018 Cathay champion name
+## 2018 / 2021 Cathay champion names
 
-Not found in Cathay press. Anita and Lugless are sourced as runners-up only.
-Do not invent a champion name in the pitch. See `docs/competitive/`.
+Not found in Cathay press. Anita, Lugless, and Dean Fung are sourced as runners-up
+only. GME 2021 is a public *participant* repo — do not treat it as the trophy.
+2019 was cancelled (https://news.cathaypacific.com/cathay-pacific-hackathon-2019-cancelled).
+2020: no primary press found.

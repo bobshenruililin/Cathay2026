@@ -15,6 +15,7 @@ export async function loadBriefing() {
   const patternDoc = await readJson("./data/patterns.json");
   const scorecard = await readJson("./data/scorecard.json");
   const learnings = await readJson("./data/learnings.json");
+  const insights = await readJson("./data/insights.json");
   const lists = await Promise.all(meta.files.map((f) => readJson(`./data/${f}`)));
   const projects = lists.flat();
   return {
@@ -23,6 +24,7 @@ export async function loadBriefing() {
     projects,
     scorecard,
     learnings,
+    insights,
   };
 }
 

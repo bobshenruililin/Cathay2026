@@ -102,13 +102,13 @@
     "kind": "cathay-winner",
     "org": "Team GME",
     "bu": "Loyalty",
-    "oneLiner": "Map and proximity for Asia Miles partners, plus redemption notices.",
+    "oneLiner": "Map and proximity for Asia Miles partners, plus redemption notices. Public 2021 repo — not a press-named champion.",
     "artifact": "app",
-    "outcome": "champion",
-    "strengths": ["Named loyalty BU", "Public repo exists"],
-    "weaknesses": ["Lifestyle, not ops"],
-    "patterns": ["named-bu", "dual-beneficiary"],
-    "reconnectTakeaway": "A visual of a real Cathay ledger (queue, slack) beats a generic dashboard.",
+    "outcome": "participant",
+    "strengths": ["Named loyalty BU", "Only champion-era public repo we can actually clone"],
+    "weaknesses": ["Lifestyle, not ops", "Do not treat this as the 2021 winner"],
+    "patterns": ["named-bu", "dual-beneficiary", "champions-no-github"],
+    "reconnectTakeaway": "A cloneable repo is not a trophy. 2021 champion name is unpublished, same failure mode as 2018.",
     "github": "https://github.com/markmcwong/cathay-hackathon-2021",
     "sources": [
       {
@@ -116,8 +116,8 @@
         "url": "https://github.com/markmcwong/cathay-hackathon-2021"
       }
     ],
-    "copyOrFoil": "copy-pitch",
-    "confidence": "medium"
+    "copyOrFoil": "foil",
+    "confidence": "high"
   },
   {
     "id": "cathay-green",

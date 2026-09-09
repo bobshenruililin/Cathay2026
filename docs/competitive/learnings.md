@@ -24,5 +24,9 @@ Source of truth: [`docs/briefing/data/learnings.json`](../briefing/data/learning
 | L18 | Pilot | Do not scrape public FIDS. Pilot uses operational MQTT. OpenSky is research-only. | HKG A-CDM, Reconnect |
 | L19 | Pitch | Use ChatGPT trip planners and GPT compensation as foils, not as features. | CathayConnect, ReservaCathay, Syd |
 | L20 | Pitch | Do not invent impact numbers. NAAR and ConnectionSaver led with real ones; we do not have them yet. | NAAR, ConnectionSaver |
+| L21 | Pitch | 2019 was cancelled. Do not treat the empty year as proof that ops only started winning in 2023. | CX press 2019; NAAR; GingTrip; FlyLab |
+| L22 | Pitch | GME is a cloneable 2021 repo, not a press champion. Do not fill unpublished trophy cells from GitHub. | GME, Dean Fung |
+| L23 | Pilot | HX is Navitaire New Skies. CX transfer is Altéa. One PSS sentence does not cover both BUs. | HX Navitaire, Reconnect |
+| L24 | Pitch | 2017 top six: one crew tablet won; one IROPS app placed; four lifestyle tools did not. | TouchCX, Fight4Flight, Hacksmart |
 
 Demo-tagged lines are already true in this repo. Do not rewrite `packages/engine` to satisfy a pitch sentence. LATER items live in [`docs/LATER.md`](../LATER.md).

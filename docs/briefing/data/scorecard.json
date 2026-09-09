@@ -5,7 +5,7 @@
     { "id": "feasibility", "label": "Adoption path", "note": "Pilot, systems of record, kill switch." },
     { "id": "collision", "label": "Incumbent collision", "note": "Higher is worse. 5 = sounds like we replace Passenger Recovery." }
   ],
-  "scale": "1–5. Collision is inverted in the chart (clear lane = 6 − collision).",
+  "scale": "1–5. Collision is worse when high. Scatter: X = adoption path, Y = collision. We want high/low.",
   "rows": [
     {
       "id": "reconnect",

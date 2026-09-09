@@ -21,9 +21,10 @@ Teammate briefing for Cathay Hackathon 2026. Not on the demo path.
 2. [Cathay winners](cathay-winners.md)
 3. [GitHub corpus](github-corpus.md)
 4. [Patterns](patterns.md)
-5. [Reconnect scorecard](reconnect-scorecard.md)
-6. [Learnings](learnings.md)
+5. [Insights / failures](insights.md)
+6. [Reconnect scorecard](reconnect-scorecard.md)
+7. [Learnings](learnings.md)
 
 Out of demo: [`docs/LATER.md`](../LATER.md). Pilot position vs Passenger Recovery: [`docs/PILOT_PROPOSAL.md`](../PILOT_PROPOSAL.md) § 1.1.
 
-Unknown: **2018 overall champion name** was not in Cathay press. Anita and Lugless are sourced as runners-up only.
+Unknown: **2018 and 2021 overall champion names** were not in Cathay press. Anita / Lugless / Dean Fung are sourced as runners-up. GME is a participant repo, not a trophy. 2019 was cancelled.
