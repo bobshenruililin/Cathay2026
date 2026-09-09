@@ -19,9 +19,10 @@ demo.
 Not Fight4Flight (passenger delay app — we inverted it). Not a Kafka/Gemini
 IROPS super-app. Week 1 of the pilot does not write `PNR_AddMultiElements`.
 
-**Number.** Do not quote ConnectGuard €25M or SWISS 2–3 minutes. When
-`docs/METRICS.md` exists, read counts from `packages/sim` only (at-risk after
-typhoon, options generated, UM kept on CX).
+**Number.** Seed `hkg-demo`: 124 at-risk at bank start; typhoon (90 min on
+inbounds) lifts that to 174; 10 unaccompanied minors at risk stay on CX.
+Full table: `docs/METRICS.md`. Do not quote ConnectGuard €25M or SWISS
+2–3 minutes.
 
 **Demo insurance.** Seeded sim, same seed → same output. Station clock is
 sim time, not `Date.now()`. If the venue LLM dies, the fallback template

@@ -18,7 +18,7 @@ Do not shrink Never without `docs/QUESTIONS.md`.
 | Named BU | HK Express, Cargo, pilots | Gate agent + Altéa office in PILOT | Pitch HKG Transfer / Ground |
 | Feasibility | Named feed or physical slice | `docs/PILOT_PROPOSAL.md` + SIM badge | Offline draft talk beat |
 | Decision | FlyLab summarises | Engine decides, `reasoning[]` | Keep; say it |
-| Number | Fake €25M vs SWISS minutes | Sim has counts | `METRICS.md` from sim only |
+| Number | Fake €25M vs SWISS minutes | `docs/METRICS.md` from sim | Keep; never vendor ROI |
 | Honesty | Vendors exist | No Altéa write week 1 | Not Amadeus Passenger Recovery |
 
 ## Done
@@ -39,12 +39,13 @@ Do not shrink Never without `docs/QUESTIONS.md`.
 - `action-verbs` (connectguard): Hold / Escort / Protect / Wait prefixes in
   `packages/engine/src/option-reason.ts` without dropping existing phrases.
   Checker: `pnpm --filter engine test`
+- `metrics-from-sim` (connectguard): `docs/METRICS.md` locked to
+  `packages/sim` `demoMetrics("hkg-demo")`. Checker: `pnpm --filter sim test`
 
 ## Next
 
 | id | bucket | steal-from | recipe | checker |
 | --- | --- | --- | --- | --- |
-| metrics-from-sim | PITCH | connectguard, amadeus-passenger-recovery | `docs/METRICS.md` arithmetic from `packages/sim` counts | docs only; no vendor numbers |
 | hold-outbound | LATER | connectguard, pfrsp, airline-disr-mgt | Do not build | — |
 | walk-graph | LATER | traavl | Do not build | — |
 | coc-rag | LATER | amadeus-disruption-agent | CoC as draft context only; do not rank | — |

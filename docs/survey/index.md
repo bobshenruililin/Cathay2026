@@ -9,7 +9,7 @@ Unapplied steals first when nudging. Cards: `docs/survey/projects/<id>.md`.
 | cathay-green-2022 | cathay-winner | Cathay Green | 0 | reviewed |
 | touchcx-2017 | cathay-winner | TouchCX | 0 | reviewed |
 | sia-sqxp-2017 | similar-hackathon | SQXP | 0 | reviewed |
-| connectguard | github | ConnectGuard | 1 | reviewed |
+| connectguard | github | ConnectGuard | 2 | reviewed |
 | traavl | github | trAAvl | 0 | reviewed |
 | aegisops-ai | github | AegisOps | 1 | reviewed |
 | openflights | github | OpenFlights | 0 | reviewed |
