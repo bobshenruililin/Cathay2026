@@ -1,0 +1,24 @@
+{
+  "id": "07-wheelchair-pax",
+  "title": "Wheelchair buffer turns a 70-minute connection into a miss",
+  "story": "WCHR passenger. 70 minutes is enough for an able-bodied adult, not with 15 minutes extra transit.",
+  "tags": ["wheelchair"],
+  "passenger": {
+    "pnr": "WCHR01",
+    "name": "Liu Mei",
+    "tier": "Silver",
+    "cabin": "Economy",
+    "wheelchair": true
+  },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T19:10:00+08:00" },
+  "pool": [{ "flightNumber": "CX254", "airline": "CX", "depart": "2026-11-16T21:00:00+08:00" }],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["CX254"],
+    "triageReasoningIncludes": ["Wheelchair assistance"],
+    "optionReasoningIncludes": ["Wheelchair assistance"]
+  }
+}

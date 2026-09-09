@@ -1,0 +1,32 @@
+{
+  "id": "06-party-of-4-stay-together",
+  "title": "Party of 4 must sit on one flight",
+  "story": "Four Chen family members, one PNR. Only Economy has four seats. Keep them together.",
+  "tags": ["party-of-4"],
+  "passenger": {
+    "pnr": "CHEN4",
+    "name": "Chen Family",
+    "tier": "Gold",
+    "cabin": "Business",
+    "partySize": 4,
+    "partyId": "CHEN-FAM"
+  },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [
+    {
+      "flightNumber": "CX252",
+      "airline": "CX",
+      "depart": "2026-11-16T21:00:00+08:00",
+      "seats": { "Economy": 4 }
+    }
+  ],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["CX252"],
+    "triageReasoningIncludes": ["Party of 4"],
+    "optionReasoningIncludes": ["Keep party CHEN-FAM together on CX252"]
+  }
+}

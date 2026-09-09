@@ -1,0 +1,17 @@
+{
+  "id": "04-partner-only-reroute",
+  "title": "Only a oneworld partner still flies to LHR",
+  "story": "No CX metal left tonight. BA32 has seats. Offer the partner, not a fictional CX.",
+  "tags": ["partner-only-reroute"],
+  "passenger": { "pnr": "BAONLY1", "name": "Sarah Mills", "tier": "Gold", "cabin": "Business" },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [{ "flightNumber": "BA32", "airline": "BA", "depart": "2026-11-16T21:00:00+08:00" }],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["BA32"],
+    "optionReasoningIncludes": ["Protect on BA32"]
+  }
+}
