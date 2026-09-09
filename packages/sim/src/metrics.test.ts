@@ -15,10 +15,10 @@ const LOCKED = {
   typhoonOptions: 59,
   typhoonDelayedInbounds: 50,
   cx254DelayMinutes: 180,
-  cx254AtRisk: 130,
+  cx254AtRisk: 131,
   cx254Options: 61,
-  umAtRisk: 12,
-  umAtRiskKeptOnCx: 12,
+  umAtRisk: 13,
+  umAtRiskKeptOnCx: 13,
 };
 
 describe("demo metrics from sim", () => {
@@ -49,5 +49,6 @@ describe("demo metrics from sim", () => {
     expect(after.connections.find((row) => row.passenger.pnr === "SSRUMNR")?.passenger.ssr).toEqual([
       "UMNR",
     ]);
+    expect(after.atRisk.some((row) => row.pnr === "MIXED4")).toBe(true);
   });
 });

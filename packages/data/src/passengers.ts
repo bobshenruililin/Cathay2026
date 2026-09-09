@@ -22,6 +22,7 @@ const DESK_CASES: Passenger[] = [
   { pnr: "Q1H6VB", name: "Aisha Patel", tier: "Silver", cabin: "Economy", partySize: 4, partyId: "PATEL" },
   { pnr: "SSRWCH", name: "Grace Ho", tier: "Gold", cabin: "Business", ssr: ["WCHR"] },
   { pnr: "SSRUMNR", name: "Mina Choi", tier: "Silver", cabin: "Economy", ssr: ["UMNR"] },
+  { pnr: "MIXED4", name: "Cole Family", tier: "Gold", cabin: "Business", um: true, wheelchair: true, partySize: 4, partyId: "COLE" },
 ];
 
 function makePnr(rng: Rng, used: Set<string>): string {

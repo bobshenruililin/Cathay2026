@@ -39,3 +39,4 @@ Append-only. Format: `YYYY-MM-DD | source-id | lesson | path | bucket`
 2026-09-09 | engine-hardening | Draft prompt names UM / wheelchair / party; LLM still does not decide the flight | apps/console/lib/llm/draft.ts | SCOPE
 2026-09-09 | engine-hardening | Connection panel uses SSR helpers so WCHR-only Grace Ho still shows WCH when selected | apps/console/components/connection-panel.tsx | SCOPE
 2026-09-09 | engine-hardening | Pin SSRUMNR (case 13) on a CX254 feeder; overnight fixture names Overnight option | packages/data/src/passengers.ts | SCOPE
+2026-09-09 | engine-hardening | Pin MIXED4 (case 40) UM + wheelchair + party of 4 on a live CX254 feeder | packages/data/src/passengers.ts | SCOPE

@@ -24,8 +24,8 @@ Refresh: `pnpm --filter sim test` (locks `src/metrics.test.ts`).
 | Delayed inbounds | 50 |
 | At-risk | 176 |
 | Recovery options generated | 59 |
-| Unaccompanied minors at risk | 12 |
-| Of those, kept on CX metal | 12 |
+| Unaccompanied minors at risk | 13 |
+| Of those, kept on CX metal | 13 |
 
 Typhoon can *cut* option count (59 vs 62) because more connections miss the
 pool. Unaccompanied minors never receive next-calendar-day flights. Say that;
@@ -35,7 +35,7 @@ do not invent a minutes-saved ROI.
 
 | Count | Value |
 | --- | --- |
-| At-risk | 130 |
+| At-risk | 131 |
 | Recovery options generated | 61 |
 
 ## Not in this file

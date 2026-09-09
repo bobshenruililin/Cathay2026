@@ -82,6 +82,9 @@ Do not shrink Never without `docs/QUESTIONS.md`.
 - `pin-ssr-umnr` (engine-hardening): case 13 `SSRUMNR` Mina Choi on a live
   CX254 feeder (UMNR without `um` flag). Checker: `pnpm --filter data test`
   && `pnpm --filter sim test`
+- `pin-mixed4` (engine-hardening): case 40 `MIXED4` Cole Family (UM +
+  wheelchair + party of 4) on a CX254 feeder. Checker: `pnpm --filter data
+  test` && `pnpm test:demo`
 
 ## Next
 
