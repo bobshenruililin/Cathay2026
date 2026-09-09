@@ -1,0 +1,23 @@
+{
+  "id": "12-ssr-wchr",
+  "title": "SSR WCHR without the wheelchair flag still adds 15 minutes",
+  "story": "PNR only has WCHR in SSR. Treat it like wheelchair assistance.",
+  "tags": ["wheelchair"],
+  "passenger": {
+    "pnr": "SSRWchr",
+    "name": "Grace Ho",
+    "tier": "Gold",
+    "cabin": "Business",
+    "ssr": ["WCHR"]
+  },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T19:10:00+08:00" },
+  "pool": [{ "flightNumber": "CX254", "airline": "CX", "depart": "2026-11-16T21:00:00+08:00" }],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["CX254"],
+    "triageReasoningIncludes": ["Wheelchair assistance"]
+  }
+}

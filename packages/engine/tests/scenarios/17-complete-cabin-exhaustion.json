@@ -1,0 +1,23 @@
+{
+  "id": "17-complete-cabin-exhaustion",
+  "title": "Every cabin is empty",
+  "story": "Aircraft is closed. Do not offer a seat that does not exist.",
+  "tags": ["no-seats"],
+  "passenger": { "pnr": "FULLUP", "name": "Omar Ali", "tier": "Silver", "cabin": "Economy" },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [
+    {
+      "flightNumber": "CX252",
+      "airline": "CX",
+      "depart": "2026-11-16T21:00:00+08:00",
+      "seats": {}
+    }
+  ],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": []
+  }
+}

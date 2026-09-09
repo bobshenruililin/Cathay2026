@@ -1,0 +1,26 @@
+{
+  "id": "13-ssr-umnr",
+  "title": "SSR UMNR without the um flag stays on CX",
+  "story": "SSR list says UMNR. Partner BA32 is ignored.",
+  "tags": ["unaccompanied-minor"],
+  "passenger": {
+    "pnr": "SSRUMNR",
+    "name": "Mina Choi",
+    "tier": "Silver",
+    "cabin": "Economy",
+    "ssr": ["UMNR"]
+  },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [
+    { "flightNumber": "BA32", "airline": "BA", "depart": "2026-11-16T21:00:00+08:00" },
+    { "flightNumber": "CX252", "airline": "CX", "depart": "2026-11-16T21:00:00+08:00" }
+  ],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["CX252"],
+    "optionReasoningIncludes": ["Unaccompanied minor"]
+  }
+}

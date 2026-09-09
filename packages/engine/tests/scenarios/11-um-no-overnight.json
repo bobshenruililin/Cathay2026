@@ -1,0 +1,23 @@
+{
+  "id": "11-um-no-overnight",
+  "title": "Unaccompanied minor is not left overnight in HKG",
+  "story": "Same bank as the adult overnight case. The child gets no next-day CX.",
+  "tags": ["unaccompanied-minor", "overnight-required"],
+  "passenger": {
+    "pnr": "UMNITE",
+    "name": "Tom Hughes",
+    "tier": "Green",
+    "cabin": "Economy",
+    "um": true
+  },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [{ "flightNumber": "CX800", "airline": "CX", "depart": "2026-11-17T10:00:00+08:00" }],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": [],
+    "triageReasoningIncludes": ["overnight"]
+  }
+}

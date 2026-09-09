@@ -1,0 +1,24 @@
+{
+  "id": "16-first-downgrade-to-business",
+  "title": "First is full; hold Business for the whole party",
+  "story": "Diamond First passenger. First cabin is gone. Downgrade protection holds J.",
+  "tags": ["no-seats"],
+  "passenger": { "pnr": "FIRST1", "name": "Elena Rossi", "tier": "Diamond", "cabin": "First" },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [
+    {
+      "flightNumber": "CX252",
+      "airline": "CX",
+      "depart": "2026-11-16T21:00:00+08:00",
+      "seats": { "Business": 8, "Premium Economy": 10, "Economy": 40 }
+    }
+  ],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["CX252"],
+    "optionReasoningIncludes": ["Hold Business instead"]
+  }
+}
