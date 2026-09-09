@@ -41,9 +41,10 @@ bank) by 180 minutes (`CX254_DELAY_MINUTES`).
 
 Assertion: a queue row mentions CX254; named UM `W4N9KD` (Mei Chan) is in the
 queue with an UM chip; SSR-only `SSRUMNR` (Mina Choi, UMNR) shows UM; stacked
-case `MIXED4` (Cole Family) shows UM + WCH + party of 4; SSR-only `SSRWCH`
-(Grace Ho, WCHR) shows WCH on the queue and on the connection panel after
-select; CX254 delay minutes > 0.
+case `MIXED4` (Cole Family) shows UM + WCH + party of 4 and option reasoning
+`Keep party COLE together`; SSR-only `SSRWCH` (Grace Ho, WCHR) shows WCH on
+the queue and panel; `FIRST1` (Elena Rossi) option reasoning includes
+`Hold Business instead`; CX254 delay minutes > 0.
 
 ## 5. Queue updates and recovery options
 

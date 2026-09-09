@@ -40,3 +40,4 @@ Append-only. Format: `YYYY-MM-DD | source-id | lesson | path | bucket`
 2026-09-09 | engine-hardening | Connection panel uses SSR helpers so WCHR-only Grace Ho still shows WCH when selected | apps/console/components/connection-panel.tsx | SCOPE
 2026-09-09 | engine-hardening | Pin SSRUMNR (case 13) on a CX254 feeder; overnight fixture names Overnight option | packages/data/src/passengers.ts | SCOPE
 2026-09-09 | engine-hardening | Pin MIXED4 (case 40) UM + wheelchair + party of 4 on a live CX254 feeder | packages/data/src/passengers.ts | SCOPE
+2026-09-09 | engine-hardening | Pin CX254 desk cases onto LHR CX250 and CX390 recovery so MIXED4/FIRST1 options appear after the delay | packages/data/src/passengers.ts | SCOPE

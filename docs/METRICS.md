@@ -14,29 +14,29 @@ Refresh: `pnpm --filter sim test` (locks `src/metrics.test.ts`).
 | Flights | 120 |
 | Inbounds to HKG | 50 |
 | Connections | 300 |
-| At-risk at bank start | 123 |
-| Recovery options generated | 62 |
+| At-risk at bank start | 122 |
+| Recovery options generated | 57 |
 
 ## Simulate Typhoon Delay (90 minutes on HKG inbounds)
 
 | Count | Value |
 | --- | --- |
 | Delayed inbounds | 50 |
-| At-risk | 176 |
-| Recovery options generated | 59 |
+| At-risk | 175 |
+| Recovery options generated | 69 |
 | Unaccompanied minors at risk | 13 |
 | Of those, kept on CX metal | 13 |
 
-Typhoon can *cut* option count (59 vs 62) because more connections miss the
-pool. Unaccompanied minors never receive next-calendar-day flights. Say that;
-do not invent a minutes-saved ROI.
+Typhoon can *raise* option count (69 vs 57) when more connections miss and a
+same-destination CX is still in the pool. Unaccompanied minors never receive
+next-calendar-day flights. Say that; do not invent a minutes-saved ROI.
 
 ## Late Inbound CX254 (180 minutes)
 
 | Count | Value |
 | --- | --- |
 | At-risk | 131 |
-| Recovery options generated | 61 |
+| Recovery options generated | 65 |
 
 ## Not in this file
 

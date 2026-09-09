@@ -85,6 +85,10 @@ Do not shrink Never without `docs/QUESTIONS.md`.
 - `pin-mixed4` (engine-hardening): case 40 `MIXED4` Cole Family (UM +
   wheelchair + party of 4) on a CX254 feeder. Checker: `pnpm --filter data
   test` && `pnpm test:demo`
+- `desk-lhr-recovery` (engine-hardening): pin CX254 desk cases onto LHR and
+  retarget CX390 so MIXED4/FIRST1 have CX metal options after the 180 min
+  delay (COLE + Hold Business). Checker: `pnpm --filter sim test` &&
+  `pnpm test:demo`
 
 ## Next
 

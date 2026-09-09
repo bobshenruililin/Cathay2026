@@ -1,4 +1,6 @@
 import type { CabinClass, Flight, LoyaltyTier, Passenger } from "engine";
+import { addMinutesIso } from "engine";
+import { BANK_END_ISO } from "./catalog.ts";
 import { pick, rngInt, type Rng } from "./prng.ts";
 
 export type BankConnection = {
@@ -23,7 +25,11 @@ const DESK_CASES: Passenger[] = [
   { pnr: "SSRWCH", name: "Grace Ho", tier: "Gold", cabin: "Business", ssr: ["WCHR"] },
   { pnr: "SSRUMNR", name: "Mina Choi", tier: "Silver", cabin: "Economy", ssr: ["UMNR"] },
   { pnr: "MIXED4", name: "Cole Family", tier: "Gold", cabin: "Business", um: true, wheelchair: true, partySize: 4, partyId: "COLE" },
+  { pnr: "FIRST1", name: "Elena Rossi", tier: "Diamond", cabin: "First" },
 ];
+
+/** CX254 arrival plus this many minutes: 180 delay + 100 so MIXED4 (need 95) still catches CX metal. */
+const DESK_RECOVERY_AFTER_ARRIVAL_MINUTES = 280;
 
 function makePnr(rng: Rng, used: Set<string>): string {
   for (let attempt = 0; attempt < 32; attempt++) {
@@ -70,13 +76,34 @@ export function generateConnections(rng: Rng, flights: readonly Flight[]): BankC
   return pinDeskCases(pinCx254Feeders(connections, flights));
 }
 
-/** Keep a few CX254 inbound links just above MCT so a 150 min delay puts them at risk. */
+/** Place CX390 on LHR after CX254 so named desk cases still have CX metal after the 180 min delay. */
+export function pinDeskRecoveries(flights: readonly Flight[]): Flight[] {
+  const inbound = flights.find((flight) => flight.flightNumber === "CX254" && flight.destination === "HKG");
+  if (!inbound) return [...flights];
+  const departure = addMinutesIso(inbound.actualArrival, DESK_RECOVERY_AFTER_ARRIVAL_MINUTES);
+  if (Date.parse(departure) > Date.parse(BANK_END_ISO)) return [...flights];
+  return flights.map((flight) =>
+    flight.flightNumber !== "CX390"
+      ? flight
+      : {
+          ...flight,
+          destination: "LHR",
+          scheduledDeparture: departure,
+          actualDeparture: departure,
+          scheduledArrival: addMinutesIso(departure, 780),
+          actualArrival: addMinutesIso(departure, 780),
+          seats: { ...flight.seats, First: 0 },
+        },
+  );
+}
+
+/** Keep named CX254 feeders on LHR just above MCT so a 180 min delay puts them at risk with recoveries. */
 function pinCx254Feeders(connections: BankConnection[], flights: readonly Flight[]): BankConnection[] {
   const inbound = flights.find((flight) => flight.flightNumber === "CX254" && flight.destination === "HKG");
   if (!inbound) return connections;
   const arrival = Date.parse(inbound.actualArrival);
   const ranked = flights
-    .filter((flight) => flight.origin === "HKG" && flight.destination !== inbound.origin)
+    .filter((flight) => flight.origin === "HKG" && flight.destination === "LHR" && flight.airline === "CX")
     .map((flight) => ({
       flight,
       slack: (Date.parse(flight.actualDeparture) - arrival) / 60_000,

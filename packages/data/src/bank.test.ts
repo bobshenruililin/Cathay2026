@@ -68,6 +68,15 @@ describe("evening bank", () => {
       partyId: "COLE",
     });
     expect(byPnr.MIXED4?.inboundFlightNumber).toBe("CX254");
+    expect(byPnr.FIRST1?.passenger).toMatchObject({ name: "Elena Rossi", cabin: "First", tier: "Diamond" });
+    expect(byPnr.FIRST1?.inboundFlightNumber).toBe("CX254");
+    expect(byPnr.W4N9KD?.outboundFlightNumber).toBe(byPnr.FIRST1?.outboundFlightNumber);
+    const outbound = bank.flights.find((flight) => flight.flightNumber === byPnr.W4N9KD?.outboundFlightNumber);
+    expect(outbound?.destination).toBe("LHR");
+    expect(outbound?.airline).toBe("CX");
+    const recovery = bank.flights.find((flight) => flight.flightNumber === "CX390");
+    expect(recovery?.destination).toBe("LHR");
+    expect(recovery?.seats.First).toBe(0);
     const pnrs = bank.connections.map((row) => row.passenger.pnr);
     expect(new Set(pnrs).size).toBe(300);
   });

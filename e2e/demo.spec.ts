@@ -58,6 +58,13 @@ test("6-step stage demo", async ({ page }) => {
     const panel = page.getByTestId("connection-panel");
     await expect(panel).toContainText(/Delay [1-9]/);
     await expect(panel.getByTestId("handling-flags")).toContainText("WCH");
+    await mixed.click();
+    await expect(panel.getByTestId("handling-flags")).toContainText("party of 4");
+    await expect(panel).toContainText("Keep party COLE together");
+    const first1 = page.getByTestId("queue-item").filter({ hasText: "FIRST1" });
+    await expect(first1).toBeVisible();
+    await first1.click();
+    await expect(panel).toContainText("Hold Business instead");
   });
 
   await test.step("5. Queue updates and recovery options", async () => {
