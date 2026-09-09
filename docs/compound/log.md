@@ -12,3 +12,6 @@ Append-only. Format: `YYYY-MM-DD | source-id | lesson | path | bucket`
 2026-09-09 | airline-disruption-ai | Kafka+Gemini super-apps fail the Q1 pilot test; lock engine deps at {} | packages/engine/src/purity.test.ts | Never
 2026-09-09 | spacex-se | test:demo is HITL; do not add a second ranker | docs/DEMO.md | Never
 2026-09-09 | amadeus-passenger-recovery | Do not quote SWISS minutes; time-to-protected comes from our sim | docs/PITCH_NOTES.md | PITCH
+2026-09-09 | otaip | Phase 1 is MCT options the desk already has authority to book | docs/PITCH_NOTES.md | PITCH
+2026-09-09 | passenger-recovery-optimization | Overnight options must be named overnight (MAXCT) | docs/QUESTIONS.md | PITCH
+2026-09-09 | airline-disr-mgt | MILP sibling of PFRSP; do not ship Gurobi | docs/LATER.md | Never

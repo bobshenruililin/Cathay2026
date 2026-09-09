@@ -9,7 +9,7 @@ well: "Test like you fly; HITL every hardware-software change; iterate vs infini
 poor: "Rockets. Do not cargo-cult avionics."
 steal: "pnpm test:demo is HITL. Sim clock not Date.now(). Cut the LLM/Wi-Fi as a talk beat."
 never: "A second ranker. Mocking station time with Date.now()."
-applied: []
+applied: [hitl-never]
 scope_recipe: "Keep e2e/demo.spec.ts sacred — pnpm test:demo"
 pitch_recipe: "docs/PITCH_NOTES.md — test like you fly"
 later_recipe: ""

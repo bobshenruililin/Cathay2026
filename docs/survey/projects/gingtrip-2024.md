@@ -9,7 +9,7 @@ well: "One ops object (trolley) + dashboard; named HK Express; repeat team."
 poor: "Physical cabin waste, not connections."
 steal: "One object (the connection) + desk UI. Log coach feedback instead of expanding scope."
 never: "Hardware prototype as a Reconnect requirement."
-applied: []
+applied: [one-object-pitch]
 scope_recipe: ""
 pitch_recipe: "docs/PITCH_NOTES.md — one object, one desk"
 later_recipe: ""

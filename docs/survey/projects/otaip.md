@@ -9,7 +9,7 @@ well: "Honest IRROPS/ATPCO language; involuntary rebook is a named agent."
 poor: "Fare construction is a different product."
 steal: "Q&A: Phase 1 is MCT options the desk already has authority to book."
 never: "Import ATPCO/NUC/HIP into packages/engine."
-applied: []
+applied: [phase1-authority-pitch]
 scope_recipe: ""
 pitch_recipe: "docs/PITCH_NOTES.md — Phase 1 authority"
 later_recipe: ""

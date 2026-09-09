@@ -9,7 +9,7 @@ well: "Delay notification + re-planning; same problem family."
 poor: "Passenger app; no MCT engine; runner-up not champion."
 steal: "Passenger delay apps exist. The desk is the gap."
 never: "Pivot Reconnect into a passenger re-planner."
-applied: []
+applied: [desk-inversion-pitch]
 scope_recipe: ""
 pitch_recipe: "docs/PITCH_NOTES.md — we inverted Fight4Flight"
 later_recipe: ""

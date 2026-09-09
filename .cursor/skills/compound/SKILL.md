@@ -2,10 +2,10 @@
 name: compound
 description: >-
   Compound Reconnect from the git survey database. Use when the user says
-  compound, nudge the database, steal from a project, ingest a GitHub or
-  press URL, refresh a survey card, or list the database. Always apply one
-  small legal change via the ladder. Never implement LATER or Never product
-  features (Kafka, Gurobi, passenger chatbot, LLM ranking, OpenMCT embed).
+  compound, nudge the database, steal from, ingest, refresh survey, refresh
+  a survey card, or list the database. Always apply one small legal change
+  via the ladder. Never implement LATER or Never product features (Kafka,
+  Gurobi, passenger chatbot, LLM ranking, OpenMCT embed).
 ---
 
 # Compound
@@ -22,7 +22,7 @@ Read this skill before touching `docs/survey/`, `docs/COMPOUND.md`, or
 | ingest | ingest URL / repo | New card + index row, then apply ladder on that card |
 | steal | compound from X | Fuzzy-match `id` or `title`, apply ladder |
 | nudge | nudge / compound (no id) | Highest-value unapplied steal: SCOPE, then test, then PITCH |
-| refresh | refresh X | Re-fetch public README/press, fill gaps, then apply ladder |
+| refresh | refresh survey / refresh X | Re-fetch public README/press, fill gaps, then apply ladder |
 
 Default mode is **nudge**. One nudge = one card + one apply.
 

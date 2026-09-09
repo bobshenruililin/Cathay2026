@@ -23,13 +23,14 @@ Do not shrink Never without `docs/QUESTIONS.md`.
 
 ## Done
 
-- Pure `packages/engine`, zero runtime deps, no LLM in decisions
+- Pure `packages/engine`, zero runtime deps, no LLM in decisions (`purity.test.ts`)
 - Verbatim `reasoning: string[]` in the console
-- Flight-number + instruction-override guard (`apps/console/lib/llm/guard.ts`)
+- `adversarial-guard` (ground-control): instruction-override + invented flights
+  fall back in `apps/console/lib/llm/guard.ts`. Checker: `pnpm --filter console test`
 - Deterministic `packages/sim`; DEMO clock is not `Date.now()`
 - Named user (HKG transfer agent); PILOT names Altéa / FIDS MQTT / App push
 - Survey cards + compound skill + this board
-- Pitch notes: named BU, FlyLab pairing, engine-true line
+- `named-BU` + engine-true line in `docs/PITCH_NOTES.md` (kairos, flylab, crew-ops)
 
 ## Next
 
@@ -39,7 +40,7 @@ Do not shrink Never without `docs/QUESTIONS.md`.
 | sim-badge | SCOPE | aegisops-ai, spacex-se | Visible SIM/offline on `station-header.tsx` when drafts fall back | header test + `pnpm test:demo` |
 | action-verbs | SCOPE | connectguard | Hold / Escort / Protect / Wait strings in `option-reason.ts` only; no engine API change | `pnpm --filter engine test` |
 | metrics-from-sim | PITCH | connectguard, amadeus-passenger-recovery | `docs/METRICS.md` arithmetic from `packages/sim` counts | docs only; no vendor numbers |
-| hold-outbound | LATER | connectguard, pfrsp | Do not build | — |
+| hold-outbound | LATER | connectguard, pfrsp, airline-disr-mgt | Do not build | — |
 | walk-graph | LATER | traavl | Do not build | — |
 | coc-rag | LATER | amadeus-disruption-agent | CoC as draft context only; do not rank | — |
 | visual-percy | LATER | nasa-openmct | Visual QA already out of demo | — |

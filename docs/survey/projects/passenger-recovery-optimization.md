@@ -9,7 +9,7 @@ well: "PNR scores with MCT/MAXCT, loyalty, special pax."
 poor: "Quantum theatre; schedule-change not live delay."
 steal: "Document MAXCT if overnight options appear. Keep ranking knobs named."
 never: "Quantum or exotic solver on stage."
-applied: []
+applied: [maxct-questions]
 scope_recipe: ""
 pitch_recipe: ""
 later_recipe: ""
