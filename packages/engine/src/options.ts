@@ -1,7 +1,7 @@
 import { isOneworldAirline, requiredMinutesFor } from "./mct";
 import { hkgCalendarDay, minutesBetween } from "./iso";
 import { isAtRisk } from "./feasibility";
-import { delayReason, mctReason, scoreReason, seatingReason, specialHandlingReasons } from "./option-reason";
+import { delayReason, mctReason, seatingReason, specialHandlingReasons } from "./option-reason";
 import { isUnaccompaniedMinor } from "./passenger";
 import { scoreOption } from "./score";
 import { partySeating } from "./seating";
@@ -30,7 +30,6 @@ function toOption(connection: Connection, flight: Flight): RecoveryOption {
       mctReason(connection.inbound.airline, flight.airline, required, available),
       seatingReason(flight, passenger, seating),
       ...specialHandlingReasons(passenger),
-      scoreReason(passenger.tier, seating.seatMatch, delayMinutes, score),
     ],
   };
 }

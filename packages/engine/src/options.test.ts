@@ -74,7 +74,7 @@ describe("option generator", () => {
     expect(options[0]?.seatMatch).toBe(false);
     expect(options[0]?.downgradeProtected).toBe(true);
     expect(options[0]?.offeredCabin).toBe("Business");
-    expect(options[0]?.reasoning.join(" ")).toMatch(/Downgrade protection/);
+    expect(options[0]?.reasoning.join(" ")).toMatch(/Hold Business instead/);
   });
 
   it("picks the next CX after the original even when a later CX scores lower", () => {
@@ -86,7 +86,7 @@ describe("option generator", () => {
     const options = generateOptions(connection, [muchLater, earlierThanOriginal, nextA, nextB]);
     const numbers = options.map((o) => o.flight.flightNumber);
     expect(numbers).toContain("CX269");
-    expect(options.some((o) => o.reasoning.join(" ").includes("seats remain"))).toBe(true);
+    expect(options.some((o) => o.reasoning.join(" ").includes("still has seats"))).toBe(true);
   });
 
   it("returns no options when the pool is empty or all unviable", () => {
@@ -141,7 +141,22 @@ describe("option generator", () => {
     const options = generateOptions(connection, [nextDay]);
     expect(options).toHaveLength(1);
     expect(options[0]?.flight.flightNumber).toBe("CX800");
-    expect(options[0]?.reasoning.join(" ")).toMatch(/Score /);
+    expect(options[0]?.reasoning.join(" ")).toMatch(/Protect on CX800/);
+  });
+
+  it("describes earlier and same-time protections in plain language", () => {
+    const connection = makeConnection(INBOUND, ORIG);
+    const earlier = cx("CX248", 65);
+    const sameTime = makeFlight("CX249", "CX", "HKG", "LHR", ORIG.actualDeparture, ORIG.actualArrival);
+    expect(generateOptions(connection, [earlier])[0]?.reasoning.join(" ")).toMatch(
+      /minutes earlier than CX250/,
+    );
+    expect(generateOptions(connection, [sameTime])[0]?.reasoning.join(" ")).toMatch(
+      /same departure time as CX250/,
+    );
+    const later = generateOptions(connection, [cx("CX260", 100)])[0]?.reasoning.join(" ") ?? "";
+    expect(later).toMatch(/Protect on CX260/);
+    expect(later).not.toMatch(/Score /);
   });
 
   it("property: option generation stays ≤3, unique, scored, and reasoned", () => {
@@ -184,6 +199,10 @@ describe("option generator", () => {
         expect(seen.has(option.flight.flightNumber)).toBe(false);
         seen.add(option.flight.flightNumber);
         expect(option.reasoning.length).toBeGreaterThan(0);
+        for (const line of option.reasoning) {
+          expect(line).toMatch(/[.!]$/);
+          expect(line).not.toMatch(/Score \d+ =/);
+        }
         expect(option.score).toBe(scoreOption(passenger.tier, option.seatMatch, option.delayMinutes));
         expect(option.offeredCabin).toBeTruthy();
         if (passenger.um) expect(option.flight.airline).toBe("CX");
