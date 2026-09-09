@@ -70,6 +70,12 @@ Do not shrink Never without `docs/QUESTIONS.md`.
   Checker: `pnpm --filter console test`
 - `fast-check-10k` (engine-hardening): at-risk and options properties.
   Checker: `pnpm --filter engine test`
+- `pin-desk-cases` (engine-hardening): named JSON-case PNRs (`W4N9KD` Mei
+  Chan UM, `P8T2LM`, `Q1H6VB`, `SSRWCH`) on live CX254 feeders.
+  Checker: `pnpm --filter data test` && `pnpm --filter sim test`
+- `draft-handling` (engine-hardening): draft prompt/mock SMS mention UM /
+  wheelchair / party; LLM still does not rank.
+  Checker: `pnpm --filter console test` && `pnpm test:demo`
 
 ## Next
 
