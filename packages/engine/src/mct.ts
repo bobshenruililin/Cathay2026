@@ -43,6 +43,15 @@ export const GATE_WALK_BUFFER_MINUTES = 10;
 
 export const TIGHT_SLACK_EXTRA_MINUTES = 20;
 
+/**
+ * Extra HKG gate transit for wheelchair / PRM assistance.
+ * Additive on top of the MCT table; HKG_MCT_MINUTES stays the single source of truth.
+ */
+export const WHEELCHAIR_TRANSIT_BUFFER_MINUTES = 15;
+
+/** Extra staff-escort time for unaccompanied minors. Additive on top of the MCT table. */
+export const UM_ESCORT_BUFFER_MINUTES = 20;
+
 export function isOneworldAirline(airline: string): boolean {
   return ONEWORLD.has(airline);
 }
@@ -61,4 +70,23 @@ export function hkgMctMinutes(inboundAirline: string, outboundAirline: string): 
 
 export function requiredMinutes(inboundAirline: string, outboundAirline: string): number {
   return hkgMctMinutes(inboundAirline, outboundAirline) + GATE_WALK_BUFFER_MINUTES;
+}
+
+export function extraTransitMinutes(passenger: {
+  um?: boolean;
+  wheelchair?: boolean;
+}): number {
+  return (
+    (passenger.wheelchair === true ? WHEELCHAIR_TRANSIT_BUFFER_MINUTES : 0) +
+    (passenger.um === true ? UM_ESCORT_BUFFER_MINUTES : 0)
+  );
+}
+
+/** MCT table + gate walk, plus documented passenger buffers (wheelchair, UM). */
+export function requiredMinutesFor(
+  inboundAirline: string,
+  outboundAirline: string,
+  passenger: { um?: boolean; wheelchair?: boolean },
+): number {
+  return requiredMinutes(inboundAirline, outboundAirline) + extraTransitMinutes(passenger);
 }

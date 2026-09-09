@@ -18,9 +18,14 @@ export type SimState = {
 export type Simulation = {
   advanceClock: (minutes: number) => SimEvent[];
   injectFlightDelay: (flightNumber: string, delayMinutes: number) => SimEvent[];
+  injectTyphoon: (delayMinutes?: number) => SimEvent[];
   getState: () => SimState;
   subscribe: (listener: (event: SimEvent) => void) => () => void;
 };
+
+export const DEMO_SEED = "hkg-demo";
+export const TYPHOON_DELAY_MINUTES = 90;
+export const CX254_DELAY_MINUTES = 180;
 
 function clone<T>(value: T): T {
   return JSON.parse(JSON.stringify(value)) as T;
@@ -132,6 +137,30 @@ export function createSimulation(seed: string | number): Simulation {
         },
       ];
       publishAtRisk(atRisk, events);
+      emitAll(events);
+      return events;
+    },
+    injectTyphoon(delayMinutes = TYPHOON_DELAY_MINUTES) {
+      const previousAtRisk = atRisk;
+      const events: SimEvent[] = [];
+      flights = flights.map((flight) => {
+        if (flight.destination !== "HKG") return flight;
+        const delay = flight.delayMinutes + delayMinutes;
+        const updated: Flight = {
+          ...flight,
+          delayMinutes: delay,
+          actualDeparture: addMinutesIso(flight.scheduledDeparture, delay),
+          actualArrival: addMinutesIso(flight.scheduledArrival, delay),
+        };
+        updated.status = deriveStatus(updated, clockIso);
+        events.push({
+          type: "flight_status",
+          flight: updated,
+          reasoning: [`Typhoon inbound delay: ${flight.flightNumber} delayed ${delayMinutes} minutes (total ${delay}).`],
+        });
+        return updated;
+      });
+      publishAtRisk(previousAtRisk, events);
       emitAll(events);
       return events;
     },

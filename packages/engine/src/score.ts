@@ -7,8 +7,9 @@ export const TIER_STATUS: Record<LoyaltyTier, number> = {
   Green: 1,
 };
 
-export function seatMatch(flight: Flight, cabin: CabinClass): boolean {
-  return flight.seats[cabin] > 0;
+export function seatMatch(flight: Flight, cabin: CabinClass, partySize = 1): boolean {
+  const size = partySize > 0 ? partySize : 1;
+  return flight.seats[cabin] >= size;
 }
 
 export function scoreOption(

@@ -75,4 +75,15 @@ describe("simulation reproducibility", () => {
     expect(() => sim.advanceClock(-1)).toThrow(/negative/);
     expect(() => sim.injectFlightDelay("NOPE1", 10)).toThrow(/Unknown flight/);
   });
+
+  it("applies a typhoon inbound delay in one step", () => {
+    const sim = createSimulation(7);
+    const before = sim.getState();
+    const events = sim.injectTyphoon();
+    const after = sim.getState();
+    expect(events.some((e) => e.type === "flight_status")).toBe(true);
+    expect(after.flights.filter((f) => f.destination === "HKG").every((f) => f.delayMinutes === 90)).toBe(true);
+    expect(after.flights.some((f) => f.origin === "HKG" && f.delayMinutes === 0)).toBe(true);
+    expect(after.atRisk.length).toBeGreaterThanOrEqual(before.atRisk.length);
+  });
 });
