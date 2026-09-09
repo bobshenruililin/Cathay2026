@@ -22,8 +22,8 @@ auto-selected passenger.
 
 ## 3. Simulate Typhoon Delay
 
-Click **Simulate Typhoon Delay**. The adapter calls `injectFlightDelay` on regional
-inbounds (no page reload).
+Click **Simulate Typhoon Delay**. The adapter calls `sim.injectTyphoon()`
+(inbound delays on the seeded bank, no page reload).
 
 Assertion: delayed-flight count increases and the queue remains on screen.
 

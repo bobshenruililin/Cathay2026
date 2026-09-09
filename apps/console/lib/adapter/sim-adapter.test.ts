@@ -29,6 +29,7 @@ describe("sim adapter", () => {
     expect(inbound?.delayMinutes).toBeGreaterThan(0);
     expect(cx.queue.some((item) => item.inbound.flightNumber === "CX254")).toBe(true);
     expect(cx.disruption.atRiskCount).toBeGreaterThan(0);
+    expect(cx.queue.some((item) => item.result.options.length > 0)).toBe(true);
   });
 
   it("advances the sim clock rather than wall time", async () => {

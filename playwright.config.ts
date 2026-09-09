@@ -17,7 +17,7 @@ export default defineConfig({
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"], viewport: { width: 1180, height: 820 } } }],
   webServer: {
-    command: "pnpm --filter console dev -- --port 3000 --hostname 127.0.0.1",
+    command: "pnpm --filter console dev:e2e",
     url: "http://127.0.0.1:3000",
     reuseExistingServer: false,
     timeout: 180_000,
