@@ -12,12 +12,14 @@ export function seatingReason(
   const size = partySizeOf(passenger);
   const booked = passenger.cabin;
   const remaining = flight.seats[seating.offeredCabin];
+  const partyTag = passenger.partyId ? ` Keep party ${passenger.partyId} together on ${flight.flightNumber}.` : "";
   if (seating.downgradeProtected) {
-    return `${booked} cabin is exhausted (${flight.seats[booked]} seats for a party of ${size}). Downgrade protection holds ${seating.offeredCabin} (${remaining} seats) so the whole party stays on ${flight.flightNumber}.`;
+    return `${booked} cabin is exhausted (${flight.seats[booked]} seats for a party of ${size}). Downgrade protection holds ${seating.offeredCabin} (${remaining} seats) so the whole party stays on ${flight.flightNumber}.${partyTag}`;
   }
   if (size > 1) {
-    return `Unsplittable party of ${size}: ${remaining} ${seating.offeredCabin} seats remain on ${flight.flightNumber}; the group is kept on one flight.`;
+    return `Unsplittable party of ${size}: ${remaining} ${seating.offeredCabin} seats remain on ${flight.flightNumber}; the group is kept on one flight.${partyTag}`;
   }
+  if (partyTag) return `${passenger.cabin} seats remain on ${flight.flightNumber}.${partyTag}`;
   return `${passenger.cabin} seats remain on ${flight.flightNumber}.`;
 }
 
@@ -48,7 +50,7 @@ export function specialHandlingReasons(passenger: Passenger): string[] {
   const lines: string[] = [];
   if (isUnaccompaniedMinor(passenger)) {
     lines.push(
-      `Unaccompanied minor: CX staff escort adds ${UM_ESCORT_BUFFER_MINUTES} min on top of the HKG MCT table. Recovery stays on CX metal.`,
+      `Unaccompanied minor: CX staff escort adds ${UM_ESCORT_BUFFER_MINUTES} min on top of the HKG MCT table. Recovery stays on CX metal, same calendar day — no overnight hotel.`,
     );
   }
   if (needsWheelchair(passenger)) {

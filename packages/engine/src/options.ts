@@ -60,7 +60,12 @@ function isViable(connection: Connection, candidate: Flight): boolean {
   if (candidate.flightNumber === connection.outbound.flightNumber) return false;
   if (candidate.origin !== "HKG") return false;
   if (candidate.destination !== connection.outbound.destination) return false;
-  if (isUnaccompaniedMinor(connection.passenger) && candidate.airline !== "CX") return false;
+  if (isUnaccompaniedMinor(connection.passenger)) {
+    if (candidate.airline !== "CX") return false;
+    if (hkgCalendarDay(candidate.actualDeparture) > hkgCalendarDay(connection.outbound.actualDeparture)) {
+      return false;
+    }
+  }
   if (!partySeating(candidate, connection.passenger)) return false;
   const available = minutesBetween(connection.inbound.actualArrival, candidate.actualDeparture);
   return available >= requiredMinutesFor(connection.inbound.airline, candidate.airline, connection.passenger);

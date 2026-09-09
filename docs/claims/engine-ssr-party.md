@@ -1,7 +1,7 @@
 ---
 id: engine-ssr-party
-status: open
-claimant: ""
+status: claimed
+claimant: cursor/engine-hardening-7018
 globs: packages/engine/**
 checker: pnpm --filter engine test
 forbidden: apps/**, packages/sim/**, packages/data/**

@@ -10,6 +10,12 @@ describe("passenger defaults", () => {
     expect(partySizeOf(makePassenger("A", "Gold", "Business", { partySize: 0 }))).toBe(1);
     expect(isUnaccompaniedMinor(makePassenger())).toBe(false);
     expect(needsWheelchair(makePassenger())).toBe(false);
+    expect(isUnaccompaniedMinor(makePassenger("U", "Green", "Economy", { ssr: ["UMNR"] }))).toBe(true);
+    expect(needsWheelchair(makePassenger("W", "Gold", "Business", { ssr: ["wchr"] }))).toBe(true);
+    expect(needsWheelchair(makePassenger("W", "Gold", "Business", { ssr: ["WCHS"] }))).toBe(true);
+    expect(needsWheelchair(makePassenger("W", "Gold", "Business", { wheelchair: true, ssr: ["WCHC"] }))).toBe(
+      true,
+    );
   });
 });
 

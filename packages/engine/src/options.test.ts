@@ -111,6 +111,30 @@ describe("option generator", () => {
     expect(generateOptions(makeConnection(INBOUND, invalidOut), [partner])).toEqual([]);
   });
 
+  it("drops overnight CX recovery for an unaccompanied minor", () => {
+    const um = makePassenger("UM1", "Gold", "Business", { um: true });
+    const ssrUm = makePassenger("UM2", "Gold", "Business", { ssr: ["UMNR"] });
+    const adult = makePassenger("AD1");
+    const nextDay = cx("CX800", 20 * 60);
+    const sameDay = cx("CX260", 100);
+    expect(generateOptions(makeConnection(INBOUND, ORIG, um), [nextDay])).toEqual([]);
+    expect(generateOptions(makeConnection(INBOUND, ORIG, ssrUm), [nextDay])).toEqual([]);
+    expect(generateOptions(makeConnection(INBOUND, ORIG, um), [sameDay])[0]?.flight.flightNumber).toBe("CX260");
+    expect(generateOptions(makeConnection(INBOUND, ORIG, adult), [nextDay])[0]?.flight.flightNumber).toBe(
+      "CX800",
+    );
+  });
+
+  it("echoes partyId so the desk can keep a group together", () => {
+    const passenger = makePassenger("P4", "Gold", "Business", { partySize: 4, partyId: "CHEN-FAM" });
+    const connection = makeConnection(INBOUND, ORIG, passenger);
+    const options = generateOptions(connection, [cx("CX260", 100)]);
+    expect(options[0]?.reasoning.join(" ")).toMatch(/Keep party CHEN-FAM together on CX260/);
+    const solo = makePassenger("P5", "Gold", "Business", { partyId: "SOLO-1" });
+    const soloOptions = generateOptions(makeConnection(INBOUND, ORIG, solo), [cx("CX261", 100)]);
+    expect(soloOptions[0]?.reasoning.join(" ")).toMatch(/Keep party SOLO-1 together on CX261/);
+  });
+
   it("uses a next-day CX when no same-day alternative exists", () => {
     const connection = makeConnection(INBOUND, ORIG);
     const nextDay = cx("CX800", 20 * 60);
