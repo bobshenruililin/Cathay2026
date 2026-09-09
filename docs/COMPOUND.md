@@ -49,6 +49,8 @@ Do not shrink Never without `docs/QUESTIONS.md`.
   only. Checker: `pnpm --filter engine test`
 - `no-php-runtime` (openflights): `packages/data` has no PHP / OpenFlights
   import. Checker: `pnpm --filter data test`
+- `no-openmct-embed` (nasa-openmct): console does not import Open MCT.
+  Checker: `pnpm --filter console test`
 
 ## Next
 

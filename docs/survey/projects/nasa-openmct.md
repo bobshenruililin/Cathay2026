@@ -9,7 +9,7 @@ well: "Mission-control UI; unit + Playwright e2e + visual (Percy) + perf."
 poor: "Telemetry framework for spacecraft. Heavy."
 steal: "Keep functional e2e. Visual regression is LATER."
 never: "Embed Open MCT in the iPad console."
-applied: []
+applied: [no-openmct-embed]
 scope_recipe: ""
 pitch_recipe: ""
 later_recipe: "docs/LATER.md visual QA / Percy"
