@@ -25,7 +25,9 @@ typhoon, options generated, UM kept on CX).
 
 **Demo insurance.** Seeded sim, same seed → same output. Station clock is
 sim time, not `Date.now()`. If the venue LLM dies, the fallback template
-still sends. Visible SIM badge is a Next item, not a seventh DEMO step.
+still sends. A **SIM** badge is on the station header. If the draft API is
+down, **Offline draft** appears there too. That is a talk beat, not a
+seventh DEMO step.
 
 **Q&A ready.** Phase 1 is options the desk already has authority to book.
 Hold-the-outbound and cargo ULD are Later. MAXCT/overnight: see

@@ -16,3 +16,4 @@ Append-only. Format: `YYYY-MM-DD | source-id | lesson | path | bucket`
 2026-09-09 | passenger-recovery-optimization | Overnight options must be named overnight (MAXCT) | docs/QUESTIONS.md | PITCH
 2026-09-09 | airline-disr-mgt | MILP sibling of PFRSP; do not ship Gurobi | docs/LATER.md | Never
 2026-09-09 | amadeus-disruption-agent | Healthy connections stay silent; only at-risk PNRs enter the action queue | apps/console/lib/adapter/queue.ts | SCOPE
+2026-09-09 | aegisops-ai | Visible SIM badge on the live path; Offline draft when the venue API dies | apps/console/components/station-header.tsx | SCOPE

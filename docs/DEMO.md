@@ -9,7 +9,9 @@ Run: `pnpm test:demo`
 
 Open the Reconnect transfer desk.
 
-Assertion: HKG station clock is visible and is not a placeholder dash.
+Assertion: HKG station clock is visible and is not a placeholder dash. A
+**SIM** badge is on the header (live adapter). Kill-LLM / offline draft is a
+talk beat, not a seventh step.
 
 ## 2. Live triage queue from sim + engine
 

@@ -8,6 +8,7 @@ import { TriageQueue } from "@/components/triage-queue";
 import { getConsoleAdapter } from "@/lib/adapter";
 import { fetchDraft } from "@/lib/llm/client";
 import { applyFlightNumberGuard } from "@/lib/llm/guard";
+import { isSimMode } from "@/lib/station-mode";
 import type { ConsoleSnapshot, Locale, QueueItem } from "@/lib/adapter/types";
 import type { RecoveryOption } from "engine";
 
@@ -26,6 +27,7 @@ export function ConsoleShell() {
   const [draft, setDraft] = useState("");
   const [draftStatus, setDraftStatus] = useState<DraftStatus>("idle");
   const [draftError, setDraftError] = useState<string | null>(null);
+  const [offlineDraft, setOfflineDraft] = useState(false);
   const [sending, setSending] = useState(false);
   const [delayFlight, setDelayFlight] = useState("CX254");
   const [delayMinutes, setDelayMinutes] = useState("45");
@@ -43,6 +45,7 @@ export function ConsoleShell() {
       setSelectedOption(null);
       setDraft("");
       setDraftStatus("idle");
+      setOfflineDraft(false);
     }
     if (next.flights.every((flight) => flight.flightNumber !== delayFlight)) {
       setDelayFlight(next.flights[0]?.flightNumber ?? "");
@@ -82,6 +85,7 @@ export function ConsoleShell() {
     let cancelled = false;
     setDraftStatus("loading");
     setDraftError(null);
+    setOfflineDraft(false);
     void fetchDraft({
       passenger: selected.passenger,
       inbound: selected.inbound,
@@ -93,11 +97,13 @@ export function ConsoleShell() {
         if (cancelled) return;
         setDraft(result.text);
         setDraftStatus("ready");
+        setOfflineDraft(result.usedFallback);
       })
       .catch((err: unknown) => {
         if (cancelled) return;
         setDraftStatus("error");
         setDraftError(err instanceof Error ? err.message : "Draft failed");
+        setOfflineDraft(true);
       });
     return () => {
       cancelled = true;
@@ -120,6 +126,7 @@ export function ConsoleShell() {
       setSelectedOption(null);
       setDraft("");
       setDraftStatus("idle");
+      setOfflineDraft(false);
     } catch (err) {
       setDraftStatus("error");
       setDraftError(err instanceof Error ? err.message : "Send failed");
@@ -133,6 +140,8 @@ export function ConsoleShell() {
       <StationHeader
         snapshot={snapshot}
         busy={busy || status === "loading"}
+        simMode={isSimMode()}
+        offlineDraft={offlineDraft}
         delayFlight={delayFlight}
         delayMinutes={delayMinutes}
         onDelayFlight={setDelayFlight}
@@ -157,6 +166,7 @@ export function ConsoleShell() {
             setSelectedOption(null);
             setDraft("");
             setDraftStatus("idle");
+            setOfflineDraft(false);
           }}
         />
         <ConnectionPanel

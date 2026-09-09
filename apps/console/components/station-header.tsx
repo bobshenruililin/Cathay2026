@@ -1,5 +1,6 @@
 "use client";
 
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,11 +12,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { formatHkt } from "@/lib/format";
+import { stationModeBadges } from "@/lib/station-mode";
 import type { ConsoleSnapshot } from "@/lib/adapter/types";
 
 export function StationHeader({
   snapshot,
   busy,
+  simMode,
+  offlineDraft,
   delayFlight,
   delayMinutes,
   onDelayFlight,
@@ -27,6 +31,8 @@ export function StationHeader({
 }: {
   snapshot: ConsoleSnapshot | null;
   busy: boolean;
+  simMode: boolean;
+  offlineDraft: boolean;
   delayFlight: string;
   delayMinutes: string;
   onDelayFlight: (value: string) => void;
@@ -39,6 +45,7 @@ export function StationHeader({
   const flights = snapshot?.flights ?? [];
   const disruption = snapshot?.disruption;
   const hot = (disruption?.atRiskCount ?? 0) > 0;
+  const modeBadges = stationModeBadges(simMode, offlineDraft);
 
   return (
     <header className="grid grid-cols-[1fr_auto_auto] items-center gap-3 border-b bg-card px-4 py-3 min-[1024px]:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_minmax(0,1.4fr)]">
@@ -46,9 +53,16 @@ export function StationHeader({
         <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
           HKG station time
         </p>
-        <p className="font-heading text-xl font-medium" data-testid="station-clock">
-          {snapshot ? formatHkt(snapshot.clockIso) : "—"}
-        </p>
+        <div className="flex flex-wrap items-center gap-2">
+          <p className="font-heading text-xl font-medium" data-testid="station-clock">
+            {snapshot ? formatHkt(snapshot.clockIso) : "—"}
+          </p>
+          {modeBadges.map((badge) => (
+            <Badge key={badge.testId} variant="outline" data-testid={badge.testId}>
+              {badge.label}
+            </Badge>
+          ))}
+        </div>
       </div>
       <div>
         <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">

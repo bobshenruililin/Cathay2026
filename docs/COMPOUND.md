@@ -16,7 +16,7 @@ Do not shrink Never without `docs/QUESTIONS.md`.
 | Lens | Bar | Reconnect | Gap |
 | --- | --- | --- | --- |
 | Named BU | HK Express, Cargo, pilots | Gate agent + Altéa office in PILOT | Pitch HKG Transfer / Ground |
-| Feasibility | Named feed or physical slice | `docs/PILOT_PROPOSAL.md` | Sim badge |
+| Feasibility | Named feed or physical slice | `docs/PILOT_PROPOSAL.md` + SIM badge | Offline draft talk beat |
 | Decision | FlyLab summarises | Engine decides, `reasoning[]` | Keep; say it |
 | Number | Fake €25M vs SWISS minutes | Sim has counts | `METRICS.md` from sim only |
 | Honesty | Vendors exist | No Altéa write week 1 | Not Amadeus Passenger Recovery |
@@ -33,12 +33,14 @@ Do not shrink Never without `docs/QUESTIONS.md`.
 - `named-BU` + engine-true line in `docs/PITCH_NOTES.md` (kairos, flylab, crew-ops)
 - `quiet-default` (amadeus-disruption-agent): healthy connections counted as
   silent, not queued. Checker: `pnpm --filter console test` && `pnpm test:demo`
+- `sim-badge` (aegisops-ai): SIM on `station-header.tsx`; Offline draft when
+  `/api/draft` misses or the guard falls back. Checker: `pnpm --filter console
+  test` && `pnpm test:demo` (step 1 asserts `sim-badge`)
 
 ## Next
 
 | id | bucket | steal-from | recipe | checker |
 | --- | --- | --- | --- | --- |
-| sim-badge | SCOPE | aegisops-ai, spacex-se | Visible SIM/offline on `station-header.tsx` when drafts fall back | header test + `pnpm test:demo` |
 | action-verbs | SCOPE | connectguard | Hold / Escort / Protect / Wait strings in `option-reason.ts` only; no engine API change | `pnpm --filter engine test` |
 | metrics-from-sim | PITCH | connectguard, amadeus-passenger-recovery | `docs/METRICS.md` arithmetic from `packages/sim` counts | docs only; no vendor numbers |
 | hold-outbound | LATER | connectguard, pfrsp, airline-disr-mgt | Do not build | — |

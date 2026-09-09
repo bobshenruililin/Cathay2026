@@ -9,7 +9,7 @@ well: "SIMULATION_MODE so the demo never dies; LLM error falls back to sim."
 poor: "CrewAI agent fleet as the story."
 steal: "Visible sim/offline badge. Kill-LLM is a talk beat, not a 7th DEMO step."
 never: "Multi-agent fleet."
-applied: []
+applied: [sim-badge]
 scope_recipe: "apps/console/components/station-header.tsx SIM badge — pnpm test:demo"
 pitch_recipe: "docs/PITCH_NOTES.md — venue Wi-Fi"
 later_recipe: ""
