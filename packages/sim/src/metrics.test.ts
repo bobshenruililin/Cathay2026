@@ -27,7 +27,7 @@ describe("demo metrics from sim", () => {
     expect(demoMetrics(DEMO_SEED)).toEqual(demoMetrics(DEMO_SEED));
   });
 
-  it("queues named desk UM W4N9KD only after the CX254 delay", () => {
+  it("gives named desk cases CX recoveries after typhoon plus the CX254 delay", () => {
     const sim = createSimulation(DEMO_SEED);
     const baseline = sim.getState();
     const flagged = baseline.connections.filter((row) => {
@@ -41,6 +41,7 @@ describe("demo metrics from sim", () => {
     });
     expect(flagged.length).toBeGreaterThan(0);
     expect(baseline.atRisk.some((row) => row.pnr === "W4N9KD")).toBe(false);
+    sim.injectTyphoon();
     sim.injectFlightDelay("CX254", CX254_DELAY_MINUTES);
     const after = sim.getState();
     expect(after.atRisk.some((row) => row.pnr === "W4N9KD")).toBe(true);

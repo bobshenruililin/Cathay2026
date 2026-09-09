@@ -1,6 +1,5 @@
 import type { CabinClass, Flight, LoyaltyTier, Passenger } from "engine";
 import { addMinutesIso } from "engine";
-import { BANK_END_ISO } from "./catalog.ts";
 import { pick, rngInt, type Rng } from "./prng.ts";
 
 export type BankConnection = {
@@ -28,8 +27,8 @@ const DESK_CASES: Passenger[] = [
   { pnr: "FIRST1", name: "Elena Rossi", tier: "Diamond", cabin: "First" },
 ];
 
-/** CX254 arrival plus this many minutes: 180 delay + 100 so MIXED4 (need 95) still catches CX metal. */
-const DESK_RECOVERY_AFTER_ARRIVAL_MINUTES = 280;
+/** CX254 arrival plus this many minutes: typhoon 90 + CX254 180 + 110 so MIXED4 still catches CX metal on the six-step demo. */
+const DESK_RECOVERY_AFTER_ARRIVAL_MINUTES = 380;
 
 function makePnr(rng: Rng, used: Set<string>): string {
   for (let attempt = 0; attempt < 32; attempt++) {
@@ -81,7 +80,6 @@ export function pinDeskRecoveries(flights: readonly Flight[]): Flight[] {
   const inbound = flights.find((flight) => flight.flightNumber === "CX254" && flight.destination === "HKG");
   if (!inbound) return [...flights];
   const departure = addMinutesIso(inbound.actualArrival, DESK_RECOVERY_AFTER_ARRIVAL_MINUTES);
-  if (Date.parse(departure) > Date.parse(BANK_END_ISO)) return [...flights];
   return flights.map((flight) =>
     flight.flightNumber !== "CX390"
       ? flight

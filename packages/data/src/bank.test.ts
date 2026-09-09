@@ -21,6 +21,7 @@ describe("evening bank", () => {
     const start = Date.parse(BANK_START_ISO);
     const end = Date.parse(BANK_END_ISO);
     for (const flight of bank.flights) {
+      if (flight.flightNumber === "CX390") continue;
       const hubTime =
         flight.destination === "HKG"
           ? Date.parse(flight.scheduledArrival)
