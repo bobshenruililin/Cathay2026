@@ -4,8 +4,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { EmptyBlock } from "@/components/async-state";
-import { StatusBadge, TierBadge } from "@/components/status-badge";
+import { HandlingBadges, StatusBadge, TierBadge } from "@/components/status-badge";
 import { formatFlight, formatHkt } from "@/lib/format";
+import { handlingFlags } from "@/lib/handling-flags";
 import type { QueueItem } from "@/lib/adapter/types";
 import type { RecoveryOption } from "engine";
 import { cn } from "@/lib/utils";
@@ -37,12 +38,8 @@ export function ConnectionPanel({
           <StatusBadge status={item.result.status} />
           <span className="text-sm text-muted-foreground">
             {item.passenger.cabin} · {item.passenger.pnr}
-            {item.passenger.um ? " · UM" : ""}
-            {item.passenger.wheelchair ? " · WCH" : ""}
-            {item.passenger.partySize && item.passenger.partySize > 1
-              ? ` · party of ${item.passenger.partySize}`
-              : ""}
           </span>
+          <HandlingBadges flags={handlingFlags(item.passenger)} />
         </div>
         <div className="grid gap-3 min-[900px]:grid-cols-2">
           <FlightCard title="Inbound" flight={item.inbound} />

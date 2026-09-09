@@ -43,8 +43,13 @@ test("6-step stage demo", async ({ page }) => {
     await expect(namedUm).toBeVisible();
     await expect(namedUm).toContainText("CX254");
     await expect(namedUm.getByTestId("handling-flags")).toContainText("UM");
-    await cxRow.click();
-    await expect(page.getByTestId("connection-panel")).toContainText(/Delay [1-9]/);
+    const ssrWch = page.getByTestId("queue-item").filter({ hasText: "SSRWCH" });
+    await expect(ssrWch).toBeVisible();
+    await expect(ssrWch.getByTestId("handling-flags")).toContainText("WCH");
+    await ssrWch.click();
+    const panel = page.getByTestId("connection-panel");
+    await expect(panel).toContainText(/Delay [1-9]/);
+    await expect(panel.getByTestId("handling-flags")).toContainText("WCH");
   });
 
   await test.step("5. Queue updates and recovery options", async () => {

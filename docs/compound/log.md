@@ -37,3 +37,4 @@ Append-only. Format: `YYYY-MM-DD | source-id | lesson | path | bucket`
 2026-09-09 | engine-hardening | 10k fast-check properties lock at-risk and option invariants | packages/engine/tests/properties.test.ts | SCOPE
 2026-09-09 | engine-hardening | Pin named JSON-case PNRs on live CX254 feeders so the desk sees the same cases as engine tests | packages/data/src/passengers.ts | SCOPE
 2026-09-09 | engine-hardening | Draft prompt names UM / wheelchair / party; LLM still does not decide the flight | apps/console/lib/llm/draft.ts | SCOPE
+2026-09-09 | engine-hardening | Connection panel uses SSR helpers so WCHR-only Grace Ho still shows WCH when selected | apps/console/components/connection-panel.tsx | SCOPE

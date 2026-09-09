@@ -76,6 +76,9 @@ Do not shrink Never without `docs/QUESTIONS.md`.
 - `draft-handling` (engine-hardening): draft prompt/mock SMS mention UM /
   wheelchair / party; LLM still does not rank.
   Checker: `pnpm --filter console test` && `pnpm test:demo`
+- `panel-ssr-flags` (engine-hardening): connection panel uses the same SSR
+  helpers as the queue (case 12 `SSRWCH` shows WCH when selected).
+  Checker: `pnpm --filter console test` && `pnpm test:demo`
 
 ## Next
 
