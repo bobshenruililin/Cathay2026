@@ -12,7 +12,7 @@ Unapplied steals first when nudging. Cards: `docs/survey/projects/<id>.md`.
 | connectguard | github | ConnectGuard | 2 | reviewed |
 | traavl | github | trAAvl | 0 | reviewed |
 | aegisops-ai | github | AegisOps | 1 | reviewed |
-| openflights | github | OpenFlights | 0 | reviewed |
+| openflights | github | OpenFlights | 1 | reviewed |
 | pfrsp | github | PFRSP | 0 | reviewed |
 | airline-disr-mgt | github | airline.disr.mgt | 0 | reviewed |
 | support-operations-dashboard | github | Support ops dashboard | 1 | reviewed |

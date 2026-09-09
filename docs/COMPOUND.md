@@ -47,6 +47,8 @@ Do not shrink Never without `docs/QUESTIONS.md`.
   options say overnight; UM skip them. Checker: `pnpm --filter engine test`
 - `engine-ports` (nasa-fprime): console/sim/data import `engine` public API
   only. Checker: `pnpm --filter engine test`
+- `no-php-runtime` (openflights): `packages/data` has no PHP / OpenFlights
+  import. Checker: `pnpm --filter data test`
 
 ## Next
 
