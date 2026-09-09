@@ -40,13 +40,13 @@ and flight number.
 ## Console
 
 Live path is `packages/sim` (`NEXT_PUBLIC_CONSOLE_ADAPTER` unset). Mock adapter
-(`lib/adapter/mock-adapter.ts`) remains a seam (`=mock`). LLM drafting is
-`lib/llm/draft.ts` plus `POST /api/draft` on the demo-hardening PR. Flight-number
-guard falls back to the Cathay Alert template. The action column is a persistent
-right-hand drawer (iPad landscape, min 1024px).
+(`lib/adapter/mock-adapter.ts`) remains a seam (`=mock`) and uses the same
+typhoon / CX254 delay constants as `packages/sim`. LLM drafting is
+`lib/llm/draft.ts` plus `POST /api/draft`. Flight-number guard falls back to the
+Cathay Alert template. The action column is a persistent right-hand drawer
+(iPad landscape, min 1024px).
 
 ## Verification
 
-`pnpm test:demo` is the sacred demo path (`docs/DEMO.md`) on the demo-hardening
-PR. Engine changes on this branch are proven by `pnpm --filter engine test` at
-100% statement coverage. Do not fake a demo script here.
+`docs/DEMO.md` is sacred. Claim done only after `pnpm typecheck`, `pnpm test`,
+and `pnpm test:demo`. Engine coverage stays 100% on `packages/engine/src/**`.

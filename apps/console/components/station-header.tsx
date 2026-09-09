@@ -22,6 +22,8 @@ export function StationHeader({
   onDelayMinutes,
   onAdvance,
   onInject,
+  onTyphoon,
+  onCx254,
 }: {
   snapshot: ConsoleSnapshot | null;
   busy: boolean;
@@ -31,6 +33,8 @@ export function StationHeader({
   onDelayMinutes: (value: string) => void;
   onAdvance: (minutes: number) => void;
   onInject: () => void;
+  onTyphoon: () => void;
+  onCx254: () => void;
 }) {
   const flights = snapshot?.flights ?? [];
   const disruption = snapshot?.disruption;
@@ -42,7 +46,7 @@ export function StationHeader({
         <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
           HKG station time
         </p>
-        <p className="font-heading text-xl font-medium">
+        <p className="font-heading text-xl font-medium" data-testid="station-clock">
           {snapshot ? formatHkt(snapshot.clockIso) : "—"}
         </p>
       </div>
@@ -50,18 +54,36 @@ export function StationHeader({
         <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
           Disruption status
         </p>
-        <p className={hot ? "text-lg font-medium text-destructive" : "text-lg font-medium"}>
+        <p
+          data-testid="disruption-status"
+          className={hot ? "text-lg font-medium text-destructive" : "text-lg font-medium"}
+        >
           {disruption?.label ?? "Loading"}
         </p>
-        <p className="text-xs text-muted-foreground">
+        <p className="text-xs text-muted-foreground" data-testid="delayed-flights">
           {disruption?.delayedFlights ?? 0} delayed flights
         </p>
+        <span className="sr-only" data-testid="at-risk-count">
+          {disruption?.atRiskCount ?? 0}
+        </span>
       </div>
       <div className="flex flex-wrap items-end gap-2">
         <p className="w-full text-xs font-medium tracking-wide text-muted-foreground uppercase">
           Quick sim controls
         </p>
-        <Button type="button" variant="outline" disabled={busy} onClick={() => onAdvance(15)}>
+        <Button type="button" data-testid="btn-typhoon" disabled={busy} onClick={onTyphoon}>
+          Simulate Typhoon Delay
+        </Button>
+        <Button type="button" data-testid="btn-cx254" disabled={busy} onClick={onCx254}>
+          Late Inbound CX254
+        </Button>
+        <Button
+          type="button"
+          variant="outline"
+          data-testid="btn-advance-15"
+          disabled={busy}
+          onClick={() => onAdvance(15)}
+        >
           Advance +15m
         </Button>
         <Button type="button" variant="outline" disabled={busy} onClick={() => onAdvance(30)}>

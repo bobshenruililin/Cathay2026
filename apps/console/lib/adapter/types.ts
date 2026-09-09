@@ -27,6 +27,8 @@ export type ConsoleAdapter = {
   load(): Promise<ConsoleSnapshot>;
   advanceClock(minutes: number): Promise<ConsoleSnapshot>;
   injectDelay(flightNumber: string, delayMinutes: number): Promise<ConsoleSnapshot>;
+  simulateTyphoonDelay(): Promise<ConsoleSnapshot>;
+  lateInboundCx254(): Promise<ConsoleSnapshot>;
   approveRebooking(pnr: string, option: RecoveryOption, message: string): Promise<ConsoleSnapshot>;
 };
 

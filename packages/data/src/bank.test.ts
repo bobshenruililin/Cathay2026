@@ -32,6 +32,17 @@ describe("evening bank", () => {
     const cabins = new Set(bank.connections.map((c) => c.passenger.cabin));
     expect(tiers).toEqual(new Set(["Diamond", "Gold", "Silver", "Green"]));
     expect(cabins).toEqual(new Set(["First", "Business", "Premium Economy", "Economy"]));
+    expect(bank.connections.some((c) => c.passenger.um === true)).toBe(true);
+    expect(bank.connections.some((c) => c.passenger.wheelchair === true)).toBe(true);
+    expect(bank.connections.some((c) => c.passenger.partySize === 4)).toBe(true);
+  });
+
+  it("includes inbound CX254 as a connection feeder", () => {
+    const bank = generateEveningBank("hkg-demo");
+    const cx254 = bank.flights.filter((flight) => flight.flightNumber === "CX254");
+    expect(cx254).toHaveLength(1);
+    expect(cx254[0]?.destination).toBe("HKG");
+    expect(bank.connections.some((row) => row.inboundFlightNumber === "CX254")).toBe(true);
   });
 
   it("is byte-identical for the same seed and differs otherwise", () => {

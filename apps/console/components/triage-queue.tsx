@@ -23,7 +23,7 @@ export function TriageQueue({
   onSelect: (pnr: string) => void;
 }) {
   return (
-    <section className="flex min-h-0 flex-col border-r bg-card">
+    <section className="flex min-h-0 flex-col border-r bg-card" data-testid="triage-queue">
       <div className="border-b px-4 py-3">
         <h2 className="font-heading text-sm font-medium">Triage queue</h2>
         <p className="text-xs text-muted-foreground">Missed first, then tight · Diamond first</p>
@@ -42,6 +42,9 @@ export function TriageQueue({
                 <li key={item.passenger.pnr}>
                   <button
                     type="button"
+                    data-testid="queue-item"
+                    data-pnr={item.passenger.pnr}
+                    data-has-options={item.result.options.length > 0 ? "true" : "false"}
                     onClick={() => onSelect(item.passenger.pnr)}
                     className={cn(
                       "flex w-full flex-col gap-1 border-b px-4 py-3 text-left hover:bg-muted/70",
