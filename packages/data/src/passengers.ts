@@ -47,6 +47,9 @@ export function generateConnections(rng: Rng, flights: readonly Flight[]): BankC
       name: `${pick(rng, FIRST)} ${pick(rng, LAST)}`,
       tier,
       cabin,
+      um: i % 17 === 0,
+      wheelchair: i % 13 === 0,
+      partySize: i % 19 === 0 ? 4 : 1,
     };
     connections.push({
       passenger,
@@ -54,5 +57,31 @@ export function generateConnections(rng: Rng, flights: readonly Flight[]): BankC
       outboundFlightNumber: outbound.flightNumber,
     });
   }
-  return connections;
+  return pinCx254Feeders(connections, flights);
+}
+
+/** Keep a few CX254 inbound links just above MCT so a 150 min delay puts them at risk. */
+function pinCx254Feeders(connections: BankConnection[], flights: readonly Flight[]): BankConnection[] {
+  const inbound = flights.find((flight) => flight.flightNumber === "CX254" && flight.destination === "HKG");
+  if (!inbound) return connections;
+  const arrival = Date.parse(inbound.actualArrival);
+  const ranked = flights
+    .filter((flight) => flight.origin === "HKG" && flight.destination !== inbound.origin)
+    .map((flight) => ({
+      flight,
+      slack: (Date.parse(flight.actualDeparture) - arrival) / 60_000,
+    }))
+    .filter((row) => row.slack > 0)
+    .sort((left, right) => Math.abs(left.slack - 180) - Math.abs(right.slack - 180));
+  const outbound = ranked[0]?.flight;
+  if (!outbound) return connections;
+  return connections.map((row, index) =>
+    index < connections.length - 4
+      ? row
+      : {
+          ...row,
+          inboundFlightNumber: inbound.flightNumber,
+          outboundFlightNumber: outbound.flightNumber,
+        },
+  );
 }

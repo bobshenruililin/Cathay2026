@@ -6,7 +6,8 @@ import { ConnectionPanel } from "@/components/connection-panel";
 import { StationHeader } from "@/components/station-header";
 import { TriageQueue } from "@/components/triage-queue";
 import { getConsoleAdapter } from "@/lib/adapter";
-import { draftNotification } from "@/lib/llm/draft";
+import { fetchDraft } from "@/lib/llm/client";
+import { applyFlightNumberGuard } from "@/lib/llm/guard";
 import type { ConsoleSnapshot, Locale, QueueItem } from "@/lib/adapter/types";
 import type { RecoveryOption } from "engine";
 
@@ -26,7 +27,7 @@ export function ConsoleShell() {
   const [draftStatus, setDraftStatus] = useState<DraftStatus>("idle");
   const [draftError, setDraftError] = useState<string | null>(null);
   const [sending, setSending] = useState(false);
-  const [delayFlight, setDelayFlight] = useState("CX401");
+  const [delayFlight, setDelayFlight] = useState("CX254");
   const [delayMinutes, setDelayMinutes] = useState("45");
 
   const selected: QueueItem | null =
@@ -81,7 +82,7 @@ export function ConsoleShell() {
     let cancelled = false;
     setDraftStatus("loading");
     setDraftError(null);
-    void draftNotification({
+    void fetchDraft({
       passenger: selected.passenger,
       inbound: selected.inbound,
       outbound: selected.outbound,
@@ -107,8 +108,13 @@ export function ConsoleShell() {
     if (!selected || !selectedOption) return;
     setSending(true);
     try {
+      const guarded = applyFlightNumberGuard(draft, {
+        inbound: selected.inbound,
+        outbound: selected.outbound,
+        option: selectedOption,
+      });
       applySnapshot(
-        await adapter.approveRebooking(selected.passenger.pnr, selectedOption, draft),
+        await adapter.approveRebooking(selected.passenger.pnr, selectedOption, guarded.text),
         selected.passenger.pnr,
       );
       setSelectedOption(null);
@@ -135,6 +141,8 @@ export function ConsoleShell() {
         onInject={() =>
           void run(() => adapter.injectDelay(delayFlight, Number(delayMinutes) || 0))
         }
+        onTyphoon={() => void run(() => adapter.simulateTyphoonDelay())}
+        onCx254={() => void run(() => adapter.lateInboundCx254())}
       />
       <main className="grid min-h-0 flex-1 grid-cols-[320px_minmax(0,1fr)_380px]">
         <TriageQueue

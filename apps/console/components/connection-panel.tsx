@@ -29,7 +29,7 @@ export function ConnectionPanel({
   }
 
   return (
-    <ScrollArea className="h-full">
+    <ScrollArea className="h-full" data-testid="connection-panel">
       <div className="flex flex-col gap-4 p-4">
         <div className="flex flex-wrap items-center gap-2">
           <h2 className="font-heading text-lg font-medium">{item.passenger.name}</h2>
@@ -37,13 +37,18 @@ export function ConnectionPanel({
           <StatusBadge status={item.result.status} />
           <span className="text-sm text-muted-foreground">
             {item.passenger.cabin} · {item.passenger.pnr}
+            {item.passenger.um ? " · UM" : ""}
+            {item.passenger.wheelchair ? " · WCH" : ""}
+            {item.passenger.partySize && item.passenger.partySize > 1
+              ? ` · party of ${item.passenger.partySize}`
+              : ""}
           </span>
         </div>
         <div className="grid gap-3 min-[900px]:grid-cols-2">
           <FlightCard title="Inbound" flight={item.inbound} />
           <FlightCard title="Outbound" flight={item.outbound} />
         </div>
-        <ul className="list-disc space-y-1 pl-5 text-sm">
+        <ul className="list-disc space-y-1 pl-5 text-sm" data-testid="engine-reasoning">
           {item.result.reasoning.map((line) => (
             <li key={line}>{line}</li>
           ))}
@@ -60,6 +65,8 @@ export function ConnectionPanel({
                 <button
                   key={option.flight.flightNumber}
                   type="button"
+                  data-testid={`option-${option.flight.flightNumber}`}
+                  data-recovery-option="true"
                   onClick={() => onSelectOption(option)}
                   className={cn("text-left", active && "ring-2 ring-ring rounded-xl")}
                 >
@@ -72,6 +79,7 @@ export function ConnectionPanel({
                           option.flight.destination,
                         )}{" "}
                         · score {option.score.toFixed(1)}
+                        {option.downgradeProtected ? ` · protected ${option.offeredCabin}` : ""}
                       </CardTitle>
                     </CardHeader>
                     <CardContent>

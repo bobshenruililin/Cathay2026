@@ -76,12 +76,15 @@ export function generateFlights(rng: Rng): Flight[] {
   const flights: Flight[] = [];
   for (let i = 0; i < 40; i++) {
     const hop = CX_INBOUND[i % CX_INBOUND.length]!;
-    flights.push(inboundFlight(`CX${100 + i}`, "CX", hop, 0, 300, rng));
+    // CX254 is the named demo inbound; other CX inbounds stay CX100–CX139.
+    const flightNumber = i === 0 ? "CX254" : `CX${100 + i}`;
+    flights.push(inboundFlight(flightNumber, "CX", hop, 0, 300, rng));
   }
   for (let i = 0; i < 40; i++) {
     const hop = CX_OUTBOUND[i % CX_OUTBOUND.length]!;
     const dep = offsetIso(90, 480, rng);
-    flights.push(buildFlight(`CX${250 + i}`, "CX", "HKG", hop.city, dep, hop.blockMinutes, hop.longhaul, rng));
+    const num = 250 + i === 254 ? 390 : 250 + i;
+    flights.push(buildFlight(`CX${num}`, "CX", "HKG", hop.city, dep, hop.blockMinutes, hop.longhaul, rng));
   }
   for (let i = 0; i < 10; i++) {
     const hop = UO_CITIES[i]!;

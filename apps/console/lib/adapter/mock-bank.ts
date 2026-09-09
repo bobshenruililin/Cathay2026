@@ -51,13 +51,13 @@ export type Link = {
 export function seedFlights(): Flight[] {
   const t = BANK_CLOCK;
   return [
-    flight("CX401", "CX", "TPE", "HKG", addMinutesIso(t, -140), addMinutesIso(t, -80)),
+    flight("CX254", "CX", "TPE", "HKG", addMinutesIso(t, -140), addMinutesIso(t, -80)),
     flight("CX501", "CX", "NRT", "HKG", addMinutesIso(t, -160), addMinutesIso(t, -70)),
     flight("CX731", "CX", "BKK", "HKG", addMinutesIso(t, -120), addMinutesIso(t, -50)),
     flight("UO102", "UO", "KIX", "HKG", addMinutesIso(t, -130), addMinutesIso(t, -60), REGIONAL),
     flight("CX250", "CX", "HKG", "LHR", addMinutesIso(t, -35), addMinutesIso(t, 745)),
     flight("CX252", "CX", "HKG", "LHR", addMinutesIso(t, 90), addMinutesIso(t, 870)),
-    flight("CX254", "CX", "HKG", "LHR", addMinutesIso(t, 180), addMinutesIso(t, 960)),
+    flight("CX256", "CX", "HKG", "LHR", addMinutesIso(t, 180), addMinutesIso(t, 960)),
     flight("BA32", "BA", "HKG", "LHR", addMinutesIso(t, 70), addMinutesIso(t, 850)),
     flight("CX288", "CX", "HKG", "CDG", addMinutesIso(t, -20), addMinutesIso(t, 740)),
     flight("CX290", "CX", "HKG", "CDG", addMinutesIso(t, 110), addMinutesIso(t, 870)),
@@ -70,8 +70,8 @@ export function seedFlights(): Flight[] {
 
 export function seedLinks(): Link[] {
   return [
-    { passenger: p("W4N9KD", "Mei Chan", "Diamond", "Business"), inboundFlightNumber: "CX401", outboundFlightNumber: "CX250" },
-    { passenger: p("P8T2LM", "James Wong", "Gold", "Premium Economy"), inboundFlightNumber: "CX401", outboundFlightNumber: "CX250" },
+    { passenger: p("W4N9KD", "Mei Chan", "Diamond", "Business"), inboundFlightNumber: "CX254", outboundFlightNumber: "CX250" },
+    { passenger: p("P8T2LM", "James Wong", "Gold", "Premium Economy"), inboundFlightNumber: "CX254", outboundFlightNumber: "CX250" },
     { passenger: p("Q1H6VB", "Aisha Patel", "Silver", "Economy"), inboundFlightNumber: "CX501", outboundFlightNumber: "CX288" },
     { passenger: p("R7K3ZX", "Hiro Tanaka", "Diamond", "First"), inboundFlightNumber: "CX731", outboundFlightNumber: "CX288" },
     { passenger: p("S2M9QC", "Sofia Rossi", "Green", "Economy"), inboundFlightNumber: "UO102", outboundFlightNumber: "CX500" },

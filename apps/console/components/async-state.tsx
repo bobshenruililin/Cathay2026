@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export function LoadingBlock({ label }: { label: string }) {
   return (
-    <div className="flex flex-col gap-2 p-4" role="status" aria-live="polite">
+    <div className="flex flex-col gap-2 p-4" role="status" aria-live="polite" data-testid="loading-block">
       <p className="text-sm text-muted-foreground">{label}</p>
       <Skeleton className="h-8 w-full" />
       <Skeleton className="h-8 w-5/6" />

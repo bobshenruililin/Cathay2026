@@ -1,49 +1,31 @@
 # Open questions (simplest interpretations)
 
-Engine work started without `docs/SCOPE.md` or `docs/DEMO.md`. These are the
-calls made so the build is not blocked.
-
-## `pnpm test:demo`
-
-`AGENTS.md` requires `pnpm test:demo` before claiming done. There is no demo
-path, Playwright suite, or `docs/DEMO.md` yet, so the script is omitted rather
-than faked. Stop condition for this change is `pnpm --filter engine test` at
-100% statement coverage.
-
-## Scope file missing
-
-`docs/SCOPE.md` does not exist. This package implements only the engine
-deliverables (types, MCT feasibility, option generation, ranking, reasoning,
-tests). Console UI, LLM drafting, and the 6-step demo are out of scope here.
-
 ## Connection feasibility
 
 Feasible iff `(outbound actual departure − inbound actual arrival) >= HKG MCT +
-gate walk buffer`. Times are ISO-8601 instants. MCT comes only from `src/mct.ts`.
+gate walk buffer + passenger buffers`. MCT comes only from `src/mct.ts`
+(`HKG_MCT_MINUTES`). Wheelchair (+15 min) and UM escort (+20 min) are additive.
+They do not rewrite the MCT table.
 
-Tight: slack ≥ MCT+buffer and slack < MCT+buffer+20. Missed: slack < MCT+buffer.
+Tight: slack ≥ required and slack < required + 20. Missed: slack < required.
 At-risk = tight or missed. HKG only.
+
+## Unaccompanied minors / wheelchair / party / downgrade
+
+- UM recovery stays on CX metal (staff escort). Partner flights are not offered.
+- Whole party (`partySize`, default 1) must fit on one flight in one cabin.
+- If the booked cabin is exhausted, downgrade protection holds the next lower
+  cabin with enough seats and states that in `reasoning`.
 
 ## Ranking
 
 `score = (tierStatus * 3) + (seatMatch * 2) - (delayMinutes / 10)`.
 
-Tier map: Diamond=4, Gold=3, Silver=2, Green=1. Seat match is 1 when the
-alternative still has seats in the passenger’s booked cabin. Delay is minutes
-from the original outbound actual departure to the alternative actual departure.
+Seat match is 1 when the booked cabin still has seats for the whole party.
 
-## Same-day / next CX / partner
+## Console
 
-Same-day uses the Asia/Hong_Kong calendar date (UTC+8, no DST) of the original
-outbound. Next CX is the earliest CX departing after the original outbound that
-was not already chosen as same-day. Partner is the best-scoring oneworld non-CX
-flight not already chosen. At most one from each bucket, then sorted by score
-and flight number.
-
-## Console mock adapter
-
-`apps/console` uses an in-process mock adapter (`lib/adapter/mock-adapter.ts`) plus
-engine triage. No HTTP backend. LLM drafting lives in `lib/llm/draft.ts` as
-locale templates (not a remote model). The action column is a persistent
-right-hand drawer sized for iPad landscape (min-width 1024px).
-
+Live path is `packages/sim` (`NEXT_PUBLIC_CONSOLE_ADAPTER` unset). Mock adapter
+remains a seam (`=mock`). LLM drafting is `lib/llm/draft.ts` plus
+`POST /api/draft`. Flight-number guard falls back to the Cathay Alert template.
+The action column is a persistent right-hand drawer (iPad landscape, min 1024px).

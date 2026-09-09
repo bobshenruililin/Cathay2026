@@ -47,7 +47,9 @@ export function ActionDrawer({
       ) : (
         <div className="flex min-h-0 flex-1 flex-col gap-3 p-4">
           <div className="flex items-center gap-2">
-            <Badge variant="secondary">Draft</Badge>
+            <Badge variant="secondary" data-testid="draft-badge">
+              Draft
+            </Badge>
             <span className="text-sm text-muted-foreground">
               {option.flight.flightNumber} · {item.passenger.pnr}
             </span>
@@ -76,6 +78,7 @@ export function ActionDrawer({
               <Label htmlFor="draft-message">Message preview</Label>
               <Textarea
                 id="draft-message"
+                data-testid="draft-message"
                 className="min-h-40 flex-1"
                 value={draft}
                 onChange={(event) => onDraftChange(event.target.value)}
@@ -85,6 +88,7 @@ export function ActionDrawer({
           <Button
             type="button"
             size="lg"
+            data-testid="approve-rebooking"
             className="h-12 w-full text-base"
             disabled={sending || draftStatus !== "ready" || draft.trim() === ""}
             onClick={onApprove}
