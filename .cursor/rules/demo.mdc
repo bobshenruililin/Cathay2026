@@ -1,0 +1,11 @@
+---
+description: Demo path and e2e rules — six steps, Playwright, sim clock
+globs: docs/DEMO.md, e2e/**
+alwaysApply: false
+---
+
+# Demo
+
+- The demo is 6 steps.
+- Each step has a Playwright assertion.
+- Never mock time in the demo path — use the sim's clock.
