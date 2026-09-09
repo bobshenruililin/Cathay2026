@@ -1,0 +1,11 @@
+---
+description: Engine purity, MCT table, and option-generation test rules
+globs: packages/engine/**
+alwaysApply: false
+---
+
+# Engine
+
+- Any change to option generation requires a property-based test.
+- The MCT table is the single source of truth.
+- `reasoning` strings must be human-readable.

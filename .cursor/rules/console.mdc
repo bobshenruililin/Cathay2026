@@ -1,0 +1,11 @@
+---
+description: Console UI rules for iPad gate agents and LLM drafts
+globs: apps/console/**
+alwaysApply: false
+---
+
+# Console
+
+- Mobile-first for iPad landscape (gate agents use iPads).
+- Every async state has loading, empty, and error.
+- No raw LLM output without a "draft" label.
