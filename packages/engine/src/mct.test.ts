@@ -2,10 +2,14 @@ import { describe, expect, it } from "vitest";
 import {
   GATE_WALK_BUFFER_MINUTES,
   HKG_MCT_MINUTES,
+  UM_ESCORT_BUFFER_MINUTES,
+  WHEELCHAIR_TRANSIT_BUFFER_MINUTES,
   carrierFamily,
+  extraTransitMinutes,
   hkgMctMinutes,
   isOneworldAirline,
   requiredMinutes,
+  requiredMinutesFor,
 } from "./mct";
 
 const FAMILIES = ["CX", "UO", "ONEWORLD", "OTHER"] as const;
@@ -27,6 +31,15 @@ describe("mct table", () => {
     expect(hkgMctMinutes("CX", "BA")).toBe(60);
     expect(hkgMctMinutes("UO", "CX")).toBe(70);
     expect(hkgMctMinutes("5J", "5J")).toBe(80);
+    expect(extraTransitMinutes({})).toBe(0);
+    expect(extraTransitMinutes({ wheelchair: true })).toBe(WHEELCHAIR_TRANSIT_BUFFER_MINUTES);
+    expect(extraTransitMinutes({ um: true })).toBe(UM_ESCORT_BUFFER_MINUTES);
+    expect(extraTransitMinutes({ um: true, wheelchair: true })).toBe(
+      WHEELCHAIR_TRANSIT_BUFFER_MINUTES + UM_ESCORT_BUFFER_MINUTES,
+    );
+    expect(requiredMinutesFor("CX", "CX", {})).toBe(60);
+    expect(requiredMinutesFor("CX", "CX", { wheelchair: true })).toBe(75);
+    expect(HKG_MCT_MINUTES.CX_CX).toBe(50);
     const sample = { CX: "CX", UO: "UO", ONEWORLD: "BA", OTHER: "5J" } as const;
     for (const inbound of FAMILIES) {
       for (const outbound of FAMILIES) {

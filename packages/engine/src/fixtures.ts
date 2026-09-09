@@ -36,8 +36,17 @@ export function makePassenger(
   pnr = "ABC123",
   tier: Passenger["tier"] = "Gold",
   cabin: Passenger["cabin"] = "Business",
+  extras: Partial<Pick<Passenger, "um" | "wheelchair" | "partySize" | "name">> = {},
 ): Passenger {
-  return { pnr, name: "Test Passenger", tier, cabin };
+  return {
+    pnr,
+    name: extras.name ?? "Test Passenger",
+    tier,
+    cabin,
+    um: extras.um,
+    wheelchair: extras.wheelchair,
+    partySize: extras.partySize,
+  };
 }
 
 export function makeConnection(
