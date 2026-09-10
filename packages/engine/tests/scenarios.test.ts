@@ -89,8 +89,8 @@ describe("20 real-world edge cases", () => {
     const result = triageConnection(link(pax({ wheelchair: true }), missed()), [out("CX252", "CX", 120, FULL)]);
     expect(HKG_MCT_MINUTES.CX_CX).toBe(50);
     expect(requiredMinutes("CX", "CX")).toBe(60);
-    expect(result.reasoning.join(" ")).toMatch(/Wheelchair assistance adds 15 min/);
-    expect(result.options[0]?.reasoning.join(" ")).toMatch(/passenger buffers/);
+    expect(result.reasoning.join(" ")).toMatch(/Wheelchair assistance adds 15/);
+    expect(result.options[0]?.reasoning.join(" ")).toMatch(/wheelchair or escort time/);
   });
 
   it("10 wheelchair: adult without flag still uses MCT+walk only", () => {
@@ -117,7 +117,7 @@ describe("20 real-world edge cases", () => {
     ]);
     expect(options).toHaveLength(1);
     expect(options[0]?.offeredCabin).toBe("Economy");
-    expect(options[0]?.reasoning.join(" ")).toMatch(/Unsplittable party of 4|Downgrade protection/);
+    expect(options[0]?.reasoning.join(" ")).toMatch(/Party of 4 stays together|Hold Economy instead/);
   });
 
   it("14 party of 1 can use a 2-seat flight that a party of 4 cannot", () => {
@@ -129,7 +129,7 @@ describe("20 real-world edge cases", () => {
   it("15 party of 4: triage reasoning forbids splitting across flights", () => {
     const result = triageConnection(link(pax({ partySize: 4 }), missed()), [out("CX252", "CX", 120, FULL)]);
     expect(result.reasoning.join(" ")).toMatch(/Party of 4 on one PNR cannot be split/);
-    expect(result.options[0]?.reasoning.join(" ")).toMatch(/Unsplittable party of 4/);
+    expect(result.options[0]?.reasoning.join(" ")).toMatch(/Party of 4 stays together/);
   });
 
   it("16 Business exhausted: downgrade protection holds Premium Economy", () => {
@@ -139,7 +139,7 @@ describe("20 real-world edge cases", () => {
     expect(options[0]?.seatMatch).toBe(false);
     expect(options[0]?.downgradeProtected).toBe(true);
     expect(options[0]?.offeredCabin).toBe("Premium Economy");
-    expect(options[0]?.reasoning.join(" ")).toMatch(/Downgrade protection holds Premium Economy/);
+    expect(options[0]?.reasoning.join(" ")).toMatch(/Hold Premium Economy instead/);
   });
 
   it("17 Business and Premium Economy exhausted: protection holds Economy", () => {
@@ -159,8 +159,8 @@ describe("20 real-world edge cases", () => {
       out("CX252", "CX", 120, seatsBiz()),
     ]);
     expect(options[0]?.offeredCabin).toBe("Business");
-    expect(options[0]?.reasoning.join(" ")).toMatch(/First cabin is exhausted/);
-    expect(options[0]?.reasoning.join(" ")).toMatch(/Downgrade protection/);
+    expect(options[0]?.reasoning.join(" ")).toMatch(/First is full/);
+    expect(options[0]?.reasoning.join(" ")).toMatch(/Hold Business instead/);
   });
 
   it("20 mixed: UM party of 4 with Business gone stays on one CX flight", () => {
@@ -173,7 +173,7 @@ describe("20 real-world edge cases", () => {
     expect(options[0]?.downgradeProtected).toBe(true);
     expect(options[0]?.reasoning.join(" ")).toMatch(/Unaccompanied minor/);
     expect(options[0]?.reasoning.join(" ")).toMatch(/Wheelchair assistance/);
-    expect(options[0]?.reasoning.join(" ")).toMatch(/whole party stays on CX252/);
+    expect(options[0]?.reasoning.join(" ")).toMatch(/nobody is split off CX252/);
   });
 });
 

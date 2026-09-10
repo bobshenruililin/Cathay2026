@@ -26,7 +26,9 @@ export function out(
 }
 
 export function pax(
-  extras: Partial<Pick<Passenger, "um" | "wheelchair" | "partySize" | "cabin" | "tier" | "pnr">> = {},
+  extras: Partial<
+    Pick<Passenger, "um" | "wheelchair" | "ssr" | "partyId" | "partySize" | "cabin" | "tier" | "pnr">
+  > = {},
 ): Passenger {
   return makePassenger(extras.pnr ?? "EDGE01", extras.tier ?? "Gold", extras.cabin ?? "Business", extras);
 }
