@@ -1,30 +1,21 @@
-import { addMinutesIso, triageConnection } from "engine";
+import { addMinutesIso } from "engine";
 import type { Flight } from "engine";
 import { CX254_DELAY_MINUTES, TYPHOON_DELAY_MINUTES } from "sim";
 import { seedFlights, seedLinks, type Link } from "./mock-bank";
-import { disruptionFrom, flightsByNumber, sortQueue } from "./queue";
-import type { ConsoleAdapter, ConsoleSnapshot, QueueItem } from "./types";
+import { collectTriage, disruptionFrom } from "./queue";
+import type { ConsoleAdapter, ConsoleSnapshot } from "./types";
 
 function cloneFlights(flights: Flight[]): Flight[] {
   return JSON.parse(JSON.stringify(flights)) as Flight[];
 }
 
 function snapshot(clockIso: string, flights: Flight[], links: Link[]): ConsoleSnapshot {
-  const lookup = flightsByNumber(flights);
-  const queue: QueueItem[] = [];
-  for (const link of links) {
-    const inbound = lookup.get(link.inboundFlightNumber);
-    const outbound = lookup.get(link.outboundFlightNumber);
-    if (!inbound || !outbound) continue;
-    const result = triageConnection({ inbound, outbound, passenger: link.passenger }, flights);
-    if (!result.atRisk) continue;
-    queue.push({ result, passenger: link.passenger, inbound, outbound });
-  }
+  const { queue, quietCount } = collectTriage(links, flights);
   return {
     clockIso,
     flights,
-    queue: sortQueue(queue),
-    disruption: disruptionFrom(queue, flights),
+    queue,
+    disruption: disruptionFrom(queue, flights, quietCount),
   };
 }
 

@@ -16,7 +16,10 @@ At-risk = tight or missed. HKG only.
 ## Unaccompanied minors / wheelchair / party / downgrade
 
 - UM recovery stays on CX metal (staff escort). Partner flights are not offered.
+  `um: true` or SSR `UMNR` — flags and SSR do not stack.
+- Wheelchair / PRM: `wheelchair: true` or SSR `WCHR` / `WCHS` / `WCHC`.
 - Whole party (`partySize`, default 1) must fit on one flight in one cabin.
+  Optional `partyId` is echoed in reasoning only.
 - If the booked cabin is exhausted, downgrade protection holds the next lower
   cabin with enough seats and states that in `reasoning`.
 
@@ -45,6 +48,13 @@ typhoon / CX254 delay constants as `packages/sim`. LLM drafting is
 `lib/llm/draft.ts` plus `POST /api/draft`. Flight-number guard falls back to the
 Cathay Alert template. The action column is a persistent right-hand drawer
 (iPad landscape, min 1024px).
+
+## MAXCT / overnight
+
+If an option lands on the next calendar day, reasoning must call it overnight
+(`Overnight option (next calendar day)` in `option-reason.ts`). Unaccompanied
+minors are not offered next-calendar-day flights. Do not rip UM-on-CX-metal
+or downgrade protection to match an older plan.
 
 ## Verification
 

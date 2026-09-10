@@ -1,0 +1,19 @@
+{
+  "id": "30-next-cx-after-same-day",
+  "title": "Next CX is the earliest later CX once same-day is taken",
+  "story": "CX270 is tonight's best. CX800 tomorrow is the next CX bucket, not another same-day clone.",
+  "tags": ["overnight-required", "inbound-delay"],
+  "passenger": { "pnr": "NEXTCX", "name": "Owen Blake", "tier": "Green", "cabin": "Economy" },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T19:10:00+08:00" },
+  "pool": [
+    { "flightNumber": "CX270", "airline": "CX", "depart": "2026-11-16T21:00:00+08:00" },
+    { "flightNumber": "CX800", "airline": "CX", "depart": "2026-11-17T10:00:00+08:00" }
+  ],
+  "expected": {
+    "status": "tight",
+    "atRisk": true,
+    "feasible": true,
+    "optionFlightNumbers": ["CX270", "CX800"]
+  }
+}

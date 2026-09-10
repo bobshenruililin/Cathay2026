@@ -78,6 +78,7 @@ export function seedLinks(): Link[] {
     { passenger: p("T5B1YD", "Noah Kim", "Gold", "Business"), inboundFlightNumber: "CX501", outboundFlightNumber: "CX250" },
     { passenger: p("U9C4WE", "Priya Singh", "Silver", "Economy"), inboundFlightNumber: "CX731", outboundFlightNumber: "CX402" },
     { passenger: p("V3D8AF", "Lucas Garcia", "Green", "Economy"), inboundFlightNumber: "UO102", outboundFlightNumber: "CX288" },
+    { passenger: p("OK9SIL", "Elena Ng", "Green", "Economy"), inboundFlightNumber: "UO102", outboundFlightNumber: "CX256" },
   ];
 }
 

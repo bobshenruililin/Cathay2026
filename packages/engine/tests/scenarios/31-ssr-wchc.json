@@ -1,0 +1,23 @@
+{
+  "id": "31-ssr-wchc",
+  "title": "SSR WCHC is wheelchair assistance",
+  "story": "Cabin wheelchair. Same 15-minute transit as WCHR.",
+  "tags": ["wheelchair"],
+  "passenger": {
+    "pnr": "WCHC01",
+    "name": "Rosa Diaz",
+    "tier": "Gold",
+    "cabin": "Economy",
+    "ssr": ["WCHC"]
+  },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T19:10:00+08:00" },
+  "pool": [{ "flightNumber": "CX254", "airline": "CX", "depart": "2026-11-16T21:00:00+08:00" }],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["CX254"],
+    "optionReasoningIncludes": ["Wheelchair assistance"]
+  }
+}

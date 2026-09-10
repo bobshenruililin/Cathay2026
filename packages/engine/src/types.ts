@@ -35,6 +35,10 @@ export type Passenger = {
   um?: boolean;
   /** Wheelchair / PRM assistance. Default false when omitted. */
   wheelchair?: boolean;
+  /** IATA SSR codes (UMNR, WCHR, WCHS, WCHC). Flags and SSR do not stack. */
+  ssr?: string[];
+  /** Desk reference for a travelling group. Echoed in reasoning only. */
+  partyId?: string;
   /** Party size on this PNR. Default 1 when omitted. Cannot split across flights. */
   partySize?: number;
 };

@@ -1,0 +1,23 @@
+{
+  "id": "01-inbound-delay",
+  "title": "Inbound CX401 delayed, CX250 missed",
+  "story": "CX401 from Taipei lands 45 minutes late. Gold J passenger Chen Wei will miss CX250 to London.",
+  "tags": ["inbound-delay"],
+  "passenger": { "pnr": "A1B2C3", "name": "Chen Wei", "tier": "Gold", "cabin": "Business" },
+  "inbound": {
+    "flightNumber": "CX401",
+    "airline": "CX",
+    "arrive": "2026-11-16T18:45:00+08:00",
+    "delayMinutes": 45
+  },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T19:10:00+08:00" },
+  "pool": [{ "flightNumber": "CX252", "airline": "CX", "depart": "2026-11-16T21:00:00+08:00" }],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["CX252"],
+    "triageReasoningIncludes": ["missed"],
+    "optionReasoningIncludes": ["Protect on CX252"]
+  }
+}

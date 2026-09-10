@@ -14,6 +14,7 @@ export type DisruptionStatus = {
   label: string;
   atRiskCount: number;
   delayedFlights: number;
+  quietCount: number;
 };
 
 export type ConsoleSnapshot = {

@@ -1,0 +1,26 @@
+{
+  "id": "38-um-same-day-later-cx",
+  "title": "UM may take a later CX the same calendar day",
+  "story": "Overnight is forbidden. Same-night CX252 is allowed.",
+  "tags": ["unaccompanied-minor"],
+  "passenger": {
+    "pnr": "UMDAY",
+    "name": "Lily Zhou",
+    "tier": "Green",
+    "cabin": "Economy",
+    "um": true
+  },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [
+    { "flightNumber": "CX252", "airline": "CX", "depart": "2026-11-16T22:30:00+08:00" },
+    { "flightNumber": "CX800", "airline": "CX", "depart": "2026-11-17T10:00:00+08:00" }
+  ],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["CX252"],
+    "optionReasoningIncludes": ["do not overnight"]
+  }
+}

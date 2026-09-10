@@ -9,16 +9,21 @@ Run: `pnpm test:demo`
 
 Open the Reconnect transfer desk.
 
-Assertion: HKG station clock is visible and is not a placeholder dash.
+Assertion: HKG station clock is visible and is not a placeholder dash. A
+**SIM** badge is on the header (live adapter). Kill-LLM / offline draft is a
+talk beat, not a seventh step.
 
 ## 2. Live triage queue from sim + engine
 
 The left column lists at-risk connections from the seeded evening bank.
-`packages/sim` supplies flights/connections; `packages/engine` `triageConnection` /
-`generateOptions` fills status, slack, options, and `reasoning`.
+Healthy connections stay off the action list; the queue header shows
+`N connections OK — silent`. `packages/sim` supplies flights/connections;
+`packages/engine` `triageConnection` / `generateOptions` fills status, slack,
+options, and `reasoning`.
 
-Assertion: at least one queue row is visible and engine reasoning is shown for the
-auto-selected passenger.
+Assertion: at least one queue row is visible, a handling chip (`UM` / `WCH` /
+`party of N`) is on a row, and engine reasoning is shown for the auto-selected
+passenger.
 
 ## 3. Simulate Typhoon Delay
 
@@ -26,14 +31,20 @@ Click **Simulate Typhoon Delay**. The adapter calls `sim.injectTyphoon()`
 (90 minutes on HKG inbounds, same constant as the mock seam). The triage
 queue refreshes in place; no page reload.
 
-Assertion: delayed-flight count increases and the queue remains on screen.
+Assertion: delayed-flight count increases, the queue remains on screen, and
+the triage header shows a Peak flood chip.
 
 ## 4. Late Inbound CX254
 
 Click **Late Inbound CX254**. Sim delays inbound CX254 (TPE→HKG in the synthetic
 bank) by 180 minutes (`CX254_DELAY_MINUTES`).
 
-Assertion: a queue row mentions CX254 and CX254’s delay minutes are greater than 0.
+Assertion: a queue row mentions CX254; named UM `W4N9KD` (Mei Chan) is in the
+queue with an UM chip; SSR-only `SSRUMNR` (Mina Choi, UMNR) shows UM; stacked
+case `MIXED4` (Cole Family) shows UM + WCH + party of 4 and option reasoning
+`Keep party COLE together`; SSR-only `SSRWCH` (Grace Ho, WCHR) shows WCH on
+the queue and panel; `FIRST1` (Elena Rossi) option reasoning includes
+`Hold Business instead`; CX254 delay minutes > 0.
 
 ## 5. Queue updates and recovery options
 

@@ -1,0 +1,17 @@
+{
+  "id": "05-overnight-required",
+  "title": "No same-day CX; next metal is tomorrow morning",
+  "story": "Last LHR tonight is gone. CX250 tomorrow at 10:00 is the recovery for an adult.",
+  "tags": ["overnight-required"],
+  "passenger": { "pnr": "NIGHT01", "name": "David Ng", "tier": "Green", "cabin": "Economy" },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [{ "flightNumber": "CX800", "airline": "CX", "depart": "2026-11-17T10:00:00+08:00" }],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["CX800"],
+    "optionReasoningIncludes": ["Protect on CX800", "Overnight option"]
+  }
+}

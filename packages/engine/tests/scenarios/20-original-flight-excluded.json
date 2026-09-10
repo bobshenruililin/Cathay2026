@@ -1,0 +1,19 @@
+{
+  "id": "20-original-flight-excluded",
+  "title": "The missed flight is not offered back as a recovery",
+  "story": "Pool still lists CX250. The engine must skip it.",
+  "tags": ["inbound-delay"],
+  "passenger": { "pnr": "SAMEFLT", "name": "Noah Berger", "tier": "Gold", "cabin": "Business" },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [
+    { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+    { "flightNumber": "CX252", "airline": "CX", "depart": "2026-11-16T21:00:00+08:00" }
+  ],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["CX252"]
+  }
+}

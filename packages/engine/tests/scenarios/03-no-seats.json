@@ -1,0 +1,24 @@
+{
+  "id": "03-no-seats",
+  "title": "Next CX is sold out in every cabin",
+  "story": "Missed CX250. The only later CX has zero seats left. Do not invent a recovery.",
+  "tags": ["no-seats"],
+  "passenger": { "pnr": "NOSEAT1", "name": "James Holt", "tier": "Silver", "cabin": "Economy" },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [
+    {
+      "flightNumber": "CX252",
+      "airline": "CX",
+      "depart": "2026-11-16T21:00:00+08:00",
+      "seats": { "First": 0, "Business": 0, "Premium Economy": 0, "Economy": 0 }
+    }
+  ],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": [],
+    "triageReasoningIncludes": ["missed"]
+  }
+}

@@ -1,3 +1,5 @@
+import { isUnaccompaniedMinor, needsWheelchair } from "./passenger";
+
 const ONEWORLD = new Set([
   "AA",
   "AS",
@@ -75,10 +77,11 @@ export function requiredMinutes(inboundAirline: string, outboundAirline: string)
 export function extraTransitMinutes(passenger: {
   um?: boolean;
   wheelchair?: boolean;
+  ssr?: string[];
 }): number {
   return (
-    (passenger.wheelchair === true ? WHEELCHAIR_TRANSIT_BUFFER_MINUTES : 0) +
-    (passenger.um === true ? UM_ESCORT_BUFFER_MINUTES : 0)
+    (needsWheelchair(passenger) ? WHEELCHAIR_TRANSIT_BUFFER_MINUTES : 0) +
+    (isUnaccompaniedMinor(passenger) ? UM_ESCORT_BUFFER_MINUTES : 0)
   );
 }
 
@@ -86,7 +89,7 @@ export function extraTransitMinutes(passenger: {
 export function requiredMinutesFor(
   inboundAirline: string,
   outboundAirline: string,
-  passenger: { um?: boolean; wheelchair?: boolean },
+  passenger: { um?: boolean; wheelchair?: boolean; ssr?: string[] },
 ): number {
   return requiredMinutes(inboundAirline, outboundAirline) + extraTransitMinutes(passenger);
 }

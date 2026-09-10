@@ -1,0 +1,23 @@
+{
+  "id": "33-party-id-solo",
+  "title": "partyId is spoken even for a party of one",
+  "story": "Desk tagged this PNR to a group. Echo the id on the option.",
+  "tags": ["party-of-4"],
+  "passenger": {
+    "pnr": "TAG001",
+    "name": "Sam Chen",
+    "tier": "Gold",
+    "cabin": "Business",
+    "partyId": "CHEN-FAM"
+  },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [{ "flightNumber": "CX252", "airline": "CX", "depart": "2026-11-16T21:00:00+08:00" }],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": ["CX252"],
+    "optionReasoningIncludes": ["Keep party CHEN-FAM together on CX252"]
+  }
+}

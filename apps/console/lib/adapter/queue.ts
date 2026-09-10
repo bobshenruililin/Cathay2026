@@ -1,4 +1,4 @@
-import type { Flight } from "engine";
+import { triageConnection, type Flight, type Passenger } from "engine";
 import { SEVERITY_RANK, TIER_RANK, type QueueItem } from "./types";
 
 export function flightsByNumber(flights: Flight[]): Map<string, Flight> {
@@ -15,12 +15,42 @@ export function sortQueue(items: QueueItem[]): QueueItem[] {
   });
 }
 
-export function disruptionFrom(queue: QueueItem[], flights: Flight[]) {
+export type TriageRow = {
+  inboundFlightNumber: string;
+  outboundFlightNumber: string;
+  passenger: Passenger;
+};
+
+/** At-risk rows stay the action queue. Healthy connections are counted, not acted on. */
+export function collectTriage(
+  rows: TriageRow[],
+  flights: Flight[],
+  resolved: Set<string> = new Set(),
+): { queue: QueueItem[]; quietCount: number } {
+  const lookup = flightsByNumber(flights);
+  const queue: QueueItem[] = [];
+  let quietCount = 0;
+  for (const row of rows) {
+    if (resolved.has(row.passenger.pnr)) continue;
+    const inbound = lookup.get(row.inboundFlightNumber);
+    const outbound = lookup.get(row.outboundFlightNumber);
+    if (!inbound || !outbound) continue;
+    const result = triageConnection({ inbound, outbound, passenger: row.passenger }, flights);
+    if (!result.atRisk) {
+      quietCount += 1;
+      continue;
+    }
+    queue.push({ result, passenger: row.passenger, inbound, outbound });
+  }
+  return { queue: sortQueue(queue), quietCount };
+}
+
+export function disruptionFrom(queue: QueueItem[], flights: Flight[], quietCount: number) {
   const delayedFlights = flights.filter((flight) => flight.delayMinutes > 0).length;
   const atRiskCount = queue.length;
   const label =
     atRiskCount === 0
       ? "Normal operations"
       : `${atRiskCount} at-risk connection${atRiskCount === 1 ? "" : "s"}`;
-  return { label, atRiskCount, delayedFlights };
+  return { label, atRiskCount, delayedFlights, quietCount };
 }

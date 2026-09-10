@@ -1,0 +1,23 @@
+{
+  "id": "35-economy-no-upgrade",
+  "title": "Economy does not auto-upgrade into empty J",
+  "story": "Y is sold out. First and Business still have seats. That is not a recovery for an Economy passenger.",
+  "tags": ["no-seats"],
+  "passenger": { "pnr": "NOUPG", "name": "Leo Hart", "tier": "Green", "cabin": "Economy" },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T18:40:00+08:00" },
+  "pool": [
+    {
+      "flightNumber": "CX252",
+      "airline": "CX",
+      "depart": "2026-11-16T21:00:00+08:00",
+      "seats": { "First": 2, "Business": 10, "Premium Economy": 8, "Economy": 0 }
+    }
+  ],
+  "expected": {
+    "status": "missed",
+    "atRisk": true,
+    "feasible": false,
+    "optionFlightNumbers": []
+  }
+}

@@ -19,7 +19,7 @@ function passengerNotes(connection: Connection): string[] {
   }
   if (isUnaccompaniedMinor(connection.passenger)) {
     lines.push(
-      `Unaccompanied minor: ${UM_ESCORT_BUFFER_MINUTES} min staff-escort buffer; recovery options stay on CX metal.`,
+      `Unaccompanied minor: ${UM_ESCORT_BUFFER_MINUTES} min staff-escort buffer; recovery options stay on CX metal; do not overnight them in HKG.`,
     );
   }
   const size = partySizeOf(connection.passenger);

@@ -33,3 +33,15 @@ Niki Jr. won presentation with a Polaroid robot. FlyLab won the employee track w
 ## MILP aircraft-crew recovery
 
 Aircraft and crew recovery solvers are AOCC. Not the transfer desk (L17).
+
+## After the desk loop is live
+
+- Cargo / ULD Reconnect (same engine, different entities). NAAR-shaped.
+- Party-batch API (one call that keeps several PNRs on the same party).
+- Partner seat inventory beyond the synthetic pool.
+- LLM in ranking, feasibility, or option generation.
+- CX Conditions of Carriage / EU261 as RAG **for drafts only** — never for ranking.
+- Goal 3 data-realism (`packages/data/SOURCES.md`, OpenFlights as a **citation**, extra canned disruptions).
+- Goal 4 extras: `docs/ARCHITECTURE.md`.
+- Visual QA / Percy (Open MCT pyramid). Playwright demo stays the HITL bar.
+- OpenMCT-style telemetry plugins. Do not embed Open MCT.

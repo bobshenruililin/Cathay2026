@@ -1,0 +1,17 @@
+{
+  "id": "10-healthy-connection",
+  "title": "Healthy slack stays quiet",
+  "story": "Three-hour buffer. The engine should not surface recoveries. Quiet by default.",
+  "tags": ["tight-connection"],
+  "passenger": { "pnr": "OK0001", "name": "Helen Park", "tier": "Diamond", "cabin": "First" },
+  "inbound": { "flightNumber": "CX401", "airline": "CX" },
+  "outbound": { "flightNumber": "CX250", "airline": "CX", "depart": "2026-11-16T21:00:00+08:00" },
+  "pool": [{ "flightNumber": "CX252", "airline": "CX", "depart": "2026-11-16T23:00:00+08:00" }],
+  "expected": {
+    "status": "ok",
+    "atRisk": false,
+    "feasible": true,
+    "optionFlightNumbers": [],
+    "triageReasoningIncludes": ["healthy"]
+  }
+}

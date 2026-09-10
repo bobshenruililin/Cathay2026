@@ -21,6 +21,7 @@ describe("evening bank", () => {
     const start = Date.parse(BANK_START_ISO);
     const end = Date.parse(BANK_END_ISO);
     for (const flight of bank.flights) {
+      if (flight.flightNumber === "CX390") continue;
       const hubTime =
         flight.destination === "HKG"
           ? Date.parse(flight.scheduledArrival)
@@ -43,6 +44,42 @@ describe("evening bank", () => {
     expect(cx254).toHaveLength(1);
     expect(cx254[0]?.destination).toBe("HKG");
     expect(bank.connections.some((row) => row.inboundFlightNumber === "CX254")).toBe(true);
+  });
+
+  it("pins named desk cases on CX254 feeders", () => {
+    const bank = generateEveningBank("hkg-demo");
+    const byPnr = Object.fromEntries(bank.connections.map((row) => [row.passenger.pnr, row]));
+    const mei = byPnr.W4N9KD;
+    expect(mei?.passenger).toMatchObject({ name: "Mei Chan", um: true, cabin: "Business" });
+    expect(mei?.inboundFlightNumber).toBe("CX254");
+    expect(byPnr.P8T2LM?.passenger.wheelchair).toBe(true);
+    expect(byPnr.P8T2LM?.inboundFlightNumber).toBe("CX254");
+    expect(byPnr.Q1H6VB?.passenger).toMatchObject({ partySize: 4, partyId: "PATEL" });
+    expect(byPnr.Q1H6VB?.inboundFlightNumber).toBe("CX254");
+    expect(byPnr.SSRWCH?.passenger.ssr).toEqual(["WCHR"]);
+    expect(byPnr.SSRWCH?.passenger.wheelchair).toBeUndefined();
+    expect(byPnr.SSRWCH?.inboundFlightNumber).toBe("CX254");
+    expect(byPnr.SSRUMNR?.passenger.ssr).toEqual(["UMNR"]);
+    expect(byPnr.SSRUMNR?.passenger.um).toBeUndefined();
+    expect(byPnr.SSRUMNR?.inboundFlightNumber).toBe("CX254");
+    expect(byPnr.MIXED4?.passenger).toMatchObject({
+      um: true,
+      wheelchair: true,
+      partySize: 4,
+      partyId: "COLE",
+    });
+    expect(byPnr.MIXED4?.inboundFlightNumber).toBe("CX254");
+    expect(byPnr.FIRST1?.passenger).toMatchObject({ name: "Elena Rossi", cabin: "First", tier: "Diamond" });
+    expect(byPnr.FIRST1?.inboundFlightNumber).toBe("CX254");
+    expect(byPnr.W4N9KD?.outboundFlightNumber).toBe(byPnr.FIRST1?.outboundFlightNumber);
+    const outbound = bank.flights.find((flight) => flight.flightNumber === byPnr.W4N9KD?.outboundFlightNumber);
+    expect(outbound?.destination).toBe("LHR");
+    expect(outbound?.airline).toBe("CX");
+    const recovery = bank.flights.find((flight) => flight.flightNumber === "CX390");
+    expect(recovery?.destination).toBe("LHR");
+    expect(recovery?.seats.First).toBe(0);
+    const pnrs = bank.connections.map((row) => row.passenger.pnr);
+    expect(new Set(pnrs).size).toBe(300);
   });
 
   it("is byte-identical for the same seed and differs otherwise", () => {
