@@ -1,0 +1,138 @@
+{
+  "corrections": [
+    "GME 2021 is a public participant repo, not a press-named champion. The 2021 champion name is unpublished, same as 2018.",
+    "2019 event was cancelled (Cathay press, 8 Nov 2019). Do not read the empty year as ‘ops had not been invented yet’.",
+    "2020: no primary press found. Numbering goes 3rd (2018) → 4th (2021). Do not invent a 2020 champion.",
+    "2022 CX press: first physical full event at Cathay City since 2018. 2021 podium existed (Dean Fung); format is unpublished.",
+    "FlyMate / Skydreamers is the 2023 2nd runner-up with a public repo. NAAR won. A podium GitHub is still not a champion GitHub."
+  ],
+  "failures": [
+    {
+      "name": "Fight4Flight",
+      "year": 2017,
+      "result": "1st runner-up",
+      "why": "Delay re-plan from the passenger side. No transfer-desk owner. Closest ancestor; it lost."
+    },
+    {
+      "name": "Aviator",
+      "year": 2017,
+      "result": "2nd runner-up",
+      "why": "Saw connections as a dining/activity moment. Recovery is the job."
+    },
+    {
+      "name": "Hacksmart",
+      "year": 2017,
+      "result": "top six",
+      "why": "Chat itinerary planner. The 2023 GitHub corpus is this idea with Azure."
+    },
+    {
+      "name": "FlyMate",
+      "year": 2023,
+      "result": "2nd runner-up",
+      "why": "Named PRM. Built a passenger GenAI app. Cargo CV won. WCH is already +15 min in mct.ts."
+    },
+    {
+      "name": "SMASH",
+      "year": 2024,
+      "result": "participant",
+      "why": "Same HK Express waste pain as GingTrip. Dashboard, no trolley. Theater lost."
+    },
+    {
+      "name": "U-Explore",
+      "year": 2025,
+      "result": "student champion",
+      "why": "Won 2025 lifestyle. 2026 scoring is feasibility + BU. FlyLab is the analogue, not this."
+    },
+    {
+      "name": "FlyVision",
+      "year": 2025,
+      "result": "participant",
+      "why": "AWS Rekognition a year after NAAR won cargo CV. Copying last year’s technique is not a desk."
+    }
+  ],
+  "saturday": [
+    {
+      "clock": "0–15s",
+      "step": "1–2",
+      "say": "HKG transfer desk. Q77. Not a trip planner.",
+      "show": "Station clock + live queue"
+    },
+    {
+      "clock": "15–35s",
+      "step": "3",
+      "say": "Typhoon. The bank moves. Queue refreshes. No reload.",
+      "show": "Simulate Typhoon Delay"
+    },
+    {
+      "clock": "35–50s",
+      "step": "4",
+      "say": "CX254 +180. Rogers wanted this airborne in 2019. We do it on the iPad.",
+      "show": "Late Inbound CX254"
+    },
+    {
+      "clock": "50–70s",
+      "step": "5",
+      "say": "Engine ranked this. reasoning[] is verbatim. The model did not pick the flight.",
+      "show": "Option card + reasoning"
+    },
+    {
+      "clock": "70–90s",
+      "step": "6",
+      "say": "Draft is guarded. Approve is the only send. Beside Passenger Recovery, not instead.",
+      "show": "Approve Rebooking & Send"
+    }
+  ],
+  "dontSay": [
+    {
+      "dont": "AI for aviation / ChatGPT rebooking",
+      "say": "HKG transfer desk. Q77. Altéa is cryptic. The iPad is the glass."
+    },
+    {
+      "dont": "We replace Passenger Recovery",
+      "say": "Beside it. Last 90 minutes. UM, WCH, unsplittable party."
+    },
+    {
+      "dont": "The model picked the flight",
+      "say": "Engine ranked it. reasoning[] is verbatim. LLM drafted the SMS."
+    },
+    {
+      "dont": "We’ll add a robot / trolley next",
+      "say": "FlyLab won without one. GingTrip came back a year later. We already have the button."
+    }
+  ],
+  "scale": [
+    {
+      "year": 2017,
+      "teams": "28 teams",
+      "apps": "—",
+      "note": "Inflight NFC (TouchCX) won. IROPS placed, no desk.",
+      "cite": "CX 2017 hackathon story"
+    },
+    {
+      "year": 2022,
+      "teams": "20 teams",
+      "apps": "500 apps",
+      "note": "Cathay Green: first pitch ran out of time; finals presentation won.",
+      "cite": "Swire 5th annual"
+    },
+    {
+      "year": 2023,
+      "teams": "64 teams",
+      "apps": "1,500 apps",
+      "note": "Cargo CV (NAAR) won. FlyMate (PRM app) 2nd RU. GingTrip was in the room and lost.",
+      "cite": "CX 6th annual"
+    },
+    {
+      "year": 2025,
+      "teams": "36 student + 12 employee",
+      "apps": "1,900 student + 200 employee",
+      "note": "Two champions: U-Explore (student) and FlyLab (employee). Top 3 each track → Cathay Innovate, fund up to HK$500k.",
+      "cite": "Swire 8th annual"
+    }
+  ],
+  "mix2017": [
+    { "label": "Crew tablet — won", "value": 1 },
+    { "label": "IROPS, no desk — 1st RU", "value": 1 },
+    { "label": "Lifestyle / concierge — no win", "value": 4 }
+  ]
+}
