@@ -18,6 +18,12 @@ This note specifies the three production integration points required for a 30-da
 
 No Altéa write is proposed for week 1 of the pilot. Rebooking writes stay in Reconnect’s audit log until PSS change-management signs off `PNR_AddMultiElements`.
 
+## 1.1 Position relative to Passenger Recovery
+
+Cathay already operates a typhoon disruption stack: Amadeus Passenger Recovery for mass reaccommodation (public figure: about 8,000 passengers in 40 minutes), Accenture Rebooking Experience (customer self-rebook chatbots), and 15below customer communication (Rogers / Ling, Airport Industry Review, 2019). This pilot does not replace those systems.
+
+Reconnect is the HKG T1 transfer-desk layer for the last 90 minutes: MCT plus walk, UM, wheelchair, unsplittable party, and agent-visible `reasoning[]`. Mass IROPS remains Passenger Recovery. Week 1 is Altéa **read**, FIDS MQTT, and CANS push after human confirm. `RECONNECT_PILOT=off` returns the desk to Altéa cryptic / Q77.
+
 ## 2. Architecture (pilot)
 
 ```
