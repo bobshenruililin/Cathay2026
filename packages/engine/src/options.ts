@@ -1,7 +1,7 @@
 import { isOneworldAirline, requiredMinutesFor } from "./mct";
 import { hkgCalendarDay, minutesBetween } from "./iso";
 import { isAtRisk } from "./feasibility";
-import { delayReason, mctReason, seatingReason, specialHandlingReasons } from "./option-reason";
+import { delayReason, mctReason, scoreReason, seatingReason, specialHandlingReasons } from "./option-reason";
 import { isUnaccompaniedMinor } from "./passenger";
 import { scoreOption } from "./score";
 import { partySeating } from "./seating";
@@ -26,10 +26,11 @@ function toOption(connection: Connection, flight: Flight): RecoveryOption {
     offeredCabin: seating.offeredCabin,
     downgradeProtected: seating.downgradeProtected,
     reasoning: [
-      delayReason(flight, delayMinutes, connection.outbound.flightNumber),
+      delayReason(flight, delayMinutes, connection.outbound.flightNumber, connection.outbound.actualDeparture),
       mctReason(connection.inbound.airline, flight.airline, required, available),
       seatingReason(flight, passenger, seating),
       ...specialHandlingReasons(passenger),
+      scoreReason(passenger.tier, seating.seatMatch, delayMinutes, score),
     ],
   };
 }
@@ -59,11 +60,12 @@ function isViable(connection: Connection, candidate: Flight): boolean {
   if (candidate.flightNumber === connection.outbound.flightNumber) return false;
   if (candidate.origin !== "HKG") return false;
   if (candidate.destination !== connection.outbound.destination) return false;
-  if (isUnaccompaniedMinor(connection.passenger)) {
-    if (candidate.airline !== "CX") return false;
-    if (hkgCalendarDay(candidate.actualDeparture) > hkgCalendarDay(connection.outbound.actualDeparture)) {
-      return false;
-    }
+  if (isUnaccompaniedMinor(connection.passenger) && candidate.airline !== "CX") return false;
+  if (
+    isUnaccompaniedMinor(connection.passenger) &&
+    hkgCalendarDay(candidate.actualDeparture) !== hkgCalendarDay(connection.outbound.actualDeparture)
+  ) {
+    return false;
   }
   if (!partySeating(candidate, connection.passenger)) return false;
   const available = minutesBetween(connection.inbound.actualArrival, candidate.actualDeparture);

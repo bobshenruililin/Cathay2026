@@ -12,10 +12,13 @@ test("6-step stage demo", async ({ page }) => {
     await expect(page.getByTestId("loading-block")).toHaveCount(0);
     await expect(clock).toContainText("HKT");
     await expect(clock).toContainText("2026-11-16");
+    await expect(page.getByTestId("sim-badge")).toHaveText("SIM");
   });
 
   await test.step("2. Live triage queue from sim + engine", async () => {
     await expect(page.getByTestId("queue-item").first()).toBeVisible();
+    await expect(page.getByTestId("quiet-count")).toContainText("OK — silent");
+    await expect(page.getByTestId("handling-flags").first()).toBeVisible();
     await expect(page.getByTestId("engine-reasoning")).toBeVisible();
     await expect(page.getByTestId("engine-reasoning")).toContainText(/Slack is -?\d+ minutes/);
   });
@@ -27,6 +30,7 @@ test("6-step stage demo", async ({ page }) => {
     await expect(page.getByTestId("btn-typhoon")).toBeEnabled();
     await expect(delayed).not.toHaveText(before);
     await expect(page.getByTestId("queue-item").first()).toBeVisible();
+    await expect(page.getByTestId("queue-peak")).toContainText("Peak");
     await expect(page.getByTestId("station-clock")).toContainText("HKT");
   });
 
@@ -35,8 +39,32 @@ test("6-step stage demo", async ({ page }) => {
     await expect(page.getByTestId("btn-cx254")).toBeEnabled();
     const cxRow = page.getByTestId("queue-item").filter({ hasText: "CX254" }).first();
     await expect(cxRow).toBeVisible();
-    await cxRow.click();
-    await expect(page.getByTestId("connection-panel")).toContainText(/Delay [1-9]/);
+    const namedUm = page.getByTestId("queue-item").filter({ hasText: "W4N9KD" });
+    await expect(namedUm).toBeVisible();
+    await expect(namedUm).toContainText("CX254");
+    await expect(namedUm.getByTestId("handling-flags")).toContainText("UM");
+    const mixed = page.getByTestId("queue-item").filter({ hasText: "MIXED4" });
+    await expect(mixed).toBeVisible();
+    await expect(mixed.getByTestId("handling-flags")).toContainText("UM");
+    await expect(mixed.getByTestId("handling-flags")).toContainText("WCH");
+    await expect(mixed.getByTestId("handling-flags")).toContainText("party of 4");
+    const ssrUm = page.getByTestId("queue-item").filter({ hasText: "SSRUMNR" });
+    await expect(ssrUm).toBeVisible();
+    await expect(ssrUm.getByTestId("handling-flags")).toContainText("UM");
+    const ssrWch = page.getByTestId("queue-item").filter({ hasText: "SSRWCH" });
+    await expect(ssrWch).toBeVisible();
+    await expect(ssrWch.getByTestId("handling-flags")).toContainText("WCH");
+    await ssrWch.click();
+    const panel = page.getByTestId("connection-panel");
+    await expect(panel).toContainText(/Delay [1-9]/);
+    await expect(panel.getByTestId("handling-flags")).toContainText("WCH");
+    await mixed.click();
+    await expect(panel.getByTestId("handling-flags")).toContainText("party of 4");
+    await expect(panel).toContainText("Keep party COLE together");
+    const first1 = page.getByTestId("queue-item").filter({ hasText: "FIRST1" });
+    await expect(first1).toBeVisible();
+    await first1.click();
+    await expect(panel).toContainText("Hold Business instead");
   });
 
   await test.step("5. Queue updates and recovery options", async () => {

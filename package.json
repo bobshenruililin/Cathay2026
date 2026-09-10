@@ -5,9 +5,12 @@
   "scripts": {
     "test": "pnpm -r --if-present test",
     "typecheck": "pnpm -r --if-present typecheck",
-    "test:demo": "playwright test"
+    "test:demo": "playwright test",
+    "briefing:csv": "node docs/briefing/scripts/build-csv.mjs",
+    "briefing:pdf": "node docs/briefing/scripts/print-pdf.mjs"
   },
   "devDependencies": {
-    "@playwright/test": "^1.63.0"
+    "@playwright/test": "^1.63.0",
+    "playwright-core": "1.63.0"
   }
 }

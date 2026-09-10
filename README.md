@@ -28,3 +28,4 @@ Station clock is sim time (`Asia/Hong_Kong`). Do not mock `Date.now()`.
 - Interpretations: `docs/QUESTIONS.md`
 - Pilot (Altéa PNR, FIDS MQTT, Cathay App push): `docs/PILOT_PROPOSAL.md`
 - Scope: `docs/SCOPE.md`
+- Competitive intel (teammate briefing, not on the demo path): `docs/competitive/README.md`

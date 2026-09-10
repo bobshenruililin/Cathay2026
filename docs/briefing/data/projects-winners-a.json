@@ -1,0 +1,170 @@
+[
+  {
+    "id": "cx-discovery",
+    "name": "cxDiscovery",
+    "year": 2016,
+    "kind": "cathay-winner",
+    "org": "Inaugural champion team",
+    "bu": "Inflight / Lifestyle",
+    "oneLiner": "Personalised inflight e-magazine plus vendor targeting.",
+    "artifact": "app",
+    "outcome": "champion",
+    "strengths": ["Named inflight publications as the pain", "Second ledger: advertising revenue"],
+    "weaknesses": ["Not an ops tool", "No public champion repo found"],
+    "patterns": ["named-bu", "dual-beneficiary", "champions-no-github"],
+    "reconnectTakeaway": "State a second beneficiary (desk throughput), not only passenger care.",
+    "github": null,
+    "sources": [
+      {
+        "title": "Cathay inaugural hackathon 2016",
+        "url": "https://news.cathaypacific.com/inaugural-cathay-pacific-24-hour-hackathon-brings-out-the-best-in-tech-savvy-youngsters-141018"
+      }
+    ],
+    "copyOrFoil": "copy-pitch",
+    "confidence": "high"
+  },
+  {
+    "id": "touchcx",
+    "name": "TouchCX",
+    "year": 2017,
+    "kind": "cathay-winner",
+    "org": "IVE (five students)",
+    "bu": "Inflight",
+    "oneLiner": "Passenger phone to crew tablet for amenity requests (NFC).",
+    "artifact": "app",
+    "outcome": "champion",
+    "strengths": ["Crew workflow, not a concierge chatbot", "Visible inflight theater"],
+    "weaknesses": ["Cabin not transfer desk"],
+    "patterns": ["named-bu", "theater-90s"],
+    "reconnectTakeaway": "Win by sitting on a crew/agent device, not another passenger super-app.",
+    "github": null,
+    "sources": [
+      {
+        "title": "Inflight services app wins 2017",
+        "url": "https://www.cathaypacific.com/cx/en_HK/inspiration/cathay-stories/inflight-services-app-wins-cathay-pacific-hackathon-2017.html"
+      }
+    ],
+    "copyOrFoil": "copy-pitch",
+    "confidence": "high"
+  },
+  {
+    "id": "fight4flight",
+    "name": "Fight4Flight",
+    "year": 2017,
+    "kind": "cathay-winner",
+    "org": "First runner-up",
+    "bu": "Customer experience",
+    "oneLiner": "Delay notification and re-planning from the passenger side.",
+    "artifact": "app",
+    "outcome": "runner-up",
+    "strengths": ["Closest ancestor of Reconnect", "Disruption is a real CX pain"],
+    "weaknesses": ["No transfer-desk owner", "Did not win"],
+    "patterns": ["desk-owner", "theater-90s"],
+    "reconnectTakeaway": "Passenger-only re-plan loses. The desk is the missing 2017 piece.",
+    "github": null,
+    "sources": [
+      {
+        "title": "2017 top six ideas",
+        "url": "https://www.cathaypacific.com/cx/en_HK/inspiration/cathay-stories/hacking-future-flying.html"
+      }
+    ],
+    "copyOrFoil": "copy-pitch",
+    "confidence": "high"
+  },
+  {
+    "id": "aviator",
+    "name": "Aviator",
+    "year": 2017,
+    "kind": "cathay-winner",
+    "org": "Second runner-up",
+    "bu": "Airport / connections",
+    "oneLiner": "Dining and activity manager aimed at connecting passengers.",
+    "artifact": "app",
+    "outcome": "runner-up",
+    "strengths": ["Saw connections as a moment"],
+    "weaknesses": ["Lifestyle layer on top of misconnect, not recovery"],
+    "patterns": ["desk-owner"],
+    "reconnectTakeaway": "Connecting passengers are the moment; recovery is the job.",
+    "github": null,
+    "sources": [
+      {
+        "title": "2017 top six ideas",
+        "url": "https://www.cathaypacific.com/cx/en_HK/inspiration/cathay-stories/hacking-future-flying.html"
+      }
+    ],
+    "copyOrFoil": "foil",
+    "confidence": "high"
+  },
+  {
+    "id": "gme-2021",
+    "name": "GME / Asia Miles visualiser",
+    "year": 2021,
+    "kind": "cathay-winner",
+    "org": "Team GME",
+    "bu": "Loyalty",
+    "oneLiner": "Map and proximity for Asia Miles partners, plus redemption notices. Public 2021 repo — not a press-named champion.",
+    "artifact": "app",
+    "outcome": "participant",
+    "strengths": ["Named loyalty BU", "Only champion-era public repo we can actually clone"],
+    "weaknesses": ["Lifestyle, not ops", "Do not treat this as the 2021 winner"],
+    "patterns": ["named-bu", "dual-beneficiary", "champions-no-github"],
+    "reconnectTakeaway": "A cloneable repo is not a trophy. 2021 champion name is unpublished, same failure mode as 2018.",
+    "github": "https://github.com/markmcwong/cathay-hackathon-2021",
+    "sources": [
+      {
+        "title": "markmcwong/cathay-hackathon-2021",
+        "url": "https://github.com/markmcwong/cathay-hackathon-2021"
+      }
+    ],
+    "copyOrFoil": "foil",
+    "confidence": "high"
+  },
+  {
+    "id": "cathay-green",
+    "name": "Cathay Green",
+    "year": 2022,
+    "kind": "cathay-winner",
+    "org": "Cathay Green (five students)",
+    "bu": "Sustainability / Lifestyle",
+    "oneLiner": "Currency and AI to promote carbon offset and green practice.",
+    "artifact": "app",
+    "outcome": "champion",
+    "strengths": ["ESG as a named Cathay theme that year"],
+    "weaknesses": ["Easy to fake ESG in 2026 feasibility judging"],
+    "patterns": ["named-bu", "dual-beneficiary"],
+    "reconnectTakeaway": "Ryan Lam: first pitch ran out of time; finals presentation won. Narrate the buttons. Only claim ESG if we can count stranded nights.",
+    "github": null,
+    "sources": [
+      {
+        "title": "5th Annual Cathay Hackathon",
+        "url": "https://news.cathaypacific.com/cathay-continues-to-innovate-with-the-5th-annual-cathay-hackathon"
+      }
+    ],
+    "copyOrFoil": "foil",
+    "confidence": "high"
+  },
+  {
+    "id": "naar",
+    "name": "NAAR cargo dimensioning",
+    "year": 2023,
+    "kind": "cathay-winner",
+    "org": "NAAR",
+    "bu": "Cargo",
+    "oneLiner": "Computer vision to size cargo and pack denser, with less manual labour.",
+    "artifact": "cv-system",
+    "outcome": "champion",
+    "strengths": ["Cargo $ and labour", "Coach-stated pain", "No public champion repo"],
+    "weaknesses": ["Hardware/CV, not passenger recovery"],
+    "patterns": ["named-bu", "dual-beneficiary", "feasibility-2026", "champions-no-github"],
+    "reconnectTakeaway": "Lead with a number (minutes, pax, queue length). NAAR led with accuracy and labour.",
+    "github": null,
+    "sources": [
+      {
+        "title": "6th annual Cathay Hackathon",
+        "url": "https://news.cathaypacific.com/record-breaking-participation-at-the-6th-annual-cathay-hackathon"
+      }
+    ],
+    "copyOrFoil": "copy-pitch",
+    "confidence": "high"
+  }
+]

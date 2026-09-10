@@ -1,0 +1,96 @@
+[
+  {
+    "id": "hkg-acdm",
+    "name": "HKG A-CDM",
+    "year": 2010,
+    "kind": "production",
+    "org": "AAHK / ATC / airlines",
+    "bu": "Airport ops",
+    "oneLiner": "TOBT/TSAT shared clock for turnaround. Missing passenger is an A-CDM delay reason.",
+    "artifact": "ops-process",
+    "outcome": "production",
+    "strengths": ["Airport clock of record"],
+    "weaknesses": ["Turnaround, not PNR recovery"],
+    "patterns": ["control-cycle"],
+    "reconnectTakeaway": "Never use the iPad wall clock. FIDS eventTime / sim clock only.",
+    "github": null,
+    "sources": [
+      {
+        "title": "HKIA A-CDM Operations Guidelines",
+        "url": "https://www.icao.int/sites/default/files/APAC/Documents/edocs/AGA/Airport%20Collaborative%20Decision%20Making/HKIA-A-CDM-Operations-Guidelines.pdf"
+      }
+    ],
+    "copyOrFoil": "copy-engineering",
+    "confidence": "high"
+  },
+  {
+    "id": "reconnect",
+    "name": "Reconnect (this repo)",
+    "year": 2026,
+    "kind": "cathay-repo",
+    "org": "Reconnect",
+    "bu": "HKG transfer desk / Airport Systems",
+    "oneLiner": "Deterministic MCT engine + iPad triage + guarded draft. Pilot: Altéa read, FIDS MQTT, CANS push.",
+    "artifact": "ops-console",
+    "outcome": "participant",
+    "strengths": ["Zero LLM in engine", "reasoning[]", "UM/WCH/party", "Sacred six-step demo"],
+    "weaknesses": ["No quantified impact yet", "Incumbent collision if pitched as mass IROPS"],
+    "patterns": ["named-bu", "theater-90s", "desk-owner", "incumbent-irops", "llm-foil", "control-cycle", "walk-special"],
+    "reconnectTakeaway": "The product is already the 2026 feasibility shape. The pitch must not throw it away.",
+    "github": null,
+    "sources": [
+      { "title": "docs/PILOT_PROPOSAL.md", "url": "../PILOT_PROPOSAL.md" },
+      { "title": "packages/engine/src/mct.ts", "url": "../../packages/engine/src/mct.ts" }
+    ],
+    "copyOrFoil": "copy-engineering",
+    "confidence": "high"
+  },
+  {
+    "id": "accenture-rebooking",
+    "name": "Accenture Rebooking Experience",
+    "year": 2018,
+    "kind": "production",
+    "org": "Accenture / Cathay",
+    "bu": "Digital / IROPS",
+    "oneLiner": "CX self-rebook chatbots in the typhoon stack: notify, then four steps to pick a preferred flight.",
+    "artifact": "chatbot",
+    "outcome": "production",
+    "strengths": ["Passenger self-help hours ahead", "Paired with Passenger Recovery"],
+    "weaknesses": ["Not a transfer-desk queue; does not escort UM/WCH through T1"],
+    "patterns": ["incumbent-irops"],
+    "reconnectTakeaway": "Chatbot self-rebook is already bought. Our send is agent-approved CANS, not a second bot.",
+    "github": null,
+    "sources": [
+      {
+        "title": "Typhoon Trouble (Airport Industry Review, 2019)",
+        "url": "https://airport.nridigital.com/air_sep19/typhoon_trouble"
+      }
+    ],
+    "copyOrFoil": "incumbent",
+    "confidence": "high"
+  },
+  {
+    "id": "15below-comms",
+    "name": "15below customer communication",
+    "year": 2018,
+    "kind": "production",
+    "org": "15below / Cathay",
+    "bu": "Airport CX / notification",
+    "oneLiner": "Notification layer on CX disruption: once a new journey is accepted, 15below sends the new flight details.",
+    "artifact": "notification",
+    "outcome": "production",
+    "strengths": ["CX already paid for proactive passenger comms"],
+    "weaknesses": ["Mass notify, not last-90-minute special handling"],
+    "patterns": ["incumbent-irops"],
+    "reconnectTakeaway": "CANS after human confirm sits beside 15below, not over it. Do not pitch a new notification platform.",
+    "github": null,
+    "sources": [
+      {
+        "title": "Typhoon Trouble (Airport Industry Review, 2019)",
+        "url": "https://airport.nridigital.com/air_sep19/typhoon_trouble"
+      }
+    ],
+    "copyOrFoil": "incumbent",
+    "confidence": "high"
+  }
+]

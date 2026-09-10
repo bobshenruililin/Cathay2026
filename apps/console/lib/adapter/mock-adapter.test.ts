@@ -25,5 +25,7 @@ describe("mock adapter", () => {
     expect(text).toMatch(/Unaccompanied minor/);
     expect(text).toMatch(/Wheelchair assistance/);
     expect(text).toMatch(/Party of 4 on one PNR cannot be split/);
+    expect(snap.disruption.quietCount).toBeGreaterThan(0);
+    expect(snap.queue.some((item) => item.passenger.pnr === "OK9SIL")).toBe(false);
   });
 });

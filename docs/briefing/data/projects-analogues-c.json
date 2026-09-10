@@ -1,0 +1,126 @@
+[
+  {
+    "id": "sabre-irops",
+    "name": "Sabre IROPS Reaccommodation",
+    "year": 2022,
+    "kind": "production",
+    "org": "Sabre",
+    "bu": "IROPS / PSS",
+    "oneLiner": "Mass rebook + reseat + ancillaries on Sabre PSS. Refreshed STX product: 2× faster on large disruptions.",
+    "artifact": "pss",
+    "outcome": "production",
+    "strengths": ["Same job as Passenger Recovery, different PSS"],
+    "weaknesses": ["CX is Altéa, not Sabre. Pitching Sabre features at CX IT is a miss."],
+    "patterns": ["incumbent-irops"],
+    "reconnectTakeaway": "Mass IROPS is a purchased category at every major PSS. We are not in that category.",
+    "github": null,
+    "sources": [
+      {
+        "title": "Sabre STX: refreshed IROPS Reaccommodation",
+        "url": "https://investors.sabre.com/news-releases/news-release-details/sabre-continues-drive-innovation-airlines-announcing-several-new"
+      }
+    ],
+    "copyOrFoil": "incumbent",
+    "confidence": "high"
+  },
+  {
+    "id": "amadeus-self-reaccom",
+    "name": "Amadeus Self Re-accommodation",
+    "year": 2020,
+    "kind": "production",
+    "org": "Amadeus",
+    "bu": "IROPS / Digital",
+    "oneLiner": "Passenger accepts the auto-rebook, picks an alternative, or refunds — same business rules as Passenger Recovery.",
+    "artifact": "self-service",
+    "outcome": "production",
+    "strengths": ["Designed so airport agents handle only the complex cases"],
+    "weaknesses": ["Self-service still does not walk UM/WCH through T1"],
+    "patterns": ["incumbent-irops", "desk-owner"],
+    "reconnectTakeaway": "CX already wants agents on the hard cases. That is the desk. Do not add a second self-rebook bot.",
+    "github": null,
+    "sources": [
+      {
+        "title": "Amadeus Self Re-accommodation",
+        "url": "https://amadeus.com/en/airlines/products/self-re-accommodation"
+      }
+    ],
+    "copyOrFoil": "incumbent",
+    "confidence": "high"
+  },
+  {
+    "id": "plan3",
+    "name": "Plan3",
+    "year": 2023,
+    "kind": "production",
+    "org": "Plan3 / Sabre partner",
+    "bu": "Disruption care",
+    "oneLiner": "PSS-agnostic overlay: bundle flight + hotel + meal voucher; passenger self-serves. Sabre partnership 2023.",
+    "artifact": "ops-console",
+    "outcome": "production",
+    "strengths": ["Duty-of-care packaging is a real airline job"],
+    "weaknesses": ["Hotel/meal chain is LATER for us"],
+    "patterns": ["incumbent-irops"],
+    "reconnectTakeaway": "Holistic care is a vendor category. Do not bolt hotels onto the Saturday iPad.",
+    "github": null,
+    "sources": [
+      {
+        "title": "Plan3",
+        "url": "https://www.plan3.aero/"
+      },
+      {
+        "title": "Sabre–Plan3 2023",
+        "url": "https://www.sabre.com/locations/apac/releases/sabre-teams-with-plan3-to-provide-airlines-with-holistic-disruption-management-to-boost-traveler-satisfaction-while-reducing-recovery-costs/"
+      }
+    ],
+    "copyOrFoil": "incumbent",
+    "confidence": "high"
+  },
+  {
+    "id": "hx-navitaire",
+    "name": "HK Express Navitaire New Skies",
+    "year": 2015,
+    "kind": "production",
+    "org": "HK Express / Navitaire (Accenture)",
+    "bu": "HK Express / PSS",
+    "oneLiner": "HX live on Navitaire New Skies + SkyLedger since 2015. Not Altéa. HX app also talks Amadeus + Navitaire APIs.",
+    "artifact": "pss",
+    "outcome": "production",
+    "strengths": ["Named HX system of record"],
+    "weaknesses": ["Our week-1 pilot is CX Altéa office HKGCX08AA"],
+    "patterns": ["named-bu", "feasibility-2026"],
+    "reconnectTakeaway": "GingTrip/U-Explore attached to HX. We attach to CX transfer. Do not pretend one PSS write covers both.",
+    "github": null,
+    "sources": [
+      {
+        "title": "HK Express implements Navitaire (2015)",
+        "url": "https://newsroom.accenture.com/news/2015/hk-express-implements-navitaire-for-passenger-reservation-services-to-help-increase-revenues"
+      }
+    ],
+    "copyOrFoil": "incumbent",
+    "confidence": "high"
+  },
+  {
+    "id": "hrs-care",
+    "name": "HRS Crew & Passenger Solutions",
+    "year": 2023,
+    "kind": "production",
+    "org": "HRS / Sabre partner",
+    "bu": "Duty of care",
+    "oneLiner": "Hotels, ground transport, meals, photo-receipt reimbursement when IROPS hits. Sabre deal 2023.",
+    "artifact": "care-platform",
+    "outcome": "production",
+    "strengths": ["The stranded-night problem is real and purchased"],
+    "weaknesses": ["Not a transfer-desk rebook"],
+    "patterns": ["incumbent-irops"],
+    "reconnectTakeaway": "Count fewer stranded nights only if we measure them. Until then, omit ESG. Care vendors already exist.",
+    "github": null,
+    "sources": [
+      {
+        "title": "Sabre–HRS 2023",
+        "url": "https://investors.sabre.com/news-releases/news-release-details/sabre-and-hrs-crew-passenger-solutions-sign-deal-support"
+      }
+    ],
+    "copyOrFoil": "incumbent",
+    "confidence": "high"
+  }
+]

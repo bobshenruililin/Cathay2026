@@ -15,14 +15,11 @@ At-risk = tight or missed. HKG only.
 
 ## Unaccompanied minors / wheelchair / party / downgrade
 
-- `um: true` or SSR code `UMNR` marks an unaccompanied minor. Recovery stays on
-  CX metal (staff escort). Partner flights are not offered. Next-calendar-day
-  (overnight) candidates are dropped — a UM is not left in HKG overnight.
-- `wheelchair: true` or SSR codes `WCHR` / `WCHS` / `WCHC` add 15 min gate
-  transit. Flags and SSR do not stack: one wheelchair buffer, one UM buffer.
-- `partySize` defaults to 1. Whole party must fit on one flight in one cabin.
-- `partyId` is echoed in option reasoning so the desk can keep a group together.
-  There is no party-batch API (see `docs/LATER.md`).
+- UM recovery stays on CX metal (staff escort). Partner flights are not offered.
+  `um: true` or SSR `UMNR` — flags and SSR do not stack.
+- Wheelchair / PRM: `wheelchair: true` or SSR `WCHR` / `WCHS` / `WCHC`.
+- Whole party (`partySize`, default 1) must fit on one flight in one cabin.
+  Optional `partyId` is echoed in reasoning only.
 - If the booked cabin is exhausted, downgrade protection holds the next lower
   cabin with enough seats and states that in `reasoning`.
 
@@ -52,7 +49,21 @@ typhoon / CX254 delay constants as `packages/sim`. LLM drafting is
 Cathay Alert template. The action column is a persistent right-hand drawer
 (iPad landscape, min 1024px).
 
+## MAXCT / overnight
+
+If an option lands on the next calendar day, reasoning must call it overnight
+(`Overnight option (next calendar day)` in `option-reason.ts`). Unaccompanied
+minors are not offered next-calendar-day flights. Do not rip UM-on-CX-metal
+or downgrade protection to match an older plan.
+
 ## Verification
 
 `docs/DEMO.md` is sacred. Claim done only after `pnpm typecheck`, `pnpm test`,
 and `pnpm test:demo`. Engine coverage stays 100% on `packages/engine/src/**`.
+
+## 2018 / 2021 Cathay champion names
+
+Not found in Cathay press. Anita, Lugless, and Dean Fung are sourced as runners-up
+only. GME 2021 is a public *participant* repo — do not treat it as the trophy.
+2019 was cancelled (https://news.cathaypacific.com/cathay-pacific-hackathon-2019-cancelled).
+2020: no primary press found.

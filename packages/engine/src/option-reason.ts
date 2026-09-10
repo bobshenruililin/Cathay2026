@@ -1,12 +1,9 @@
-import { formatHkgIso } from "./iso";
 import { GATE_WALK_BUFFER_MINUTES, UM_ESCORT_BUFFER_MINUTES, WHEELCHAIR_TRANSIT_BUFFER_MINUTES, hkgMctMinutes } from "./mct";
+import { hkgCalendarDay } from "./iso";
 import { isUnaccompaniedMinor, needsWheelchair, partySizeOf } from "./passenger";
+import { TIER_STATUS } from "./score";
 import type { PartySeating } from "./seating";
 import type { Flight, Passenger } from "./types";
-
-function clock(iso: string): string {
-  return formatHkgIso(Date.parse(iso)).slice(11, 16);
-}
 
 export function seatingReason(
   flight: Flight,
@@ -20,15 +17,21 @@ export function seatingReason(
     ? ` Keep party ${passenger.partyId} together on ${flight.flightNumber}.`
     : "";
   if (seating.downgradeProtected) {
-    return `${booked} is full (${flight.seats[booked]} seats for a party of ${size}). Hold ${seating.offeredCabin} instead (${remaining} seats) so nobody is split off ${flight.flightNumber}.${partyTag}`;
+    return `Protect: Hold ${seating.offeredCabin} instead. ${booked} cabin is exhausted (${flight.seats[booked]} seats for a party of ${size}). Downgrade protection holds ${seating.offeredCabin} (${remaining} seats) so the whole party stays on ${flight.flightNumber}.${partyTag}`;
   }
   if (size > 1) {
-    return `Party of ${size} stays together: ${remaining} ${seating.offeredCabin} seats left on ${flight.flightNumber}.${partyTag}`;
+    return `Hold: Unsplittable party of ${size}: ${remaining} ${seating.offeredCabin} seats remain on ${flight.flightNumber}; the group is kept on one flight.${partyTag}`;
   }
-  if (partyTag) {
-    return `${passenger.cabin} still has seats on ${flight.flightNumber}.${partyTag}`;
-  }
-  return `${passenger.cabin} still has seats on ${flight.flightNumber}.`;
+  return `${passenger.cabin} still has seats remaining on ${flight.flightNumber}.${partyTag}`;
+}
+
+export function scoreReason(
+  tier: Passenger["tier"],
+  matched: boolean,
+  delayMinutes: number,
+  score: number,
+): string {
+  return `Score ${score} = (tier ${TIER_STATUS[tier]} × 3) + (seat match ${matched ? 1 : 0} × 2) − (${delayMinutes} / 10).`;
 }
 
 export function mctReason(
@@ -38,31 +41,32 @@ export function mctReason(
   available: number,
 ): string {
   const mct = hkgMctMinutes(inboundAirline, outboundAirline);
-  return `This option has ${available} minutes on the ground. HKG minimum for this pair is ${required} minutes (MCT ${mct} plus a ${GATE_WALK_BUFFER_MINUTES}-minute walk, including any wheelchair or escort time).`;
+  return `HKG MCT ${mct} min plus ${GATE_WALK_BUFFER_MINUTES} min gate walk buffer (${required} min required including passenger buffers); this option has ${available} min.`;
 }
 
-export function delayReason(flight: Flight, delayMinutes: number, originalNumber: string): string {
-  const when = clock(flight.actualDeparture);
-  const dest = flight.destination;
-  if (delayMinutes < 0) {
-    return `Protect on ${flight.flightNumber} to ${dest} at ${when}, ${-delayMinutes} minutes earlier than ${originalNumber}.`;
+export function delayReason(
+  flight: Flight,
+  delayMinutes: number,
+  originalNumber: string,
+  originalDeparture: string,
+): string {
+  const wait = `Wait: Protect on ${flight.flightNumber} to ${flight.destination} at ${flight.actualDeparture}, ${delayMinutes} min from original ${originalNumber}.`;
+  if (hkgCalendarDay(flight.actualDeparture) !== hkgCalendarDay(originalDeparture)) {
+    return `${wait} Overnight option (next calendar day).`;
   }
-  if (delayMinutes === 0) {
-    return `Protect on ${flight.flightNumber} to ${dest} at ${when}, same departure time as ${originalNumber}.`;
-  }
-  return `Protect on ${flight.flightNumber} to ${dest} at ${when}. That is ${delayMinutes} minutes later than ${originalNumber}.`;
+  return wait;
 }
 
 export function specialHandlingReasons(passenger: Passenger): string[] {
   const lines: string[] = [];
   if (isUnaccompaniedMinor(passenger)) {
     lines.push(
-      `Unaccompanied minor: CX escort adds ${UM_ESCORT_BUFFER_MINUTES} minutes. Keep them on CX metal today — do not overnight them in HKG.`,
+      `Escort: Unaccompanied minor: CX staff escort adds ${UM_ESCORT_BUFFER_MINUTES} min on top of the HKG MCT table. Recovery stays on CX metal; do not overnight them in HKG.`,
     );
   }
   if (needsWheelchair(passenger)) {
     lines.push(
-      `Wheelchair assistance: add ${WHEELCHAIR_TRANSIT_BUFFER_MINUTES} minutes of gate transit on top of the MCT table.`,
+      `Wheelchair assistance adds ${WHEELCHAIR_TRANSIT_BUFFER_MINUTES} min gate transit on top of the HKG MCT table.`,
     );
   }
   return lines;

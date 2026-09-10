@@ -2,13 +2,17 @@
 
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { EmptyBlock, ErrorBlock, LoadingBlock } from "@/components/async-state";
-import { StatusBadge, TierBadge } from "@/components/status-badge";
+import { StatusBadge, TierBadge, HandlingBadges } from "@/components/status-badge";
 import { formatFlight } from "@/lib/format";
+import { handlingFlags } from "@/lib/handling-flags";
+import { queuePeakLabel } from "@/lib/queue-peak";
 import type { QueueItem } from "@/lib/adapter/types";
 import { cn } from "@/lib/utils";
 
 export function TriageQueue({
   items,
+  quietCount,
+  delayedFlights,
   selectedPnr,
   status,
   error,
@@ -16,17 +20,28 @@ export function TriageQueue({
   onSelect,
 }: {
   items: QueueItem[];
+  quietCount: number;
+  delayedFlights: number;
   selectedPnr: string | null;
   status: "loading" | "ready" | "error";
   error: string | null;
   onRetry: () => void;
   onSelect: (pnr: string) => void;
 }) {
+  const peak = queuePeakLabel(items.length, delayedFlights);
   return (
     <section className="flex min-h-0 flex-col border-r bg-card" data-testid="triage-queue">
       <div className="border-b px-4 py-3">
         <h2 className="font-heading text-sm font-medium">Triage queue</h2>
         <p className="text-xs text-muted-foreground">Missed first, then tight · Diamond first</p>
+        <p className="text-xs text-muted-foreground" data-testid="quiet-count">
+          {quietCount} connection{quietCount === 1 ? "" : "s"} OK — silent
+        </p>
+        {peak ? (
+          <p className="text-xs font-medium text-destructive" data-testid="queue-peak">
+            {peak}
+          </p>
+        ) : null}
       </div>
       {status === "loading" ? <LoadingBlock label="Loading at-risk connections…" /> : null}
       {status === "error" ? <ErrorBlock message={error ?? "Queue failed"} onRetry={onRetry} /> : null}
@@ -58,6 +73,7 @@ export function TriageQueue({
                     <div className="flex items-center gap-2">
                       <TierBadge tier={item.passenger.tier} />
                       <span className="text-xs text-muted-foreground">{item.passenger.pnr}</span>
+                      <HandlingBadges flags={handlingFlags(item.passenger)} />
                     </div>
                     <p className="text-xs text-muted-foreground">
                       {formatFlight(item.inbound.flightNumber, item.inbound.origin, "HKG")} ·{" "}

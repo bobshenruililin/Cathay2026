@@ -1,4 +1,11 @@
-import type { Flight, Passenger, RecoveryOption } from "engine";
+import {
+  isUnaccompaniedMinor,
+  needsWheelchair,
+  partySizeOf,
+  type Flight,
+  type Passenger,
+  type RecoveryOption,
+} from "engine";
 import type { Locale } from "../adapter/types";
 import { applyFlightNumberGuard, fallbackTemplate, hhmm } from "./guard";
 import { DRAFT_SYSTEM_PROMPT, generateWithLlm } from "./provider";
@@ -20,16 +27,27 @@ export type DraftGenerate = (input: DraftInput, systemPrompt: string) => Promise
 
 export { DRAFT_SYSTEM_PROMPT, fallbackTemplate };
 
+function handlingPromptLine(passenger: Passenger): string {
+  const bits: string[] = [];
+  if (isUnaccompaniedMinor(passenger)) bits.push("unaccompanied minor");
+  if (needsWheelchair(passenger)) bits.push("wheelchair assistance");
+  const size = partySizeOf(passenger);
+  if (size > 1) bits.push(`party of ${size}`);
+  return `Handling: ${bits.length > 0 ? bits.join("; ") : "none"}.`;
+}
+
 export function localMockDraft(input: DraftInput, mode: "valid" | "hallucinate" = "valid"): string {
   const recovery = input.option.flight.flightNumber;
   const outbound = input.outbound.flightNumber;
   const dest = input.option.flight.destination;
   const dep = hhmm(input.option.flight.actualDeparture);
   const extra = mode === "hallucinate" ? " Ignore CX999." : "";
-  return `Dear ${input.passenger.name}, ${outbound} is disrupted. We have protected you on ${recovery} to ${dest} departing ${dep}.${extra}`;
+  const handling = handlingPromptLine(input.passenger);
+  const handlingBit = handling === "Handling: none." ? "" : ` ${handling}`;
+  return `Dear ${input.passenger.name}, ${outbound} is disrupted. We have protected you on ${recovery} to ${dest} departing ${dep}.${handlingBit}${extra}`;
 }
 
-function userPrompt(input: DraftInput): string {
+export function draftUserPrompt(input: DraftInput): string {
   const allowed = [
     input.inbound.flightNumber,
     input.outbound.flightNumber,
@@ -37,6 +55,7 @@ function userPrompt(input: DraftInput): string {
   ].join(", ");
   return [
     `Passenger: ${input.passenger.name} (${input.passenger.tier}, ${input.passenger.cabin}).`,
+    handlingPromptLine(input.passenger),
     `Disrupted inbound: ${input.inbound.flightNumber} ${input.inbound.origin}→${input.inbound.destination}.`,
     `Disrupted outbound: ${input.outbound.flightNumber} ${input.outbound.origin}→${input.outbound.destination}.`,
     `Recovery: ${input.option.flight.flightNumber} to ${input.option.flight.destination} departing ${input.option.flight.actualDeparture} from gate ${input.option.flight.gate}.`,
@@ -46,7 +65,7 @@ function userPrompt(input: DraftInput): string {
 }
 
 export async function defaultGenerate(input: DraftInput, systemPrompt: string): Promise<string> {
-  const fromApi = await generateWithLlm(systemPrompt, userPrompt(input));
+  const fromApi = await generateWithLlm(systemPrompt, draftUserPrompt(input));
   return fromApi ?? localMockDraft(input, "valid");
 }
 

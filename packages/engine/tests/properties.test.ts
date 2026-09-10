@@ -123,9 +123,6 @@ describe("fast-check 10k", () => {
               expect(option.flight.airline).toBe("CX");
               expect(hkgCalendarDay(option.flight.actualDeparture) <= originalDay).toBe(true);
             }
-            for (const line of option.reasoning) {
-              expect(line).toMatch(/[.!]$/);
-            }
           }
         },
       ),

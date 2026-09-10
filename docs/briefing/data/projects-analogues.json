@@ -1,0 +1,162 @@
+[
+  {
+    "id": "amadeus-pr",
+    "name": "Amadeus Passenger Recovery",
+    "year": 2018,
+    "kind": "production",
+    "org": "Amadeus / Cathay",
+    "bu": "IROPS / Airport CX",
+    "oneLiner": "Mass reaccom: >50 flights and 8,000 pax in 40 minutes. CX live since ~2018 with Accenture chatbots and 15below.",
+    "artifact": "pss",
+    "outcome": "production",
+    "strengths": ["Cathay already paid for this", "Hours-ahead typhoon reprotect"],
+    "weaknesses": ["Does not walk UM/WCH through T1 in the last 90 minutes"],
+    "patterns": ["incumbent-irops"],
+    "reconnectTakeaway": "Pitch beside this tool. Never instead.",
+    "github": null,
+    "sources": [
+      {
+        "title": "Amadeus Passenger Recovery",
+        "url": "https://amadeus.com/en/airlines/products/passenger-recovery"
+      },
+      {
+        "title": "Typhoon Trouble (Airport Industry Review, 2019)",
+        "url": "https://airport.nridigital.com/air_sep19/typhoon_trouble"
+      }
+    ],
+    "copyOrFoil": "incumbent",
+    "confidence": "high"
+  },
+  {
+    "id": "typhoon-trouble",
+    "name": "CX typhoon programme (Rogers 2019)",
+    "year": 2019,
+    "kind": "production",
+    "org": "Cathay Pacific Airport CX",
+    "bu": "Airport customer experience",
+    "oneLiner": "Josh Rogers: 100,000 customers when the hub closes; wanted airborne reprotect on inflight Wi-Fi.",
+    "artifact": "ops-process",
+    "outcome": "production",
+    "strengths": ["Named HKG typhoon as a yearly business challenge", "Wanted misconnects off CX254 before arrival"],
+    "weaknesses": ["That airborne-misconnect layer is still the gap"],
+    "patterns": ["incumbent-irops", "desk-owner"],
+    "reconnectTakeaway": "Our CX254 +180 demo is the 2019 wish, on a desk iPad.",
+    "github": null,
+    "sources": [
+      {
+        "title": "Typhoon Trouble",
+        "url": "https://airport.nridigital.com/air_sep19/typhoon_trouble"
+      }
+    ],
+    "copyOrFoil": "copy-pitch",
+    "confidence": "high"
+  },
+  {
+    "id": "connectionsaver",
+    "name": "United ConnectionSaver",
+    "year": 2019,
+    "kind": "production",
+    "org": "United Airlines",
+    "bu": "Hub connections",
+    "oneLiner": "Holds the outbound using walk time; SMS with minutes. 3.3 million connections saved since 2019.",
+    "artifact": "ops-console",
+    "outcome": "production",
+    "strengths": ["Walk time is a product", "Passenger-visible countdown"],
+    "weaknesses": ["Hold vs rebook is a different decision; out of our SCOPE"],
+    "patterns": ["walk-special", "theater-90s"],
+    "reconnectTakeaway": "Encode walk + WCH + UM now. Hold-the-flight is LATER. Know the map.",
+    "github": null,
+    "sources": [
+      {
+        "title": "United ConnectionSaver launch",
+        "url": "https://united.mediaroom.com/2019-06-10-United-Airlines-Makes-Connecting-the-World-Easier-Than-Ever-with-ConnectionSaver"
+      }
+    ],
+    "copyOrFoil": "copy-pitch",
+    "confidence": "high"
+  },
+  {
+    "id": "openmct",
+    "name": "NASA Open MCT",
+    "year": 2015,
+    "kind": "aerospace",
+    "org": "NASA Ames / JPL",
+    "bu": "Mission ops",
+    "oneLiner": "Web mission-control glass: telemetry, timeline, mobile, one place.",
+    "artifact": "ops-console",
+    "outcome": "production",
+    "strengths": ["One glass, no tab-hopping", "Streaming + historical"],
+    "weaknesses": ["Spacecraft telemetry, not PNRs"],
+    "patterns": ["control-cycle"],
+    "reconnectTakeaway": "Queue + connection + action drawer is already one glass. Say mission control, not dashboard.",
+    "github": "https://github.com/nasa/openmct",
+    "sources": [{ "title": "nasa/openmct", "url": "https://github.com/nasa/openmct" }],
+    "copyOrFoil": "copy-engineering",
+    "confidence": "high"
+  },
+  {
+    "id": "spacex-fsw",
+    "name": "SpaceX flight software culture",
+    "year": 2012,
+    "kind": "aerospace",
+    "org": "SpaceX",
+    "bu": "Flight software",
+    "oneLiner": "Control cycle on a clock; config DSL for non-software engineers; sim + HITL; no LLM in the loop.",
+    "artifact": "flight-software",
+    "outcome": "production",
+    "strengths": ["Determinism", "Station/mission clock", "Kill paths"],
+    "weaknesses": ["Not open source; culture analogue only"],
+    "patterns": ["control-cycle", "llm-foil"],
+    "reconnectTakeaway": "packages/engine is already this shape. Pitch it that way.",
+    "github": null,
+    "sources": [
+      {
+        "title": "Stack Overflow: software that flies Starships",
+        "url": "https://stackoverflow.blog/2021/12/27/dont-push-that-button-exploring-the-software-that-flies-spacex-starships/"
+      }
+    ],
+    "copyOrFoil": "copy-engineering",
+    "confidence": "high"
+  },
+  {
+    "id": "amadeus-disruption-agent",
+    "name": "amadeus-disruption-agent",
+    "year": 2026,
+    "kind": "irops-hack",
+    "org": "Thaynabarreiro",
+    "bu": "Disruption / passenger rights",
+    "oneLiner": "LangGraph + Amadeus APIs. LLM phrases verified facts only. RAG for EU261.",
+    "artifact": "agent",
+    "outcome": "research",
+    "strengths": ["Same invariant as Reconnect: model does not decide"],
+    "weaknesses": ["Passenger-side, not HKG desk"],
+    "patterns": ["llm-foil"],
+    "reconnectTakeaway": "Cite reasoning[] the way they cite policy passages.",
+    "github": "https://github.com/Thaynabarreiro/amadeus-disruption-agent",
+    "sources": [{ "title": "amadeus-disruption-agent", "url": "https://github.com/Thaynabarreiro/amadeus-disruption-agent" }],
+    "copyOrFoil": "copy-engineering",
+    "confidence": "high"
+  },
+  {
+    "id": "autorescue",
+    "name": "AutoRescue",
+    "year": 2025,
+    "kind": "irops-hack",
+    "org": "AnuR-lab",
+    "bu": "Passenger disruption",
+    "oneLiner": "AWS Bedrock + Amadeus search for cancelled-flight rebooking.",
+    "artifact": "agent",
+    "outcome": "participant",
+    "strengths": ["Live Amadeus, not only mocks"],
+    "weaknesses": ["LLM-orchestrated decisions", "Passenger app"],
+    "patterns": ["llm-foil"],
+    "reconnectTakeaway": "Live Amadeus is impressive. Decision authority is not transferable to Saturday.",
+    "github": "https://github.com/AnuR-lab/AutoRescue",
+    "sources": [
+      { "title": "AnuR-lab/AutoRescue", "url": "https://github.com/AnuR-lab/AutoRescue" },
+      { "title": "Devpost: AutoRescue", "url": "https://devpost.com/software/autorescue" }
+    ],
+    "copyOrFoil": "foil",
+    "confidence": "high"
+  }
+]

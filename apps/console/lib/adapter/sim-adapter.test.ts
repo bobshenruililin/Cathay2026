@@ -10,6 +10,7 @@ describe("sim adapter", () => {
       true,
     );
     expect(snap.queue.length).toBe(snap.disruption.atRiskCount);
+    expect(snap.disruption.quietCount).toBeGreaterThan(0);
     for (const item of snap.queue) {
       expect(item.result.atRisk).toBe(true);
       expect(item.result.reasoning.length).toBeGreaterThan(0);

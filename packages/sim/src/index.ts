@@ -8,3 +8,4 @@ export {
   type SimState,
   type Simulation,
 } from "./simulation.ts";
+export { demoMetrics, type DemoMetrics } from "./metrics.ts";

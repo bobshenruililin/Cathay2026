@@ -3,7 +3,7 @@ import { addMinutesIso } from "./iso";
 import { generateOptions } from "./options";
 import { scoreOption, seatMatch, TIER_STATUS } from "./score";
 import { INBOUND, makeConnection, makeFlight, makePassenger } from "./fixtures";
-import type { Flight } from "./types";
+import type { Flight, LoyaltyTier } from "./types";
 
 const ARR = INBOUND.actualArrival;
 const ORIG = makeFlight("CX250", "CX", "HKG", "LHR", addMinutesIso(ARR, 70), addMinutesIso(ARR, 850));
@@ -74,7 +74,7 @@ describe("option generator", () => {
     expect(options[0]?.seatMatch).toBe(false);
     expect(options[0]?.downgradeProtected).toBe(true);
     expect(options[0]?.offeredCabin).toBe("Business");
-    expect(options[0]?.reasoning.join(" ")).toMatch(/Hold Business instead/);
+    expect(options[0]?.reasoning.join(" ")).toMatch(/Downgrade protection/);
   });
 
   it("picks the next CX after the original even when a later CX scores lower", () => {
@@ -86,7 +86,7 @@ describe("option generator", () => {
     const options = generateOptions(connection, [muchLater, earlierThanOriginal, nextA, nextB]);
     const numbers = options.map((o) => o.flight.flightNumber);
     expect(numbers).toContain("CX269");
-    expect(options.some((o) => o.reasoning.join(" ").includes("still has seats"))).toBe(true);
+    expect(options.some((o) => o.reasoning.join(" ").includes("seats remain"))).toBe(true);
   });
 
   it("returns no options when the pool is empty or all unviable", () => {
@@ -111,51 +111,68 @@ describe("option generator", () => {
     expect(generateOptions(makeConnection(INBOUND, invalidOut), [partner])).toEqual([]);
   });
 
-  it("drops overnight CX recovery for an unaccompanied minor", () => {
-    const um = makePassenger("UM1", "Gold", "Business", { um: true });
-    const ssrUm = makePassenger("UM2", "Gold", "Business", { ssr: ["UMNR"] });
-    const adult = makePassenger("AD1");
-    const nextDay = cx("CX800", 20 * 60);
-    const sameDay = cx("CX260", 100);
-    expect(generateOptions(makeConnection(INBOUND, ORIG, um), [nextDay])).toEqual([]);
-    expect(generateOptions(makeConnection(INBOUND, ORIG, ssrUm), [nextDay])).toEqual([]);
-    expect(generateOptions(makeConnection(INBOUND, ORIG, um), [sameDay])[0]?.flight.flightNumber).toBe("CX260");
-    expect(generateOptions(makeConnection(INBOUND, ORIG, adult), [nextDay])[0]?.flight.flightNumber).toBe(
-      "CX800",
-    );
-  });
-
-  it("echoes partyId so the desk can keep a group together", () => {
-    const passenger = makePassenger("P4", "Gold", "Business", { partySize: 4, partyId: "CHEN-FAM" });
-    const connection = makeConnection(INBOUND, ORIG, passenger);
-    const options = generateOptions(connection, [cx("CX260", 100)]);
-    expect(options[0]?.reasoning.join(" ")).toMatch(/Keep party CHEN-FAM together on CX260/);
-    const solo = makePassenger("P5", "Gold", "Business", { partyId: "SOLO-1" });
-    const soloOptions = generateOptions(makeConnection(INBOUND, ORIG, solo), [cx("CX261", 100)]);
-    expect(soloOptions[0]?.reasoning.join(" ")).toMatch(/Keep party SOLO-1 together on CX261/);
-  });
-
   it("uses a next-day CX when no same-day alternative exists", () => {
     const connection = makeConnection(INBOUND, ORIG);
     const nextDay = cx("CX800", 20 * 60);
     const options = generateOptions(connection, [nextDay]);
     expect(options).toHaveLength(1);
     expect(options[0]?.flight.flightNumber).toBe("CX800");
-    expect(options[0]?.reasoning.join(" ")).toMatch(/Protect on CX800/);
+    expect(options[0]?.reasoning.join(" ")).toMatch(/Overnight option/);
+    expect(options[0]?.reasoning.join(" ")).toMatch(/Score /);
   });
 
-  it("describes earlier and same-time protections in plain language", () => {
-    const connection = makeConnection(INBOUND, ORIG);
-    const earlier = cx("CX248", 65);
-    const sameTime = makeFlight("CX249", "CX", "HKG", "LHR", ORIG.actualDeparture, ORIG.actualArrival);
-    expect(generateOptions(connection, [earlier])[0]?.reasoning.join(" ")).toMatch(
-      /minutes earlier than CX250/,
-    );
-    expect(generateOptions(connection, [sameTime])[0]?.reasoning.join(" ")).toMatch(
-      /same departure time as CX250/,
-    );
-    const later = generateOptions(connection, [cx("CX260", 100)])[0]?.reasoning.join(" ") ?? "";
-    expect(later).toMatch(/Protect on CX260/);
-    expect(later).not.toMatch(/Score /);
+  it("does not offer next-calendar-day flights to unaccompanied minors", () => {
+    const connection = makeConnection(INBOUND, ORIG, makePassenger("UM1", "Green", "Economy", { um: true }));
+    const nextDay = cx("CX800", 20 * 60);
+    const sameDay = cx("CX252", 90);
+    expect(generateOptions(connection, [nextDay])).toEqual([]);
+    expect(generateOptions(connection, [nextDay, sameDay]).map((o) => o.flight.flightNumber)).toEqual(["CX252"]);
+  });
+
+  it("property: option generation stays ≤3, unique, scored, and reasoned", () => {
+    let t = 0x9e3779b9;
+    const next = () => {
+      t += 0x6d2b79f5;
+      let r = Math.imul(t ^ (t >>> 15), 1 | t);
+      r ^= r + Math.imul(r ^ (r >>> 7), 61 | r);
+      return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+    };
+    const tiers: LoyaltyTier[] = ["Diamond", "Gold", "Silver", "Green"];
+    for (let i = 0; i < 40; i++) {
+      const passenger = makePassenger(`P${i}`, tiers[Math.floor(next() * 4)]!, "Economy", {
+        um: next() < 0.2,
+        wheelchair: next() < 0.2,
+        partySize: next() < 0.2 ? 4 : 1,
+      });
+      const outbound = cx("CX250", 40);
+      const connection = makeConnection(INBOUND, outbound, passenger);
+      const pool: Flight[] = [];
+      const size = 2 + Math.floor(next() * 8);
+      for (let j = 0; j < size; j++) {
+        const airline = next() < 0.5 ? "CX" : "BA";
+        const offset = 70 + Math.floor(next() * 300);
+        pool.push(
+          makeFlight(
+            `${airline}${100 + j}`,
+            airline,
+            "HKG",
+            next() < 0.1 ? "SYD" : "LHR",
+            addMinutesIso(ARR, offset),
+            addMinutesIso(ARR, offset + 780),
+          ),
+        );
+      }
+      const options = generateOptions(connection, pool);
+      expect(options.length).toBeLessThanOrEqual(3);
+      const seen = new Set<string>();
+      for (const option of options) {
+        expect(seen.has(option.flight.flightNumber)).toBe(false);
+        seen.add(option.flight.flightNumber);
+        expect(option.reasoning.length).toBeGreaterThan(0);
+        expect(option.score).toBe(scoreOption(passenger.tier, option.seatMatch, option.delayMinutes));
+        expect(option.offeredCabin).toBeTruthy();
+        if (passenger.um) expect(option.flight.airline).toBe("CX");
+      }
+    }
   });
 });

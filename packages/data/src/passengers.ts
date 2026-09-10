@@ -1,4 +1,5 @@
 import type { CabinClass, Flight, LoyaltyTier, Passenger } from "engine";
+import { addMinutesIso } from "engine";
 import { pick, rngInt, type Rng } from "./prng.ts";
 
 export type BankConnection = {
@@ -14,6 +15,20 @@ const CABINS: CabinClass[] = ["First", "Business", "Premium Economy", "Economy"]
 const TIER_BAG: LoyaltyTier[] = ["Green", "Green", "Green", "Silver", "Silver", "Gold", "Diamond"];
 const CABIN_BAG: CabinClass[] = ["Economy", "Economy", "Economy", "Premium Economy", "Business", "First"];
 const PNR_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+/** Named JSON-case PNRs on the live CX254 feeder slots (mock bank names). */
+const DESK_CASES: Passenger[] = [
+  { pnr: "W4N9KD", name: "Mei Chan", tier: "Diamond", cabin: "Business", um: true },
+  { pnr: "P8T2LM", name: "James Wong", tier: "Gold", cabin: "Premium Economy", wheelchair: true },
+  { pnr: "Q1H6VB", name: "Aisha Patel", tier: "Silver", cabin: "Economy", partySize: 4, partyId: "PATEL" },
+  { pnr: "SSRWCH", name: "Grace Ho", tier: "Gold", cabin: "Business", ssr: ["WCHR"] },
+  { pnr: "SSRUMNR", name: "Mina Choi", tier: "Silver", cabin: "Economy", ssr: ["UMNR"] },
+  { pnr: "MIXED4", name: "Cole Family", tier: "Gold", cabin: "Business", um: true, wheelchair: true, partySize: 4, partyId: "COLE" },
+  { pnr: "FIRST1", name: "Elena Rossi", tier: "Diamond", cabin: "First" },
+];
+
+/** CX254 arrival plus this many minutes: typhoon 90 + CX254 180 + 110 so MIXED4 still catches CX metal on the six-step demo. */
+const DESK_RECOVERY_AFTER_ARRIVAL_MINUTES = 380;
 
 function makePnr(rng: Rng, used: Set<string>): string {
   for (let attempt = 0; attempt < 32; attempt++) {
@@ -32,7 +47,7 @@ function makePnr(rng: Rng, used: Set<string>): string {
 export function generateConnections(rng: Rng, flights: readonly Flight[]): BankConnection[] {
   const arrivals = flights.filter((f) => f.destination === "HKG");
   const departures = flights.filter((f) => f.origin === "HKG");
-  const used = new Set<string>();
+  const used = new Set<string>(DESK_CASES.map((row) => row.pnr));
   const connections: BankConnection[] = [];
   for (let i = 0; i < 300; i++) {
     const inbound = arrivals[i % arrivals.length]!;
@@ -57,16 +72,36 @@ export function generateConnections(rng: Rng, flights: readonly Flight[]): BankC
       outboundFlightNumber: outbound.flightNumber,
     });
   }
-  return pinCx254Feeders(connections, flights);
+  return pinDeskCases(pinCx254Feeders(connections, flights));
 }
 
-/** Keep a few CX254 inbound links just above MCT so a 150 min delay puts them at risk. */
+/** Place CX390 on LHR after CX254 so named desk cases still have CX metal after the 180 min delay. */
+export function pinDeskRecoveries(flights: readonly Flight[]): Flight[] {
+  const inbound = flights.find((flight) => flight.flightNumber === "CX254" && flight.destination === "HKG");
+  if (!inbound) return [...flights];
+  const departure = addMinutesIso(inbound.actualArrival, DESK_RECOVERY_AFTER_ARRIVAL_MINUTES);
+  return flights.map((flight) =>
+    flight.flightNumber !== "CX390"
+      ? flight
+      : {
+          ...flight,
+          destination: "LHR",
+          scheduledDeparture: departure,
+          actualDeparture: departure,
+          scheduledArrival: addMinutesIso(departure, 780),
+          actualArrival: addMinutesIso(departure, 780),
+          seats: { ...flight.seats, First: 0 },
+        },
+  );
+}
+
+/** Keep named CX254 feeders on LHR just above MCT so a 180 min delay puts them at risk with recoveries. */
 function pinCx254Feeders(connections: BankConnection[], flights: readonly Flight[]): BankConnection[] {
   const inbound = flights.find((flight) => flight.flightNumber === "CX254" && flight.destination === "HKG");
   if (!inbound) return connections;
   const arrival = Date.parse(inbound.actualArrival);
   const ranked = flights
-    .filter((flight) => flight.origin === "HKG" && flight.destination !== inbound.origin)
+    .filter((flight) => flight.origin === "HKG" && flight.destination === "LHR" && flight.airline === "CX")
     .map((flight) => ({
       flight,
       slack: (Date.parse(flight.actualDeparture) - arrival) / 60_000,
@@ -76,7 +111,7 @@ function pinCx254Feeders(connections: BankConnection[], flights: readonly Flight
   const outbound = ranked[0]?.flight;
   if (!outbound) return connections;
   return connections.map((row, index) =>
-    index < connections.length - 4
+    index < connections.length - DESK_CASES.length
       ? row
       : {
           ...row,
@@ -84,4 +119,13 @@ function pinCx254Feeders(connections: BankConnection[], flights: readonly Flight
           outboundFlightNumber: outbound.flightNumber,
         },
   );
+}
+
+function pinDeskCases(connections: BankConnection[]): BankConnection[] {
+  const start = connections.length - DESK_CASES.length;
+  if (start < 0) return connections;
+  return connections.map((row, index) => {
+    const passenger = DESK_CASES[index - start];
+    return passenger ? { ...row, passenger } : row;
+  });
 }
