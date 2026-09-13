@@ -61,6 +61,20 @@ or downgrade protection to match an older plan.
 `docs/DEMO.md` is sacred. Claim done only after `pnpm typecheck`, `pnpm test`,
 and `pnpm test:demo`. Engine coverage stays 100% on `packages/engine/src/**`.
 
+## /hackathon skill
+
+Simplest interpretations (skill-planning sibling is a different VM; do not
+wait on its GitHub):
+
+- One skill at `.cursor/skills/hackathon/` (Cursor-loaded, same layout as
+  compound). `/auto-hackathon` is a mode pair, not a second skill.
+- Host spine is `docs/HACKATHON.md`, a mirror of DEMO + SCOPE + PITCH_NOTES,
+  not a second problem.
+- Winning-team names are mode accents, not cloud workers and not a builder
+  swarm.
+- `pnpm test` is already red on `origin/main` inside `packages/engine`
+  (`kraken.test.ts` + four scenario regexes). Skill PRs must not “fix” that.
+
 ## 2018 / 2021 Cathay champion names
 
 Not found in Cathay press. Anita, Lugless, and Dean Fung are sourced as runners-up

@@ -1,5 +1,10 @@
 # Reconnect — agent contract
 
+## /hackathon
+Read `.cursor/skills/hackathon/SKILL.md` before adding work or spawning agents.
+`/auto-hackathon` = pre-weekend `recon`/`apply`. `/hackathon` = freeze (`stop`/`identity`/`claims`/`90s`).
+27 Sep application is the first product. Agents cannot unfreeze `docs/SCOPE.md`.
+
 ## What this is
 Missed-connection recovery console for HKG transfer agents. Hackathon build. Demo on Nov 16.
 
