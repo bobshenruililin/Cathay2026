@@ -13,6 +13,8 @@ test("6-step stage demo", async ({ page }) => {
     await expect(clock).toContainText("HKT");
     await expect(clock).toContainText("2026-11-16");
     await expect(page.getByTestId("sim-badge")).toHaveText("SIM");
+    await expect(page.getByTestId("desk-identity")).toContainText("doesn't split the family");
+    await expect(page.getByTestId("desk-beside")).toContainText("Beside Passenger Recovery");
   });
 
   await test.step("2. Live triage queue from sim + engine", async () => {

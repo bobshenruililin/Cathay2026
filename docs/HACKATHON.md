@@ -10,7 +10,7 @@ Only a human unfreezes.
 | Archetype × clock | Corporate bonus-stake × gated-then-sprint |
 | First product | 27 Sep 2026 application |
 | Object | One connection on one worker iPad |
-| Hallway | “the missed-connect iPad” / “the typhoon-button desk” |
+| Hallway | “the desk that doesn’t split the family” |
 | Click | `docs/DEMO.md` six steps + `docs/competitive/saturday.md` |
 | Human freeze | **Locked.** Agents cannot add SCOPE. |
 

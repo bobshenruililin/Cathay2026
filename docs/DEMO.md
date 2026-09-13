@@ -2,6 +2,8 @@
 
 Six steps. Each step has a Playwright assertion in `e2e/demo.spec.ts`.
 Never mock time — the header clock is `packages/sim` station time.
+Hallway (freeze cut): the desk that doesn't split the family. Typhoon is
+how the bank loads, not the first noun. Same six clicks.
 
 Run: `pnpm test:demo`
 

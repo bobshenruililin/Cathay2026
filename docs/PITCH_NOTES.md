@@ -1,9 +1,10 @@
 # Pitch notes (3 minutes)
 
 **User.** HKG transfer agent, iPad landscape, evening bank. The tablet is
-the worker's (TouchCX lineage), not a passenger super-app. One named
-journey: HKG missed connect — not SQXP layover itinerary, not a passenger
-copilot (trAAvl).
+the worker's (TouchCX lineage), not a passenger super-app. Hallway: the
+desk that doesn't split the family. Typhoon is how the bank loads, not
+the noun. One named journey: HKG missed connect — not SQXP layover
+itinerary, not a passenger copilot (trAAvl).
 
 **Business Unit.** Airport Systems + HKG Ground / Transfer (Altéa office
 `HKGCX08AA` in `docs/PILOT_PROPOSAL.md`). Who sits next to them: the
@@ -18,7 +19,7 @@ say it. Drafts are flight-number-guarded; invented flights and instruction
 overrides fall back to a Cathay Alert template. No API key required for the
 demo.
 
-**What we are not.** Not Amadeus Passenger Recovery (mass Altéa rebook).
+**What we are not.** Beside Passenger Recovery, not instead. Not mass Altéa rebook.
 Not Fight4Flight (passenger delay app — we inverted it). Not a Kafka/Gemini
 IROPS super-app. Not green-points or a hotel-night carbon claim (Cathay
 Green) — the sim does not count nights. Week 1 of the pilot does not write

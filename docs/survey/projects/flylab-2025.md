@@ -9,7 +9,7 @@ well: "Pilots + IT; Gemini summarises pre-flight packs; working prototype; Innov
 poor: "Not a transfer desk; AI is the headline."
 steal: "Name who sits next to the user. LLM drafts, human decides."
 never: "LLM as the decision core."
-applied: [named-bu-pitch]
+applied: [named-bu-pitch, desk-copy-split]
 scope_recipe: ""
 pitch_recipe: "docs/PITCH_NOTES.md — FlyLab pairing and engine-true line"
 later_recipe: ""
