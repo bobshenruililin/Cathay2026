@@ -72,6 +72,8 @@ wait on its GitHub):
   not a second problem.
 - Winning-team names are mode accents, not cloud workers and not a builder
   swarm.
+- `pnpm test` is already red on `origin/main` inside `packages/engine`
+  (`kraken.test.ts` + four scenario regexes). Skill PRs must not “fix” that.
 
 ## 2018 / 2021 Cathay champion names
 
