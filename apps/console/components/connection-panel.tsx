@@ -5,6 +5,12 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { EmptyBlock } from "@/components/async-state";
 import { HandlingBadges, StatusBadge, TierBadge } from "@/components/status-badge";
+import {
+  OPTIONS_TITLE,
+  PANEL_EMPTY_DETAIL,
+  PANEL_EMPTY_TITLE,
+  REASONING_TITLE,
+} from "@/lib/desk-copy";
 import { formatFlight, formatHkt } from "@/lib/format";
 import { handlingFlags } from "@/lib/handling-flags";
 import type { QueueItem } from "@/lib/adapter/types";
@@ -22,10 +28,7 @@ export function ConnectionPanel({
 }) {
   if (!item) {
     return (
-      <EmptyBlock
-        title="Select a passenger"
-        detail="Choose a high-priority connection from the triage queue."
-      />
+      <EmptyBlock title={PANEL_EMPTY_TITLE} detail={PANEL_EMPTY_DETAIL} />
     );
   }
 
@@ -45,13 +48,14 @@ export function ConnectionPanel({
           <FlightCard title="Inbound" flight={item.inbound} />
           <FlightCard title="Outbound" flight={item.outbound} />
         </div>
+        <h3 className="font-heading text-sm font-medium">{REASONING_TITLE}</h3>
         <ul className="list-disc space-y-1 pl-5 text-sm" data-testid="engine-reasoning">
           {item.result.reasoning.map((line) => (
             <li key={line}>{line}</li>
           ))}
         </ul>
         <Separator />
-        <h3 className="font-heading text-sm font-medium">Top recovery options</h3>
+        <h3 className="font-heading text-sm font-medium">{OPTIONS_TITLE}</h3>
         {item.result.options.length === 0 ? (
           <EmptyBlock title="No computed options" detail="The engine returned an empty set for this itinerary." />
         ) : (

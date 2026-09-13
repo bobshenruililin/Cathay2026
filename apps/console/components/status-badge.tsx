@@ -31,12 +31,22 @@ export function TierBadge({ tier }: { tier: LoyaltyTier }) {
   );
 }
 
+function handlingBadgeClass(flag: string): string {
+  if (flag === "UM") {
+    return "border-amber-700 bg-amber-100 text-amber-950 text-xs font-semibold";
+  }
+  if (flag === "WCH") {
+    return "border-sky-700 bg-sky-100 text-sky-950 text-xs font-semibold";
+  }
+  return "border-violet-700 bg-violet-100 text-violet-950 text-xs font-semibold";
+}
+
 export function HandlingBadges({ flags }: { flags: string[] }) {
   if (flags.length === 0) return null;
   return (
     <span className="flex flex-wrap gap-1" data-testid="handling-flags">
       {flags.map((flag) => (
-        <Badge key={flag} variant="outline" className="text-[10px]">
+        <Badge key={flag} variant="outline" className={handlingBadgeClass(flag)}>
           {flag}
         </Badge>
       ))}

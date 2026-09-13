@@ -11,6 +11,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  BANK_LOAD_LABEL,
+  BANK_STATUS_LABEL,
+  CLOCK_LABEL,
+  CX254_BUTTON,
+  DESK_BESIDE,
+  DESK_HALLWAY,
+  DESK_PAIRING,
+  TYPHOON_BUTTON,
+} from "@/lib/desk-copy";
 import { formatHkt } from "@/lib/format";
 import { stationModeBadges } from "@/lib/station-mode";
 import type { ConsoleSnapshot } from "@/lib/adapter/types";
@@ -51,7 +61,13 @@ export function StationHeader({
     <header className="grid grid-cols-[1fr_auto_auto] items-center gap-3 border-b bg-card px-4 py-3 min-[1024px]:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_minmax(0,1.4fr)]">
       <div>
         <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
-          HKG station time
+          {DESK_PAIRING}
+        </p>
+        <p className="font-heading text-sm font-medium" data-testid="desk-identity">
+          {DESK_HALLWAY}
+        </p>
+        <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+          {CLOCK_LABEL}
         </p>
         <div className="flex flex-wrap items-center gap-2">
           <p className="font-heading text-xl font-medium" data-testid="station-clock">
@@ -66,7 +82,7 @@ export function StationHeader({
       </div>
       <div>
         <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
-          Disruption status
+          {BANK_STATUS_LABEL}
         </p>
         <p
           data-testid="disruption-status"
@@ -77,19 +93,22 @@ export function StationHeader({
         <p className="text-xs text-muted-foreground" data-testid="delayed-flights">
           {disruption?.delayedFlights ?? 0} delayed flights
         </p>
+        <p className="text-xs text-muted-foreground" data-testid="desk-beside">
+          {DESK_BESIDE}
+        </p>
         <span className="sr-only" data-testid="at-risk-count">
           {disruption?.atRiskCount ?? 0}
         </span>
       </div>
       <div className="flex flex-wrap items-end gap-2">
         <p className="w-full text-xs font-medium tracking-wide text-muted-foreground uppercase">
-          Quick sim controls
+          {BANK_LOAD_LABEL}
         </p>
         <Button type="button" data-testid="btn-typhoon" disabled={busy} onClick={onTyphoon}>
-          Simulate Typhoon Delay
+          {TYPHOON_BUTTON}
         </Button>
         <Button type="button" data-testid="btn-cx254" disabled={busy} onClick={onCx254}>
-          Late Inbound CX254
+          {CX254_BUTTON}
         </Button>
         <Button
           type="button"

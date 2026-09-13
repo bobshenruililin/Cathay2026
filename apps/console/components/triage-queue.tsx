@@ -3,6 +3,7 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { EmptyBlock, ErrorBlock, LoadingBlock } from "@/components/async-state";
 import { StatusBadge, TierBadge, HandlingBadges } from "@/components/status-badge";
+import { QUEUE_SUBTITLE, QUEUE_TITLE } from "@/lib/desk-copy";
 import { formatFlight } from "@/lib/format";
 import { handlingFlags } from "@/lib/handling-flags";
 import { queuePeakLabel } from "@/lib/queue-peak";
@@ -32,8 +33,8 @@ export function TriageQueue({
   return (
     <section className="flex min-h-0 flex-col border-r bg-card" data-testid="triage-queue">
       <div className="border-b px-4 py-3">
-        <h2 className="font-heading text-sm font-medium">Triage queue</h2>
-        <p className="text-xs text-muted-foreground">Missed first, then tight · Diamond first</p>
+        <h2 className="font-heading text-sm font-medium">{QUEUE_TITLE}</h2>
+        <p className="text-xs text-muted-foreground">{QUEUE_SUBTITLE}</p>
         <p className="text-xs text-muted-foreground" data-testid="quiet-count">
           {quietCount} connection{quietCount === 1 ? "" : "s"} OK — silent
         </p>
