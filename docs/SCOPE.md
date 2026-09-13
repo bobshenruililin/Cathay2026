@@ -12,3 +12,4 @@ In scope for the 16 November 2026 stage demo:
 Out of scope for this demo: Altéa `PNR_AddMultiElements` writes, production credentials, public FIDS website scraping, holding device tokens. See `docs/LATER.md`.
 
 Improvement OS (not a demo feature): `docs/COMPOUND.md`, `docs/survey/`, `.cursor/skills/compound/SKILL.md`.
+Hackathon OS (not a demo feature): `.cursor/skills/hackathon/SKILL.md`, `docs/HACKATHON.md`.

@@ -1,0 +1,14 @@
+---
+description: Cathay 2026 /hackathon — anti-swarm freeze; 27 Sep apply is the first product
+alwaysApply: true
+---
+
+# /hackathon
+
+This event is **corporate bonus-stake × gated-then-sprint**, not a 24h
+table-surprise. Feature Zero is already `docs/DEMO.md`.
+
+- Before adding a feature or spawning agents, read `.cursor/skills/hackathon/SKILL.md`.
+- `/auto-hackathon` = `recon`/`apply` only, and only before 14 Nov.
+- `/hackathon` = `stop` → `identity` → `claims` → `90s`. Deletes adds.
+- Agents cannot unfreeze. Spine mirror: `docs/HACKATHON.md`.
