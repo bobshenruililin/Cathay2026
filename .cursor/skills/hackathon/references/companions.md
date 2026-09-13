@@ -9,6 +9,7 @@ the freeze. If someone wants to install companions, say no.
 | --- | --- | --- |
 | `/swarm`, `/orchestrate`, best-of-n builders | Feature factory. FlightFixer. | `stop`. One claim after human unfreeze. |
 | Champion-named cloud workers with branches | Same factory, funnier names | Voices inside modes. No seat gets a branch. |
+| `/pitch` or `/demo` skill packages | Split brain. 26-skill kit. | `apply` (gate) + `90s` (click / Nov words). |
 | Second skill named `/auto-hackathon` | Split brain. Mix recon into freeze. | Modes of **this** skill. |
 | Slide factory / auto-submit / “we will win” | Scoring function has no v2 | Working click + honest LIVE. |
 | TDD pipeline as the product | Judges do not score the harness | `pnpm test:demo` stays green. |
@@ -31,8 +32,9 @@ skills.
 - Engine purity: `.cursor/rules/engine.mdc`
 - Verifier: `.cursor/agents/verifier.md` (after SCOPE code, not a winner seat)
 - Claims board: `docs/claims/`
-- Compound OS: `.cursor/skills/compound/SKILL.md` (separate sitting)
+- Compound OS: `.cursor/skills/compound/SKILL.md` (separate sitting; `/hackathon` `compound` delegates)
 - 90s words: `docs/competitive/saturday.md`
+- Any-event axes: `references/archetype.md`
 
 ## Integrate?
 

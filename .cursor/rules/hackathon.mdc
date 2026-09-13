@@ -11,4 +11,5 @@ table-surprise. Feature Zero is already `docs/DEMO.md`.
 - Before adding a feature or spawning agents, read `.cursor/skills/hackathon/SKILL.md`.
 - `/auto-hackathon` = `recon`/`apply` only, and only before 14 Nov.
 - `/hackathon` = `stop` → `identity` → `claims` → `90s`. Deletes adds.
+- Pitch is `apply` + `90s`, not a new skill. Compound/verifier delegate; no swarm.
 - Agents cannot unfreeze. Spine mirror: `docs/HACKATHON.md`.

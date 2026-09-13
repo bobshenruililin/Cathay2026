@@ -15,7 +15,9 @@ Only a human unfreezes.
 | Human freeze | **Locked.** Agents cannot add SCOPE. |
 
 Skill: `.cursor/skills/hackathon/SKILL.md`. Event prior:
-`.cursor/skills/hackathon/references/events.md`.
+`.cursor/skills/hackathon/references/events.md`. Any event:
+`.cursor/skills/hackathon/references/archetype.md`. Pitch is `apply` +
+`90s`, not a second skill. No builder swarm.
 
 ## Prize math (same path)
 

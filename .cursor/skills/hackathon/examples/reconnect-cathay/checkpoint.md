@@ -49,3 +49,27 @@ Piggyback: Innovate intern on the same 30-day pilot
 Not: engine PRs as application padding
 Human: spine already locked
 ```
+
+```
+## Mode: pitch  (alias — not a skill)
+Gated clock (now → 27 Sep): ran apply, then stopped
+Freeze / Saturday rehearsal: run 90s, then stopped
+Refused: new .cursor/skills/pitch/
+Human: still frozen
+```
+
+```
+## Mode: compound  (delegate)
+Followed .cursor/skills/compound/SKILL.md (one steal)
+Refused: 14–16 Nov sitting; LATER/Never product
+Next: not a freeze mode
+Human: still frozen
+```
+
+```
+## Mode: verifier  (delegate, readonly)
+Followed .cursor/agents/verifier.md
+Ran: pnpm typecheck && pnpm test:demo
+Did not claim packages/** or unfreeze SCOPE
+Human: still frozen
+```

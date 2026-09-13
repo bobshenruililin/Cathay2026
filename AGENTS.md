@@ -3,6 +3,8 @@
 ## /hackathon
 Read `.cursor/skills/hackathon/SKILL.md` before adding work or spawning agents.
 `/auto-hackathon` = pre-weekend `recon`/`apply`. `/hackathon` = freeze (`stop`/`identity`/`claims`/`90s`).
+Pitch = `apply` (gate) + `90s` (demo / Nov words). No `/pitch` skill. No builder swarm.
+Compound / verifier delegate to `.cursor/skills/compound/` and `.cursor/agents/verifier.md`.
 27 Sep application is the first product. Agents cannot unfreeze `docs/SCOPE.md`.
 
 ## What this is

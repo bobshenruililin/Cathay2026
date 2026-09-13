@@ -8,4 +8,6 @@ Event shape: **corporate bonus-stake × gated-then-sprint**.
 Object: missed-connect iPad. Theater: typhoon button.
 
 Use with `.cursor/skills/hackathon/SKILL.md`. After a mode, print a
-checkpoint like `checkpoint.md`, then **stop**.
+checkpoint like `checkpoint.md`, then **stop**. Axes for other events:
+`references/archetype.md`. Pitch is `apply` + `90s`, not a fixture of its
+own.

@@ -72,6 +72,9 @@ wait on its GitHub):
   not a second problem.
 - Winning-team names are mode accents, not cloud workers and not a builder
   swarm.
+- Pitch / demo are **not** skill packages: gated clock → `apply`; freeze and
+  Saturday words → `90s`. `compound` and `verifier` delegate to the files
+  that already exist.
 - `pnpm test` is already red on `origin/main` inside `packages/engine`
   (`kraken.test.ts` + four scenario regexes). Skill PRs must not “fix” that.
 
