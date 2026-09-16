@@ -6,6 +6,13 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { EmptyBlock, ErrorBlock, LoadingBlock } from "@/components/async-state";
+import {
+  DESK_BESIDE,
+  DRAWER_EMPTY_DETAIL,
+  DRAWER_EMPTY_TITLE,
+  DRAWER_SPLIT,
+  DRAWER_TITLE,
+} from "@/lib/desk-copy";
 import type { Locale } from "@/lib/adapter/types";
 import type { QueueItem } from "@/lib/adapter/types";
 import type { RecoveryOption } from "engine";
@@ -36,14 +43,11 @@ export function ActionDrawer({
   return (
     <aside className="flex min-h-0 flex-col border-l bg-card">
       <div className="border-b px-4 py-3">
-        <h2 className="font-heading text-sm font-medium">Action drawer</h2>
-        <p className="text-xs text-muted-foreground">AI notification is a draft until you approve</p>
+        <h2 className="font-heading text-sm font-medium">{DRAWER_TITLE}</h2>
+        <p className="text-xs text-muted-foreground">{DRAWER_SPLIT}</p>
       </div>
       {!item || !option ? (
-        <EmptyBlock
-          title="Pick a recovery option"
-          detail="Select one of the top 3 engine options to draft a passenger message."
-        />
+        <EmptyBlock title={DRAWER_EMPTY_TITLE} detail={DRAWER_EMPTY_DETAIL} />
       ) : (
         <div className="flex min-h-0 flex-1 flex-col gap-3 p-4">
           <div className="flex items-center gap-2">
@@ -95,6 +99,7 @@ export function ActionDrawer({
           >
             {sending ? "Sending…" : "Approve Rebooking & Send"}
           </Button>
+          <p className="text-xs text-muted-foreground">{DESK_BESIDE}</p>
         </div>
       )}
     </aside>

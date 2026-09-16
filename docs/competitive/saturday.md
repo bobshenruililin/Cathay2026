@@ -4,11 +4,11 @@ Same six steps as [`docs/DEMO.md`](../DEMO.md). Say this, then stop. Do not tour
 
 | Clock | Demo | Say | Show |
 |---|---|---|---|
-| 0–15s | 1–2 | HKG transfer desk. Q77. Not a trip planner. | Station clock + live queue |
-| 15–35s | 3 | Typhoon. The bank moves. Queue refreshes. No reload. | **Simulate Typhoon Delay** |
-| 35–50s | 4 | CX254 +180. Rogers wanted this airborne in 2019. We do it on the iPad. | **Late Inbound CX254** |
-| 50–70s | 5 | Engine ranked this. `reasoning[]` is verbatim. The model did not pick the flight. | Option card + reasoning |
-| 70–90s | 6 | Draft is guarded. Approve is the only send. Beside Passenger Recovery, not instead. | **Approve Rebooking & Send** |
+| 0–15s | 1–2 | HKG transfer desk. Airport Systems. Q77. The queue already knows who you cannot split. | Station clock + **SIM** + UM / WCH / party chips |
+| 15–25s | 3 | Bank is live. (One sentence. Do not narrate meteorology.) | **Simulate Typhoon Delay** |
+| 25–55s | 4 | CX254 +180. Cole Family `MIXED4`: UM + WCH + party of 4. Engine keeps party `COLE` on one CX. | **Late Inbound CX254** → `MIXED4` chips |
+| 55–75s | 5 | Engine ranked this. `reasoning[]` is verbatim. The model did not pick the flight. | Option card + reasoning |
+| 75–90s | 6 | Draft is guarded. Approve is the only send. Beside Passenger Recovery, not instead. | **Approve Rebooking & Send** |
 
 If a CX transfer agent or Airport Systems person is in the room, name them in the first 15 seconds (FlyLab shape: real role + IT). If not, name the desk anyway.
 
