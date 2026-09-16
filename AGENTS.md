@@ -9,6 +9,7 @@ Compound / verifier delegate to `.cursor/skills/compound/` and `.cursor/agents/v
 
 ## What this is
 Missed-connection recovery console for HKG transfer agents. Hackathon build. Demo on Nov 16.
+Human/team orientation (not the spec): `docs/briefing/`.
 
 ## Non-negotiables
 - packages/engine has ZERO runtime dependencies and ZERO LLM calls. Pure functions. 100% covered.

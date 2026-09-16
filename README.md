@@ -32,7 +32,7 @@ Station clock is sim time (`Asia/Hong_Kong`). Do not mock `Date.now()`.
 - Claims (one writer per glob; engine is a queue): [`docs/claims/`](docs/claims/)
 - Compound OS: [`docs/COMPOUND.md`](docs/COMPOUND.md), [`docs/survey/`](docs/survey/), [`docs/compound/log.md`](docs/compound/log.md)
 - Competitive markdown: [`docs/competitive/README.md`](docs/competitive/README.md)
-- Teammate briefing (not on the demo path): [`docs/briefing/README.md`](docs/briefing/README.md)
+- Teammate briefing (orientation, not the spec, not on the demo path): [`docs/briefing/README.md`](docs/briefing/README.md)
 
 ## Agents / `/hackathon`
 

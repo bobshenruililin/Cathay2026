@@ -1,17 +1,49 @@
 # Teammate briefing
 
-Internal win memo for Reconnect. Not part of the six-step demo.
+**For AI agents:** this directory is an **orientation layer**, not the product
+specification. On conflict, follow the linked canonical file — usually
+[`docs/SCOPE.md`](../SCOPE.md), [`docs/DEMO.md`](../DEMO.md), [`AGENTS.md`](../../AGENTS.md),
+or [`.cursor/skills/hackathon/SKILL.md`](../../.cursor/skills/hackathon/SKILL.md).
+Do not unfreeze SCOPE from anything here. Do not add a seventh demo step.
 
-## Open
+Internal. Not on the six-step demo path (`pnpm test:demo`).
+
+## Start here
+
+| If you are… | Read |
+| --- | --- |
+| A new human (10 minutes) | [TEAM.md](TEAM.md) → [HOW_TO_WORK.md](HOW_TO_WORK.md) → [WINNING.md](WINNING.md) |
+| A Cursor / Cowork agent | [HOW_TO_WORK.md](HOW_TO_WORK.md) (protocol + starter prompt), then SCOPE / DEMO / AGENTS |
+| Prepping Q&A or the 90s | [WINNING.md](WINNING.md), then [`docs/competitive/saturday.md`](../competitive/saturday.md) |
+
+Canonical product docs (do not copy into this folder):
+
+- In / out of Saturday: [`docs/SCOPE.md`](../SCOPE.md)
+- Six clicks: [`docs/DEMO.md`](../DEMO.md)
+- Agent contract: [`AGENTS.md`](../../AGENTS.md)
+- Spine / LIVE table: [`docs/HACKATHON.md`](../HACKATHON.md)
+- Parked vs open: [`docs/LATER.md`](../LATER.md), [`docs/QUESTIONS.md`](../QUESTIONS.md)
+
+## What is current vs not
+
+| Kind | Meaning | Where |
+| --- | --- | --- |
+| **Current product** | Shipped for 16 Nov. Six clicks. Engine-true. | SCOPE, DEMO, `packages/*`, `apps/console` |
+| **Later idea** | Real, parked. Do not pull into the iPad. | [`docs/LATER.md`](../LATER.md), COMPOUND Next |
+| **Open question** | Simplest interpretation already picked; humans can overturn. | [`docs/QUESTIONS.md`](../QUESTIONS.md) |
+| **Rejected** | Foil / Never. Do not rebuild. | COMPOUND Never, competitive learnings, WINNING “do not” |
+
+## Competitive intel explorer (same folder, different object)
+
+Merged earlier as a **win-memo site**, not this orientation. Markdown source:
+[`docs/competitive/README.md`](../competitive/README.md).
 
 ```bash
 python3 -m http.server 4173 --directory docs/briefing
 ```
 
-Visit http://localhost:4173 — Chrome will not load the JSON from `file://`.
+http://localhost:4173 — Chrome will not load the JSON from `file://`.
 
-- PDF: `Reconnect-competitive-intel.pdf` (regenerate with `pnpm briefing:pdf`)
-- CSV: `data/projects.csv` (`pnpm briefing:csv`) — one row per project
 - Present: `#slides`, then arrow keys
-- Filters: kind + copy/foil role + search
-- Markdown: [../competitive/README.md](../competitive/README.md)
+- PDF: `Reconnect-competitive-intel.pdf` (`pnpm briefing:pdf`)
+- CSV: `data/projects.csv` (`pnpm briefing:csv`)
