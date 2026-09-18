@@ -24,6 +24,7 @@ Human/team orientation (not the spec): `docs/briefing/`.
 - If a task is ambiguous, write the question to docs/QUESTIONS.md and pick the simplest interpretation. Don't block.
 - Do not add features not in docs/SCOPE.md. If tempted, add to docs/LATER.md.
 - Parallel work: claim a file glob in docs/claims/ before editing it. One writer per glob; engine claims are a queue.
+- Engine perf: `.cursor/skills/algorithm-engineer/SKILL.md` (benches + `docs/engine/SPACE.md` before kernel PRs).
 - Compounding: when the user says compound, nudge, steal from, ingest, or refresh survey, read `.cursor/skills/compound/SKILL.md` first. Every PR appends one line to `docs/compound/log.md` or moves one `docs/COMPOUND.md` Next → Done. Do not implement LATER/Never product features.
 
 ## Style
