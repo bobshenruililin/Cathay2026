@@ -1,5 +1,7 @@
+import type { KernelName } from "./workload";
+
 export type BenchRow = {
-  name: string;
+  name: KernelName;
   iterations: number;
   nsPerOp: number;
   opsPerSec: number;
@@ -7,7 +9,7 @@ export type BenchRow = {
 };
 
 export function timeKernel(
-  name: string,
+  name: KernelName,
   run: () => string,
   opts?: { warmup?: number; iterations?: number },
 ): BenchRow {
