@@ -2,8 +2,8 @@ import { isOneworldAirline, requiredMinutesFor } from "./mct";
 import { hkgCalendarDay, minutesBetween } from "./iso";
 import { isAtRisk } from "./feasibility";
 import { delayReason, mctReason, scoreReason, seatingReason, specialHandlingReasons } from "./option-reason";
-import { isUnaccompaniedMinor } from "./passenger";
-import { scoreOption } from "./score";
+import { isUnaccompaniedMinor, partySizeOf } from "./passenger";
+import { scoreOption, seatMatch } from "./score";
 import { partySeating } from "./seating";
 import type { Connection, Flight, RecoveryOption } from "./types";
 
@@ -35,25 +35,50 @@ function toOption(connection: Connection, flight: Flight): RecoveryOption {
   };
 }
 
-function compareCandidates(connection: Connection, left: Flight, right: Flight): number {
-  const leftOption = toOption(connection, left);
-  const rightOption = toOption(connection, right);
-  if (rightOption.score !== leftOption.score) return rightOption.score - leftOption.score;
-  return left.flightNumber.localeCompare(right.flightNumber);
+/** Score only — no reasoning strings. Same formula as `toOption`. */
+function optionScore(connection: Connection, flight: Flight): number {
+  const matched = seatMatch(flight, connection.passenger.cabin, partySizeOf(connection.passenger));
+  return scoreOption(connection.passenger.tier, matched, delayMinutesOf(connection.outbound, flight));
 }
 
-function pickBest(connection: Connection, flights: readonly Flight[]): Flight | undefined {
-  if (flights.length === 0) return undefined;
-  return [...flights].sort((left, right) => compareCandidates(connection, left, right))[0];
+function pickBest(
+  connection: Connection,
+  flights: readonly Flight[],
+  include: (flight: Flight) => boolean,
+): Flight | undefined {
+  let best: Flight | undefined;
+  let bestScore = 0;
+  for (const flight of flights) {
+    if (!include(flight)) continue;
+    const score = optionScore(connection, flight);
+    if (
+      !best ||
+      score > bestScore ||
+      (score === bestScore && flight.flightNumber.localeCompare(best.flightNumber) < 0)
+    ) {
+      best = flight;
+      bestScore = score;
+    }
+  }
+  return best;
 }
 
-function pickNextCx(flights: readonly Flight[]): Flight | undefined {
-  if (flights.length === 0) return undefined;
-  return [...flights].sort((left, right) => {
-    const byTime = Date.parse(left.actualDeparture) - Date.parse(right.actualDeparture);
-    if (byTime !== 0) return byTime;
-    return left.flightNumber.localeCompare(right.flightNumber);
-  })[0];
+function pickNextCx(flights: readonly Flight[], include: (flight: Flight) => boolean): Flight | undefined {
+  let best: Flight | undefined;
+  let bestTime = 0;
+  for (const flight of flights) {
+    if (!include(flight)) continue;
+    const time = Date.parse(flight.actualDeparture);
+    if (
+      !best ||
+      time < bestTime ||
+      (time === bestTime && flight.flightNumber.localeCompare(best.flightNumber) < 0)
+    ) {
+      best = flight;
+      bestTime = time;
+    }
+  }
+  return best;
 }
 
 function isViable(connection: Connection, candidate: Flight): boolean {
@@ -84,26 +109,25 @@ export function generateOptions(connection: Connection, pool: readonly Flight[])
 
   const sameDay = pickBest(
     connection,
-    viable.filter((flight) => hkgCalendarDay(flight.actualDeparture) === originalDay),
+    viable,
+    (flight) => hkgCalendarDay(flight.actualDeparture) === originalDay,
   );
   const chosen = new Set(sameDay ? [sameDay.flightNumber] : []);
   const nextCx = pickNextCx(
-    viable.filter(
-      (flight) =>
-        flight.airline === "CX" &&
-        Date.parse(flight.actualDeparture) > originalDep &&
-        !chosen.has(flight.flightNumber),
-    ),
+    viable,
+    (flight) =>
+      flight.airline === "CX" &&
+      Date.parse(flight.actualDeparture) > originalDep &&
+      !chosen.has(flight.flightNumber),
   );
   if (nextCx) chosen.add(nextCx.flightNumber);
   const partner = pickBest(
     connection,
-    viable.filter(
-      (flight) =>
-        isOneworldAirline(flight.airline) &&
-        flight.airline !== "CX" &&
-        !chosen.has(flight.flightNumber),
-    ),
+    viable,
+    (flight) =>
+      isOneworldAirline(flight.airline) &&
+      flight.airline !== "CX" &&
+      !chosen.has(flight.flightNumber),
   );
 
   const options: RecoveryOption[] = [];
