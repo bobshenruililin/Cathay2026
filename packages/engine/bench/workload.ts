@@ -5,155 +5,60 @@ import {
   requiredMinutesFor,
   triageConnection,
 } from "../src/index";
-import { addMinutesIso } from "../src/iso";
-import { INBOUND, makeConnection, makeFlight, makePassenger } from "../src/fixtures";
-import type { Connection, Flight, Passenger, RecoveryOption, TriageResult } from "../src/types";
+import { digest256, observeOption, observePassenger, observeTriage, stableStringify } from "./canonical";
+import { CARRIERS, extraTransitShapes, freshMatrix } from "./matrix";
 
-export const SEED = 2026_11_16;
-export const POOL_SIZE = 240;
-
-/** Locked after the first honest bench run. Drift means outputs changed. */
+/** SHA-256 of full observed outputs. Regenerated when the matrix changes. */
 export const GOLDEN = {
-  requiredMinutes: "1d696aad",
-  extraTransit: "e1d1882d",
-  triageConnection: "bd4fe690",
-  generateOptions: "a0d8ac93",
+  extraTransit: "ac2c215cb23bca3c01bc758ea4efa2a3ae2afe139d131bd9080bbf9e0e83bb40",
+  generateOptions: "2193251c50d9fb5b0dc6299bb84929edeb6da9c1b63ed0cc1aa8545290415b0a",
+  requiredMinutes: "5760c2deef531cabb2cda1e55cc55d7e788ea38151642e776f95d2bfbd207635",
+  triageConnection: "18c2d7f740b238de6c433407dd7cabf83255b35dfc6ec771c3b647fc0906503f",
 } as const;
 
 export type KernelName = keyof typeof GOLDEN;
 
-export function hashText(text: string): string {
-  let h = 5381;
-  for (let i = 0; i < text.length; i++) {
-    h = (h << 5) + h + text.charCodeAt(i);
-  }
-  return (h >>> 0).toString(16).padStart(8, "0");
-}
-
-function mulberry32(seed: number): () => number {
-  let a = seed >>> 0;
-  return () => {
-    a = (a + 0x6d2b79f5) >>> 0;
-    let t = a;
-    t = Math.imul(t ^ (t >>> 15), t | 1);
-    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
-function buildPool(rng: () => number, size: number): Flight[] {
-  const airlines = ["CX", "UO", "BA", "QF", "JL", "AA", "5J"];
-  const pool: Flight[] = [];
-  const arr = INBOUND.actualArrival;
-  for (let i = 0; i < size; i++) {
-    const airline = airlines[Math.floor(rng() * airlines.length)]!;
-    const dest = rng() < 0.12 ? "SYD" : "LHR";
-    const offset = 40 + Math.floor(rng() * 1600);
-    const seats = {
-      First: rng() < 0.45 ? 0 : 4,
-      Business: Math.floor(rng() * 20),
-      "Premium Economy": Math.floor(rng() * 24),
-      Economy: 20 + Math.floor(rng() * 140),
-    };
-    pool.push(
-      makeFlight(
-        `${airline}${100 + i}`,
-        airline,
-        "HKG",
-        dest,
-        addMinutesIso(arr, offset),
-        addMinutesIso(arr, offset + 780),
-        seats,
-      ),
-    );
-  }
-  return pool;
-}
-
-function missed(extras: Partial<Pick<Passenger, "um" | "wheelchair" | "ssr" | "partySize" | "partyId">> = {}): Connection {
-  const outbound = makeFlight(
-    "CX250",
-    "CX",
-    "HKG",
-    "LHR",
-    addMinutesIso(INBOUND.actualArrival, 40),
-    addMinutesIso(INBOUND.actualArrival, 820),
+export function observeRequiredTable() {
+  return CARRIERS.flatMap((inbound) =>
+    CARRIERS.flatMap((outbound) =>
+      extraTransitShapes().map((pax) => ({
+        extra: extraTransitMinutes(pax),
+        inbound,
+        outbound,
+        pax: observePassenger(pax),
+        required: requiredMinutes(inbound, outbound),
+        requiredFor: requiredMinutesFor(inbound, outbound, pax),
+      })),
+    ),
   );
-  return makeConnection(INBOUND, outbound, makePassenger("BENCH", "Diamond", "Business", extras));
 }
 
-function fpOption(option: RecoveryOption): string {
-  return [
-    option.flight.flightNumber,
-    option.score,
-    option.delayMinutes,
-    option.seatMatch,
-    option.offeredCabin,
-    option.downgradeProtected,
-    option.reasoning.join("|"),
-  ].join("/");
+export function observeExtraTable() {
+  return extraTransitShapes().map((pax) => ({
+    extra: extraTransitMinutes(pax),
+    pax: observePassenger(pax),
+  }));
 }
 
-function fpTriage(result: TriageResult): string {
-  return [
-    result.pnr,
-    result.status,
-    result.slackMinutes,
-    result.requiredMinutes,
-    result.reasoning.join("|"),
-    result.options.map(fpOption).join(";"),
-  ].join("/");
+export function observeGenerateMatrix() {
+  return freshMatrix().map((cell) => ({
+    id: cell.id,
+    options: generateOptions(cell.connection, cell.pool).map(observeOption),
+  }));
 }
 
-const AIRLINES = ["CX", "UO", "BA", "QF", "5J"] as const;
-
-export function fingerprintRequiredMinutes(): string {
-  const parts: string[] = [];
-  for (const inbound of AIRLINES) {
-    for (const outbound of AIRLINES) {
-      parts.push(
-        `${inbound}-${outbound}:${requiredMinutes(inbound, outbound)}:${requiredMinutesFor(inbound, outbound, { um: true, wheelchair: true })}`,
-      );
-    }
-  }
-  return hashText(parts.join(","));
-}
-
-export function fingerprintExtraTransit(): string {
-  const shapes: Passenger[] = [
-    makePassenger("A"),
-    makePassenger("B", "Gold", "Business", { um: true }),
-    makePassenger("C", "Gold", "Business", { wheelchair: true }),
-    makePassenger("D", "Gold", "Business", { um: true, wheelchair: true }),
-    makePassenger("E", "Gold", "Business", { ssr: ["UMNR"] }),
-    makePassenger("F", "Gold", "Business", { ssr: ["WCHR"] }),
-    makePassenger("G", "Gold", "Business", { ssr: ["UMNR", "WCHS"] }),
-    makePassenger("H", "Gold", "Business", { partySize: 4, partyId: "COLE" }),
-  ];
-  return hashText(shapes.map((pax) => `${pax.pnr}:${extraTransitMinutes(pax)}`).join(","));
+export function observeTriageMatrix() {
+  return freshMatrix().map((cell) => ({
+    id: cell.id,
+    triage: observeTriage(triageConnection(cell.connection, cell.pool)),
+  }));
 }
 
 export function loadWorkload(): { name: KernelName; run: () => string }[] {
-  const pool = buildPool(mulberry32(SEED), POOL_SIZE);
-  const connections = [
-    missed(),
-    missed({ um: true }),
-    missed({ wheelchair: true }),
-    missed({ um: true, wheelchair: true, partySize: 4, partyId: "COLE" }),
-    missed({ ssr: ["UMNR"] }),
-    missed({ ssr: ["WCHR"], partySize: 2 }),
-  ];
   return [
-    { name: "requiredMinutes", run: fingerprintRequiredMinutes },
-    { name: "extraTransit", run: fingerprintExtraTransit },
-    {
-      name: "triageConnection",
-      run: () => hashText(connections.map((row) => fpTriage(triageConnection(row, pool))).join("||")),
-    },
-    {
-      name: "generateOptions",
-      run: () =>
-        hashText(connections.map((row) => generateOptions(row, pool).map(fpOption).join(";")).join("||")),
-    },
+    { name: "requiredMinutes", run: () => digest256(stableStringify(observeRequiredTable())) },
+    { name: "extraTransit", run: () => digest256(stableStringify(observeExtraTable())) },
+    { name: "triageConnection", run: () => digest256(stableStringify(observeTriageMatrix())) },
+    { name: "generateOptions", run: () => digest256(stableStringify(observeGenerateMatrix())) },
   ];
 }

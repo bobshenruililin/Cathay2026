@@ -40,9 +40,12 @@ output. `reasoning[]` is observable.
 
 ## Benches
 
-`pnpm --filter engine bench` — fixed seed, warmup, ns/op, checksum of
-outputs including `reasoning[]` joins. `tests/bench-checksum.test.ts`
-locks those checksums on `pnpm --filter engine test`.
+`pnpm --filter engine bench` — ring of seeds × recipes, **fresh
+object identities** every call, SHA-256 of full observed Flight /
+TriageResult / RecoveryOption fields (exact `reasoning[]`). Deep-equal
+the sort reference **outside** timed work. Harness prints **median +
+min/max** over multiple samples. `tests/bench-checksum.test.ts` and
+`tests/rank-oracle.test.ts` lock that on `pnpm --filter engine test`.
 
 `pnpm test` may already be red on `origin/main`: `kraken.test.ts`
 asserts `docs/claims/` is absent; four scenario regexes disagree with

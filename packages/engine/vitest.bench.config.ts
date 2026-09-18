@@ -4,6 +4,6 @@ export default defineConfig({
   test: {
     include: ["bench/run.test.ts"],
     coverage: { enabled: false },
-    testTimeout: 60_000,
+    testTimeout: 120_000,
   },
 });
