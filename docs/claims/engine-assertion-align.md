@@ -1,6 +1,6 @@
 ---
 id: engine-assertion-align
-status: claimed
+status: done
 claimant: cursor/align-stale-engine-assertions-3dd5
 globs: packages/engine/src/kraken.test.ts, packages/engine/tests/scenarios.test.ts, docs/claims/engine-assertion-align.md, docs/compound/log.md
 checker: pnpm typecheck && pnpm test && pnpm test:demo
@@ -18,3 +18,11 @@ on main. This lease is the writer for the two test files.
 
 `reconnect-demo-polish` still lists `docs/compound/log.md`. One append-only
 line. That claim file is not edited.
+
+## Checker
+
+`pnpm typecheck && pnpm test && pnpm test:demo` on `7af5d51`.
+
+- typecheck: engine, data, sim, console done.
+- `pnpm test`: engine 101 passed, src/ coverage 100/100/100/100; data 6 passed; sim 8 passed; console 41 passed.
+- `pnpm test:demo`: 1 passed.
