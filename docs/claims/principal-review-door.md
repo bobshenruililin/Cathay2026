@@ -1,6 +1,6 @@
 ---
 id: principal-review-door
-status: claimed
+status: done
 claimant: cursor/principal-review-door-9378
 globs: docs/briefing/README.md, docs/apply-27-sep.md, docs/pitch/DECK.md, docs/claims/principal-review-door.md
 checker: pnpm typecheck && pnpm test:demo
@@ -15,3 +15,10 @@ Does not touch the algorithm-engineer lease (PR #13).
 
 `docs/compound/log.md` stays out of this claim. Append only at merge
 if that file is free.
+
+## Checker
+
+```
+pnpm typecheck   # green (engine, data, sim, console)
+pnpm test:demo   # 1 passed (e2e/demo.spec.ts 6-step stage demo, 8.7s)
+```
