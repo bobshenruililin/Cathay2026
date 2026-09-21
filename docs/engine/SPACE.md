@@ -44,8 +44,14 @@ output. `reasoning[]` is observable.
 object identities** every call, SHA-256 of full observed Flight /
 TriageResult / RecoveryOption fields (exact `reasoning[]`). Deep-equal
 the sort reference **outside** timed work. Harness prints **median +
-min/max** over multiple samples. `tests/bench-checksum.test.ts` and
-`tests/rank-oracle.test.ts` lock that on `pnpm --filter engine test`.
+min/max** over multiple samples, then a scoreboard against
+`packages/engine/bench/baseline.ts` (checksum, median ns/op, noise band).
+The run fails if a digest drifts or a kernel median is slower than
+baseline + band. A faster median is not a keep until the sample ranges
+are disjoint; overlapping ranges are noise. Notebook:
+`docs/engine/CAMPAIGN.md`. `tests/bench-checksum.test.ts` and
+`tests/rank-oracle.test.ts` lock the digest and the sort oracle on
+`pnpm --filter engine test`.
 
 `pnpm test` may already be red on `origin/main`: `kraken.test.ts`
 asserts `docs/claims/` is absent; four scenario regexes disagree with

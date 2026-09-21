@@ -31,16 +31,23 @@ and clearly in-space. Prefer not.
   so a bench looks faster.
 - Caching the world in a global mutable map that breaks purity.
 
-## Loop
+## Campaign
 
-1. Measure. Pick **one** kernel (`requiredMinutes` / MCT, `extraTransitMinutes`,
-   `triageConnection`, `generateOptions` ranking).
-2. Change only that kernel. Recombine known methods already in this engine
-   (tables, ranking, interval arithmetic on minutes). Do not import contest math.
-3. Re-run `pnpm --filter engine bench` and `pnpm --filter engine test`.
-   Checksums of outputs and `reasoning[]` joins must match.
-4. Keep only if speedup is real (well above noise) and coverage stays 100%.
-   Otherwise revert.
-5. Stop. Prefer one kernel per PR.
+Hypothesis → invariant → measurement → keep or revert. One kernel per commit.
+The bench is the referee. Overlapping ranges are noise.
 
-Public engine outputs still carry `reasoning: string[]`. Same seed → same output.
+1. Hypothesis. Name one kernel (`requiredMinutes` / MCT, `extraTransitMinutes`,
+   `triageConnection`, `generateOptions`) and one row from
+   `.cursor/skills/algorithm-engineer/references/techniques.md`.
+2. Invariant. Full-field SHA-256 matches `GOLDEN`. The sort/reference oracle
+   deep-equals. `reasoning[]` stays verbatim. Same seed → same output.
+3. Measurement. `pnpm --filter engine bench`. Read the scoreboard. The floor
+   is `packages/engine/bench/baseline.ts` (checksum, median ns/op, noise band).
+4. Keep or revert. Keep only if the new sample range is entirely below the
+   old range (new max < old min) and `src/` coverage stays 100%. If the ranges
+   overlap, revert — that is noise, not a win. Do not widen the band to pass.
+5. Stop that kernel. The next commit is a different kernel, or an honest stop.
+   Record kept vs reverted in `docs/engine/CAMPAIGN.md`.
+
+Recombine methods already in this engine (tables, ranking, minute arithmetic).
+Do not import contest math. Public outputs still carry `reasoning: string[]`.

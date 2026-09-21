@@ -13,4 +13,5 @@ Kernels: `requiredMinutes` / `hkgMctMinutes`, `extraTransitMinutes`,
 `triageConnection`, `generateOptions` ranking.
 
 Benches must checksum full `reasoning[]` joins (or option flight numbers
-plus scores). Faster cannot mean “did less work.”
+plus scores). Faster cannot mean “did less work.” Catalog:
+[techniques.md](techniques.md). Regression floor: `packages/engine/bench/baseline.ts`.
