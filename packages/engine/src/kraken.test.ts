@@ -9,7 +9,7 @@ describe("Kraken claims", () => {
   it("keeps claim leases as a markdown board, not a Kraken framework", () => {
     const readme = readFileSync(join(workspace, "docs/claims/README.md"), "utf8");
     expect(existsSync(join(workspace, "docs/claims"))).toBe(true);
-    expect(readme).toMatch(/not a framework/);
+    expect(readme).toMatch(/not a\s+framework/);
     const agents = readFileSync(join(workspace, "AGENTS.md"), "utf8");
     expect(agents).toMatch(/docs\/claims\//);
     const rootPkg = readFileSync(join(workspace, "package.json"), "utf8");
