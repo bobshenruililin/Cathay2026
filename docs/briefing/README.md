@@ -8,6 +8,12 @@ Do not unfreeze SCOPE from anything here. Do not add a seventh demo step.
 
 Internal. Not on the six-step demo path (`pnpm test:demo`).
 
+## Principal review
+
+From this page: [six-step demo](../DEMO.md) · [team](TEAM.md) · [how to build](HOW_TO_WORK.md) · [winning thesis](WINNING.md) · [27 Sep application](../apply-27-sep.md).
+
+[`docs/apply-27-sep.md`](../apply-27-sep.md) is the paste-ready draft. A human pastes it. The co-signer name stays blank. It is not a promise of a result. Speaker deck: [`docs/pitch/DECK.md`](../pitch/DECK.md).
+
 ## Start here
 
 | If you are… | Read |
