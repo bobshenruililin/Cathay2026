@@ -43,3 +43,4 @@ Append-only. Format: `YYYY-MM-DD | source-id | lesson | path | bucket`
 2026-09-09 | engine-hardening | Pin CX254 desk cases onto LHR CX250 and CX390 recovery so MIXED4/FIRST1 options appear after the delay | packages/data/src/passengers.ts | SCOPE
 2026-09-13 | flylab-2025 | Kill AI noun on the glass; name Transfer+Airport Systems; LLM drafts, human Approve | apps/console/lib/desk-copy.ts | SCOPE
 2026-09-18 | astra-bench-space | Lock honest benches and the legal search space before grinding kernels; do not invent algorithms outside MCT/ranking/minute arithmetic | docs/engine/SPACE.md | SCOPE
+2026-09-21 | kraken | Stale tests now lock the markdown claims lease and the current wheelchair, unsplittable-party, and downgrade sentences; do not Kraken-ify and do not retune the engine | packages/engine/src/kraken.test.ts | Never
