@@ -90,7 +90,9 @@ describe("20 real-world edge cases", () => {
     expect(HKG_MCT_MINUTES.CX_CX).toBe(50);
     expect(requiredMinutes("CX", "CX")).toBe(60);
     expect(result.reasoning.join(" ")).toMatch(/Wheelchair assistance adds 15/);
-    expect(result.options[0]?.reasoning.join(" ")).toMatch(/wheelchair or escort time/);
+    expect(result.options[0]?.reasoning.join(" ")).toMatch(
+      /Wheelchair assistance adds 15 min gate transit on top of the HKG MCT table/,
+    );
   });
 
   it("10 wheelchair: adult without flag still uses MCT+walk only", () => {
@@ -129,7 +131,9 @@ describe("20 real-world edge cases", () => {
   it("15 party of 4: triage reasoning forbids splitting across flights", () => {
     const result = triageConnection(link(pax({ partySize: 4 }), missed()), [out("CX252", "CX", 120, FULL)]);
     expect(result.reasoning.join(" ")).toMatch(/Party of 4 on one PNR cannot be split/);
-    expect(result.options[0]?.reasoning.join(" ")).toMatch(/Party of 4 stays together/);
+    expect(result.options[0]?.reasoning.join(" ")).toMatch(
+      /Unsplittable party of 4: 20 Business seats remain on CX252; the group is kept on one flight/,
+    );
   });
 
   it("16 Business exhausted: downgrade protection holds Premium Economy", () => {
@@ -159,7 +163,7 @@ describe("20 real-world edge cases", () => {
       out("CX252", "CX", 120, seatsBiz()),
     ]);
     expect(options[0]?.offeredCabin).toBe("Business");
-    expect(options[0]?.reasoning.join(" ")).toMatch(/First is full/);
+    expect(options[0]?.reasoning.join(" ")).toMatch(/First cabin is exhausted \(0 seats for a party of 1\)/);
     expect(options[0]?.reasoning.join(" ")).toMatch(/Hold Business instead/);
   });
 
@@ -173,7 +177,7 @@ describe("20 real-world edge cases", () => {
     expect(options[0]?.downgradeProtected).toBe(true);
     expect(options[0]?.reasoning.join(" ")).toMatch(/Unaccompanied minor/);
     expect(options[0]?.reasoning.join(" ")).toMatch(/Wheelchair assistance/);
-    expect(options[0]?.reasoning.join(" ")).toMatch(/nobody is split off CX252/);
+    expect(options[0]?.reasoning.join(" ")).toMatch(/the whole party stays on CX252/);
   });
 });
 

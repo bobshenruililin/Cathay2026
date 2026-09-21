@@ -44,3 +44,4 @@ Append-only. Format: `YYYY-MM-DD | source-id | lesson | path | bucket`
 2026-09-13 | flylab-2025 | Kill AI noun on the glass; name Transfer+Airport Systems; LLM drafts, human Approve | apps/console/lib/desk-copy.ts | SCOPE
 2026-09-18 | astra-bench-space | Lock honest benches and the legal search space before grinding kernels; do not invent algorithms outside MCT/ranking/minute arithmetic | docs/engine/SPACE.md | SCOPE
 2026-09-21 | touchcx-2017 | Principal door shows the six-step worker desk and the 27 Sep paste; no seventh step | docs/briefing/README.md | PITCH
+2026-09-21 | kraken | Stale tests now lock the markdown claims lease and the current wheelchair, unsplittable-party, and downgrade sentences; do not Kraken-ify and do not retune the engine | packages/engine/src/kraken.test.ts | Never
