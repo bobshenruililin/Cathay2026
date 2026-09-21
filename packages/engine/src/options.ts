@@ -1,11 +1,14 @@
-import { isOneworldAirline, requiredMinutesFor } from "./mct";
-import { hkgCalendarDay, minutesBetween } from "./iso";
+import { extraTransitMinutes, isOneworldAirline, requiredMinutes, requiredMinutesFor } from "./mct";
+import { minutesBetween } from "./iso";
 import { isAtRisk } from "./feasibility";
 import { delayReason, mctReason, scoreReason, seatingReason, specialHandlingReasons } from "./option-reason";
-import { isUnaccompaniedMinor } from "./passenger";
+import { isUnaccompaniedMinor, partySizeOf } from "./passenger";
 import { scoreOption } from "./score";
-import { partySeating } from "./seating";
-import type { Connection, Flight, RecoveryOption } from "./types";
+import { CABIN_RANK, partySeating } from "./seating";
+import type { CabinClass, Connection, Flight, RecoveryOption } from "./types";
+
+const HKT_OFFSET_MS = 8 * 60 * 60 * 1000;
+const DAY_MS = 86_400_000;
 
 function delayMinutesOf(original: Flight, alternative: Flight): number {
   return minutesBetween(original.actualDeparture, alternative.actualDeparture);
@@ -35,41 +38,33 @@ function toOption(connection: Connection, flight: Flight): RecoveryOption {
   };
 }
 
-function compareCandidates(connection: Connection, left: Flight, right: Flight): number {
-  const leftOption = toOption(connection, left);
-  const rightOption = toOption(connection, right);
-  if (rightOption.score !== leftOption.score) return rightOption.score - leftOption.score;
-  return left.flightNumber.localeCompare(right.flightNumber);
+/** Same HKT calendar day as `hkgCalendarDay`, without building an ISO string. */
+function hkgDayKey(epochMs: number): number {
+  return Math.floor((epochMs + HKT_OFFSET_MS) / DAY_MS);
 }
 
-function pickBest(connection: Connection, flights: readonly Flight[]): Flight | undefined {
-  if (flights.length === 0) return undefined;
-  return [...flights].sort((left, right) => compareCandidates(connection, left, right))[0];
-}
-
-function pickNextCx(flights: readonly Flight[]): Flight | undefined {
-  if (flights.length === 0) return undefined;
-  return [...flights].sort((left, right) => {
-    const byTime = Date.parse(left.actualDeparture) - Date.parse(right.actualDeparture);
-    if (byTime !== 0) return byTime;
-    return left.flightNumber.localeCompare(right.flightNumber);
-  })[0];
-}
-
-function isViable(connection: Connection, candidate: Flight): boolean {
-  if (candidate.flightNumber === connection.outbound.flightNumber) return false;
-  if (candidate.origin !== "HKG") return false;
-  if (candidate.destination !== connection.outbound.destination) return false;
-  if (isUnaccompaniedMinor(connection.passenger) && candidate.airline !== "CX") return false;
-  if (
-    isUnaccompaniedMinor(connection.passenger) &&
-    hkgCalendarDay(candidate.actualDeparture) !== hkgCalendarDay(connection.outbound.actualDeparture)
-  ) {
-    return false;
+/** True iff `partySeating` would return a cabin. No object on losers. */
+function canSeat(flight: Flight, cabin: CabinClass, size: number): boolean {
+  if (flight.seats[cabin] >= size) return true;
+  const start = CABIN_RANK.indexOf(cabin);
+  for (let i = start + 1; i < CABIN_RANK.length; i++) {
+    if (flight.seats[CABIN_RANK[i]!] >= size) return true;
   }
-  if (!partySeating(candidate, connection.passenger)) return false;
-  const available = minutesBetween(connection.inbound.actualArrival, candidate.actualDeparture);
-  return available >= requiredMinutesFor(connection.inbound.airline, candidate.airline, connection.passenger);
+  return false;
+}
+
+type Rated = { flight: Flight; score: number; depMs: number };
+
+function beatsScore(next: Rated, best: Rated | undefined): boolean {
+  if (!best) return true;
+  if (next.score !== best.score) return next.score > best.score;
+  return next.flight.flightNumber.localeCompare(best.flight.flightNumber) < 0;
+}
+
+function beatsTime(next: Rated, best: Rated | undefined): boolean {
+  if (!best) return true;
+  if (next.depMs !== best.depMs) return next.depMs < best.depMs;
+  return next.flight.flightNumber.localeCompare(best.flight.flightNumber) < 0;
 }
 
 /**
@@ -78,38 +73,63 @@ function isViable(connection: Connection, candidate: Flight): boolean {
 export function generateOptions(connection: Connection, pool: readonly Flight[]): RecoveryOption[] {
   if (!isAtRisk(connection)) return [];
 
-  const viable = pool.filter((flight) => isViable(connection, flight));
-  const originalDay = hkgCalendarDay(connection.outbound.actualDeparture);
-  const originalDep = Date.parse(connection.outbound.actualDeparture);
+  const passenger = connection.passenger;
+  const outbound = connection.outbound;
+  const outboundNumber = outbound.flightNumber;
+  const destination = outbound.destination;
+  const um = isUnaccompaniedMinor(passenger);
+  const size = partySizeOf(passenger);
+  const cabin = passenger.cabin;
+  const inboundMs = Date.parse(connection.inbound.actualArrival);
+  const outboundMs = Date.parse(outbound.actualDeparture);
+  const originalDay = hkgDayKey(outboundMs);
+  const extra = extraTransitMinutes(passenger);
+  const inboundAirline = connection.inbound.airline;
 
-  const sameDay = pickBest(
-    connection,
-    viable.filter((flight) => hkgCalendarDay(flight.actualDeparture) === originalDay),
-  );
-  const chosen = new Set(sameDay ? [sameDay.flightNumber] : []);
-  const nextCx = pickNextCx(
-    viable.filter(
-      (flight) =>
-        flight.airline === "CX" &&
-        Date.parse(flight.actualDeparture) > originalDep &&
-        !chosen.has(flight.flightNumber),
-    ),
-  );
-  if (nextCx) chosen.add(nextCx.flightNumber);
-  const partner = pickBest(
-    connection,
-    viable.filter(
-      (flight) =>
-        isOneworldAirline(flight.airline) &&
-        flight.airline !== "CX" &&
-        !chosen.has(flight.flightNumber),
-    ),
-  );
+  const viable: Rated[] = [];
+  for (const flight of pool) {
+    if (flight.flightNumber === outboundNumber) continue;
+    if (flight.origin !== "HKG") continue;
+    if (flight.destination !== destination) continue;
+    if (um && flight.airline !== "CX") continue;
+    if (!canSeat(flight, cabin, size)) continue;
+    const depMs = Date.parse(flight.actualDeparture);
+    if (um && hkgDayKey(depMs) !== originalDay) continue;
+    const available = (depMs - inboundMs) / 60_000;
+    if (!(available >= requiredMinutes(inboundAirline, flight.airline) + extra)) continue;
+    const delayMinutes = (depMs - outboundMs) / 60_000;
+    viable.push({
+      flight,
+      depMs,
+      score: scoreOption(passenger.tier, flight.seats[cabin] >= size, delayMinutes),
+    });
+  }
+
+  let sameDay: Rated | undefined;
+  for (const rated of viable) {
+    if (hkgDayKey(rated.depMs) !== originalDay) continue;
+    if (beatsScore(rated, sameDay)) sameDay = rated;
+  }
+  const chosen = new Set(sameDay ? [sameDay.flight.flightNumber] : []);
+  let nextCx: Rated | undefined;
+  for (const rated of viable) {
+    if (rated.flight.airline !== "CX") continue;
+    if (!(rated.depMs > outboundMs)) continue;
+    if (chosen.has(rated.flight.flightNumber)) continue;
+    if (beatsTime(rated, nextCx)) nextCx = rated;
+  }
+  if (nextCx) chosen.add(nextCx.flight.flightNumber);
+  let partner: Rated | undefined;
+  for (const rated of viable) {
+    if (!isOneworldAirline(rated.flight.airline) || rated.flight.airline === "CX") continue;
+    if (chosen.has(rated.flight.flightNumber)) continue;
+    if (beatsScore(rated, partner)) partner = rated;
+  }
 
   const options: RecoveryOption[] = [];
-  if (sameDay) options.push(toOption(connection, sameDay));
-  if (nextCx) options.push(toOption(connection, nextCx));
-  if (partner) options.push(toOption(connection, partner));
+  if (sameDay) options.push(toOption(connection, sameDay.flight));
+  if (nextCx) options.push(toOption(connection, nextCx.flight));
+  if (partner) options.push(toOption(connection, partner.flight));
   options.sort((left, right) => {
     if (right.score !== left.score) return right.score - left.score;
     return left.flight.flightNumber.localeCompare(right.flight.flightNumber);

@@ -50,6 +50,7 @@ From root `package.json` (and the console package). Verify after `pnpm install`.
 | `pnpm test:demo` | Playwright against `pnpm --filter console dev:e2e` (port 3100). Locks [`docs/DEMO.md`](../DEMO.md). |
 | `pnpm --filter console dev` | Next.js Turbopack desk. Station clock is **sim** time (`Asia/Hong_Kong`). |
 | `pnpm --filter <pkg> test` | Package-local Vitest (`engine` includes coverage; engine src must stay 100%). |
+| `pnpm --filter engine bench` | Kernel ns/op + checksums. Read `docs/engine/SPACE.md` first. |
 | `pnpm briefing:csv` / `briefing:pdf` | Competitive-intel site in this folder — **not** the demo path. |
 
 Done means: `pnpm typecheck && pnpm test && pnpm test:demo`, with the known
@@ -131,4 +132,5 @@ pnpm test is already red on origin/main in packages/engine (kraken.test.ts
 | Survey cards | [`docs/survey/`](../survey/) |
 | Compound OS | [`docs/COMPOUND.md`](../COMPOUND.md), [`.cursor/skills/compound/SKILL.md`](../../.cursor/skills/compound/SKILL.md) |
 | `/hackathon` | [`.cursor/skills/hackathon/SKILL.md`](../../.cursor/skills/hackathon/SKILL.md) |
+| Engine perf | [`.cursor/skills/algorithm-engineer/SKILL.md`](../../.cursor/skills/algorithm-engineer/SKILL.md) |
 | This orientation | [`docs/briefing/`](./) |

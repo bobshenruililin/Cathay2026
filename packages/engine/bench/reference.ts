@@ -1,0 +1,114 @@
+import { isOneworldAirline, requiredMinutesFor } from "../src/mct";
+import { hkgCalendarDay, minutesBetween } from "../src/iso";
+import { isAtRisk } from "../src/feasibility";
+import { delayReason, mctReason, scoreReason, seatingReason, specialHandlingReasons } from "../src/option-reason";
+import { isUnaccompaniedMinor } from "../src/passenger";
+import { scoreOption } from "../src/score";
+import { partySeating } from "../src/seating";
+import type { Connection, Flight, RecoveryOption } from "../src/types";
+
+function delayMinutesOf(original: Flight, alternative: Flight): number {
+  return minutesBetween(original.actualDeparture, alternative.actualDeparture);
+}
+
+/** Independent of `src/options.ts` pick path. Builds full RecoveryOption including reasoning. */
+export function referenceToOption(connection: Connection, flight: Flight): RecoveryOption {
+  const passenger = connection.passenger;
+  const seating = partySeating(flight, passenger)!;
+  const delayMinutes = delayMinutesOf(connection.outbound, flight);
+  const score = scoreOption(passenger.tier, seating.seatMatch, delayMinutes);
+  const required = requiredMinutesFor(connection.inbound.airline, flight.airline, passenger);
+  const available = minutesBetween(connection.inbound.actualArrival, flight.actualDeparture);
+  return {
+    flight,
+    score,
+    delayMinutes,
+    seatMatch: seating.seatMatch,
+    offeredCabin: seating.offeredCabin,
+    downgradeProtected: seating.downgradeProtected,
+    reasoning: [
+      delayReason(flight, delayMinutes, connection.outbound.flightNumber, connection.outbound.actualDeparture),
+      mctReason(connection.inbound.airline, flight.airline, required, available),
+      seatingReason(flight, passenger, seating),
+      ...specialHandlingReasons(passenger),
+      scoreReason(passenger.tier, seating.seatMatch, delayMinutes, score),
+    ],
+  };
+}
+
+function compareCandidates(connection: Connection, left: Flight, right: Flight): number {
+  const leftOption = referenceToOption(connection, left);
+  const rightOption = referenceToOption(connection, right);
+  if (rightOption.score !== leftOption.score) return rightOption.score - leftOption.score;
+  return left.flightNumber.localeCompare(right.flightNumber);
+}
+
+function pickBest(connection: Connection, flights: readonly Flight[]): Flight | undefined {
+  if (flights.length === 0) return undefined;
+  return [...flights].sort((left, right) => compareCandidates(connection, left, right))[0];
+}
+
+function pickNextCx(flights: readonly Flight[]): Flight | undefined {
+  if (flights.length === 0) return undefined;
+  return [...flights].sort((left, right) => {
+    const byTime = Date.parse(left.actualDeparture) - Date.parse(right.actualDeparture);
+    if (byTime !== 0) return byTime;
+    return left.flightNumber.localeCompare(right.flightNumber);
+  })[0];
+}
+
+function isViable(connection: Connection, candidate: Flight): boolean {
+  if (candidate.flightNumber === connection.outbound.flightNumber) return false;
+  if (candidate.origin !== "HKG") return false;
+  if (candidate.destination !== connection.outbound.destination) return false;
+  if (isUnaccompaniedMinor(connection.passenger) && candidate.airline !== "CX") return false;
+  if (
+    isUnaccompaniedMinor(connection.passenger) &&
+    hkgCalendarDay(candidate.actualDeparture) !== hkgCalendarDay(connection.outbound.actualDeparture)
+  ) {
+    return false;
+  }
+  if (!partySeating(candidate, connection.passenger)) return false;
+  const available = minutesBetween(connection.inbound.actualArrival, candidate.actualDeparture);
+  return available >= requiredMinutesFor(connection.inbound.airline, candidate.airline, connection.passenger);
+}
+
+/** Sort-based baseline. Must deep-equal `generateOptions` on every matrix cell. */
+export function referenceOptions(connection: Connection, pool: readonly Flight[]): RecoveryOption[] {
+  if (!isAtRisk(connection)) return [];
+  const viable = pool.filter((flight) => isViable(connection, flight));
+  const originalDay = hkgCalendarDay(connection.outbound.actualDeparture);
+  const originalDep = Date.parse(connection.outbound.actualDeparture);
+  const sameDay = pickBest(
+    connection,
+    viable.filter((flight) => hkgCalendarDay(flight.actualDeparture) === originalDay),
+  );
+  const chosen = new Set(sameDay ? [sameDay.flightNumber] : []);
+  const nextCx = pickNextCx(
+    viable.filter(
+      (flight) =>
+        flight.airline === "CX" &&
+        Date.parse(flight.actualDeparture) > originalDep &&
+        !chosen.has(flight.flightNumber),
+    ),
+  );
+  if (nextCx) chosen.add(nextCx.flightNumber);
+  const partner = pickBest(
+    connection,
+    viable.filter(
+      (flight) =>
+        isOneworldAirline(flight.airline) &&
+        flight.airline !== "CX" &&
+        !chosen.has(flight.flightNumber),
+    ),
+  );
+  const options: RecoveryOption[] = [];
+  if (sameDay) options.push(referenceToOption(connection, sameDay));
+  if (nextCx) options.push(referenceToOption(connection, nextCx));
+  if (partner) options.push(referenceToOption(connection, partner));
+  options.sort((left, right) => {
+    if (right.score !== left.score) return right.score - left.score;
+    return left.flight.flightNumber.localeCompare(right.flight.flightNumber);
+  });
+  return options.slice(0, 3);
+}
